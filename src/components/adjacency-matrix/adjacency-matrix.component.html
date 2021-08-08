@@ -1,0 +1,26 @@
+<div class="matrix-container">
+    <div class="matrix">
+    <tr *ngFor="let nodex of graphService.loadedNodes; let i = index">
+            <mat-checkbox *ngIf="i === 0" style="opacity: 0%;" [disabled]="true"></mat-checkbox>
+            <div style="width: 30px; text-align: left; margin-right: 1px; color: #8c8f92;">{{graphService.loadedNodes[i].label}}</div>
+            <td *ngFor="let nodey of graphService.loadedNodes; let j = index">
+                <div *ngIf="i === 0"><a style="text-align: start; height: 40px; letter-spacing: -3px; text-orientation: upright !important; writing-mode: tb-rl; color: #8c8f92;">{{graphService.loadedNodes[j].label}}</a></div>
+                <mat-checkbox [checked]="graphService.adjConnections[i][j]" (change)="graphService.clickAdjMatrix(i,j)" style="margin-right: 2px; margin-left: 2px;"></mat-checkbox>
+            </td>
+    </div>
+</div>
+
+<!-- <cdk-virtual-scroll-viewport itemSize="48">
+
+    <div *cdkVirtualFor="let item of items">
+      <mat-form-field>
+        <mat-label>{{item.name}}</mat-label>
+        <mat-select [(value)]="item.selected">
+          <mat-option *ngFor="let option of item.options" [value]="option.value">
+            {{option.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </cdk-virtual-scroll-viewport> -->

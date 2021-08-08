@@ -1,0 +1,11 @@
+.snack-bar{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.snack-bar-content {
+    color: #a3a5a8;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    text-overflow: ellipsis;
+  }
