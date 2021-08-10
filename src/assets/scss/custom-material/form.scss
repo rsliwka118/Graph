@@ -1,0 +1,22 @@
+.mat-form-field-label{
+    color: #5b5f63;
+}
+  
+.mat-form-field{
+    font-family: 'Montserrat';
+    color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.mat-form-field-wrapper{
+  margin-bottom: -1.25em !important;
+}

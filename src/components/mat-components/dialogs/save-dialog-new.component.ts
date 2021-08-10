@@ -1,0 +1,37 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DataService } from 'src/services/data.service';
+@Component({
+    selector: 'app-save-dialog-new',
+    template: `
+		<div style="width: 400px; padding-bottom: 10px;" class="custom-dialog">
+			<div class="edit-text">Zapisz projekt jako</div>
+			<mat-form-field style="width: 400px;" color="accent" appearance="fill">
+				<mat-label>Nazwa</mat-label>
+				<input style="padding: 0px;" matInput #input [(ngModel)]="title">
+			</mat-form-field>
+			<div style="margin: 0px; padding: 0px" mat-dialog-actions align="end">
+				<button (click)="saveButton()" mat-raised-button color="accent" style="border-color: #ff4081 !important;">Zapisz</button>
+			</div>
+		</div>
+    `
+})
+export class SaveDialogNewComponent implements OnInit {
+
+  title = ""
+
+  constructor(public dialogRef:MatDialogRef<SaveDialogNewComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { }
+
+  saveButton(): void{
+      this.dataService.currentTitle = this.title;
+
+      this.dataService.saveAndCreateNew(this.data.container, true);
+      this.dataService.getGraphList();
+      this.dialogRef.close();
+  }
+
+  
+  ngOnInit(): void {
+  }
+
+}

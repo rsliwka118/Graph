@@ -1,0 +1,41 @@
+.custom-bottom-sheet{
+	background-color: #202124;
+	max-width: 750px !important;
+}
+
+.custom-bottom-sheet .item-list {
+  	display: inline-block;
+}
+
+.custom-bottom-sheet .item {
+	background-color: rgba(0, 0, 0, 0.1);
+	width: 100px;
+	height: auto;
+	margin: 2px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.custom-bottom-sheet .item-title{
+	color: #a3a5a8;
+	font-family: 'Montserrat';
+	font-size: 15px;
+	text-overflow: ellipsis;
+}
+
+.snack-bar{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.snack-bar-content {
+    color: #a3a5a8;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    text-overflow: ellipsis;
+}
+
+.snackbar-background {
+	background: #292a2d;
+	min-width: auto !important;
+}

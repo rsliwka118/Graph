@@ -3,8 +3,7 @@ import { GraphService } from 'src/services/graph.service';
 
 @Component({
     selector: 'app-representations',
-    templateUrl: './representations.component.html',
-    styleUrls: ['./representations.component.scss']
+    templateUrl: './representations.component.html'
 })
 export class RepresentationsComponent implements OnInit {
 

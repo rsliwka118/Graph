@@ -3,8 +3,7 @@ import { GraphService } from 'src/services/graph.service';
 
 @Component({
     selector: 'app-algorithms',
-    templateUrl: './algorithms.component.html',
-    styleUrls: ['./algorithms.component.scss']
+    templateUrl: './algorithms.component.html'
 })
 export class AlgorithmsComponent implements OnInit {
 

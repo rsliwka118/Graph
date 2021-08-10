@@ -4,7 +4,7 @@ import { DataService } from 'src/services/data.service';
 import { GraphService } from 'src/services/graph.service';
 import { NavigationService } from 'src/services/navigation.service';
 import { FilesBottomSheetComponent } from '../../mat-components/files-bottom-sheet/files-bottom-sheet.component';
-import { SaveConfirmComponent } from '../../mat-components/dialogs/save-confirm/save-confirm.component';
+import { SaveConfirmComponent } from '../../mat-components/dialogs/save-confirm.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
@@ -44,8 +44,6 @@ export class SidebarComponent implements OnInit {
         this.dataService.getGraphList();
     }
 
-    ngOnInit(): void {
-        
-    }
+    ngOnInit(): void { }
 
 }

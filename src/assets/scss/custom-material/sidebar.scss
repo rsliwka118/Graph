@@ -1,0 +1,53 @@
+.side-nav {
+	position: absolute;
+	height: 100%;
+	background: #292a2d;
+	z-index: 3;
+}
+
+.example-sidenav-container {
+    flex: 1;
+}
+
+.mat-drawer-container {
+    background-color: #2e3033 !important;
+}
+
+.mat-menu-panel {
+	height: 100% !important;
+	max-width: none !important;
+	background: #202124 !important;
+}
+
+.mat-list-item-content {
+	padding-right: 0 !important;
+	padding-left: 8px !important;
+}
+
+.nav-button-container{
+	padding: 5px;
+}
+
+.nav-button{
+    width: 54px;
+    height: 54px;
+}
+
+mat-icon{
+	width: 40px;
+	height: 40px;
+}
+
+mat-sidenav{
+	background-color: #2e3033;
+	color: #8d8d8d;
+	min-width: 300px;
+	display: inline;
+}
+
+mat-divider {
+    border-color: white;
+    opacity: 20%;
+    margin-right: 5px;
+    margin-left: 5px;
+}

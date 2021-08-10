@@ -4,10 +4,10 @@ import { Network, Node, Edge} from 'vis-network';
 import { DataSet } from "vis-data";
 
 import { MatDialog } from '@angular/material/dialog';
-import { SaveDialogComponent } from 'src/components/mat-components/dialogs/save-dialog/save-dialog.component';
-import { SaveDialogNewComponent } from 'src/components/mat-components/dialogs/save-dialog-new/save-dialog-new.component';
+import { SaveDialogComponent } from 'src/components/mat-components/dialogs/save-dialog.component';
+import { SaveDialogNewComponent } from 'src/components/mat-components/dialogs/save-dialog-new.component';
 import { SnackBarService } from './snack-bar.service';
-import { DeleteConfirmComponent } from 'src/components/mat-components/dialogs/delete-confirm/delete-confirm.component';
+import { DeleteConfirmComponent } from 'src/components/mat-components/dialogs/delete-confirm.component';
 
 @Injectable({
     providedIn: 'root'

@@ -1,0 +1,10 @@
+#network {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: #202124;
+	background-image: radial-gradient(circle, #28292c 30%, transparent 10%), radial-gradient(circle, #28292c 30%, transparent 10%);
+	background-size: 20px 20px;
+	background-position: 0 0, 20px 20px;
+	z-index: 1;
+}
