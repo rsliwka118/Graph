@@ -1,0 +1,80 @@
+<div class="edit-text matrix">Węzeł startowy:
+    <span *ngIf="graphService.isStartNodeSet()">{{graphService.getNodeLabel(graphService.startNodeID)}}</span>
+    <span *ngIf="!graphService.isStartNodeSet()">brak</span>
+</div>
+<mat-expansion-panel style="margin-bottom: 5px;" [disabled]="!graphService.isStartNodeSet()"
+    [expanded]="graphService.isStartNodeSet()">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <div class="edit-text" style="margin-bottom: 0;">Przeszukiwanie w głąb (DFS)</div>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="matrix-container matrix" style="max-height: 150px;">
+        <span *ngFor="let node of graphService.dfsResult; let i = index">
+            <td>
+                <a style="font-size: 20px; color: #8c8f92;"><span *ngIf="i > 0"
+                        style="opacity: 50%;">&#10142;</span><span
+                        [ngStyle]="{'color': i === 0  ? '#ff4081' : '' }">{{graphService.loadedNodes[node].label}}</span></a>
+            </td>
+        </span>
+    </div>
+    <button [disabled]="this.graphService.inAnimateMode" (click)="graphService.animateSearch(graphService.dfsResult)"
+        mat-stroked-button color="accent"
+        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">Wizualizacja</button>
+</mat-expansion-panel>
+<mat-expansion-panel style="margin-bottom: 5px;" [disabled]="!graphService.isStartNodeSet()"
+    [expanded]="graphService.isStartNodeSet()">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <div class="edit-text" style="margin-bottom: 0;">Przeszukiwanie wszerz (BFS)</div>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="matrix-container matrix" style="max-height: 150px;">
+        <span *ngFor="let node of graphService.bfsResult; let i = index">
+            <td>
+                <a style="font-size: 20px; color: #8c8f92;"><span *ngIf="i > 0"
+                        style="opacity: 50%;">&#10142;</span><span
+                        [ngStyle]="{'color': i === 0  ? '#ff4081' : '' }">{{graphService.loadedNodes[node].label}}</span></a>
+            </td>
+        </span>
+    </div>
+    <button [disabled]="this.graphService.inAnimateMode" (click)="graphService.animateSearch(graphService.bfsResult)"
+        mat-stroked-button color="accent"
+        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">Wizualizacja</button>
+</mat-expansion-panel>
+<mat-expansion-panel style="margin-bottom: 5px;" expanded="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <div class="edit-text" style="margin-bottom: 0;">Kolorowanie węzłów</div>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="matrix-container matrix">
+        <div style="height: 36px;">
+            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Oznaczenie stopni</a>
+            <button (click)="graphService.degreeColor()" mat-stroked-button color="accent"
+                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+        </div>
+        <mat-divider style="opacity: 10%; margin-top: 10px; margin-bottom: 10px;"></mat-divider>
+        <div style="height: 36px;">
+            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Wg sąsiedztwa</a>
+            <button (click)="graphService.colorNodes(graphService.adjSort())" mat-stroked-button color="accent"
+                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+        </div>
+        <mat-divider style="opacity: 10%; margin-top: 10px; margin-bottom: 10px;"></mat-divider>
+        <div style="height: 36px;">
+            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Wg stopni</a>
+            <button (click)="graphService.colorNodes(graphService.degreeSort())" mat-stroked-button color="accent"
+                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+        </div>
+        <mat-divider style="opacity: 10%; margin-top: 10px; margin-bottom: 10px;"></mat-divider>
+        <div style="height: 36px;">
+            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Losowo</a>
+            <button (click)="graphService.colorNodes(graphService.randSort())" mat-stroked-button color="accent"
+                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+        </div>
+    </div>
+    <button (click)="graphService.getRandomColors(1000)" mat-stroked-button color="accent"
+        style="margin-top: 10px; float: left; border-color: #ff4081 !important;">Zmień kolory</button>
+    <button (click)="graphService.resetGraph()" mat-stroked-button color="accent"
+        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">Resetuj</button>
+</mat-expansion-panel>

@@ -1,0 +1,32 @@
+<div *ngIf="graphService.enableMatrix">
+    <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div class="edit-text" style="margin-bottom: 0;">Macierz sąsiedztwa</div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-adjacency-matrix></app-adjacency-matrix>
+    </mat-expansion-panel>
+    <!-- INC PANEL-->
+    <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div class="edit-text" style="margin-bottom: 0;">Macierz incydencji</div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-incidence-matrix></app-incidence-matrix>
+    </mat-expansion-panel>
+    <!-- LIST PANEL-->
+    <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div class="edit-text" style="margin-bottom: 0;">Lista sąsiedztwa</div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-adjacency-list></app-adjacency-list>
+    </mat-expansion-panel>
+</div>
+<div *ngIf="!graphService.enableMatrix" class="edit-text"
+    style="padding-top: 100%; height: 100%; width: 280px; text-align: center;">Generowanie reprezentacji
+    <b>wyłączone w ustawieniach.</b>
+</div>

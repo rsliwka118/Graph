@@ -1,0 +1,6 @@
+<div class="edit-text">Krawędź</div>
+<mat-form-field color="accent" appearance="fill" style="margin-bottom: 10px">
+    <mat-label>Zmień wagę</mat-label>
+    <input matInput autocomplete="off" type="number" (keyup)="editEdge($event)"
+        [(ngModel)]="this.graphService.edgeWeight">
+</mat-form-field>

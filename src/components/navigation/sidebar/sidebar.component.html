@@ -1,0 +1,150 @@
+<div class="side-nav">
+    <!-- FILE SECTION -->
+    <div class="nav-button-container">
+        <button [disabled]="this.graphService.inAnimateMode" (click)="openFilesMenu()" class="nav-button"
+            mat-icon-button #tooltip="matTooltip" matTooltip="Zapisane grafy" matTooltipClass="custom-tooltip"
+            matTooltipPosition="right">
+            <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }"
+                [matBadge]="dataService.graphList.length" matBadgeColor="accent" matBadgePosition="below after"
+                svgIcon="files-icon" [matBadgeHidden]="dataService.graphList.length === 0"></mat-icon>
+        </button>
+    </div>
+    <mat-divider style="opacity: 0;"></mat-divider>
+    <div class="nav-button-container">
+        <button [disabled]="this.graphService.inAnimateMode" (click)="openSaveGraphConfirm()" class="nav-button"
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Nowy graf" matTooltipPosition="right"
+            mat-icon-button>
+            <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="new-icon">
+            </mat-icon>
+        </button>
+    </div>
+    <mat-divider style="opacity: 0;"></mat-divider>
+    <div class="nav-button-container">
+        <button [disabled]="this.graphService.inAnimateMode" (click)="dataService.saveAndCreateNew(this.el, false)"
+            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Zapisz zmiany"
+            matTooltipPosition="right" mat-icon-button>
+            <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="save-icon">
+            </mat-icon>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- MATH SECTION -->
+    <div class="nav-button-container">
+        <button [disabled]="this.graphService.inAnimateMode" (click)="matrixToggle() ? sidebarToggle() : matrixToggle()"
+            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Reprezentacje grafu"
+            matTooltipPosition="right" mat-icon-button>
+            <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isRepresentationOpen"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="matrix-icon">
+            </mat-icon>
+            <mat-icon *ngIf="navigationService.isNavOpen && !navigationService.isRepresentationOpen"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }"
+                svgIcon="matrix-icon-active">
+            </mat-icon>
+        </button>
+    </div>
+    <mat-divider style="opacity: 0;"></mat-divider>
+    <div class="nav-button-container">
+        <button (click)="algToggle() ? sidebarToggle() : algToggle()" class="nav-button" #tooltip="matTooltip"
+            matTooltipClass="custom-tooltip" matTooltip="Algorytmy" matTooltipPosition="right" mat-icon-button>
+            <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isAlgOpen" svgIcon="alg-icon"></mat-icon>
+            <mat-icon *ngIf="navigationService.isNavOpen && !navigationService.isAlgOpen" svgIcon="alg-icon-active">
+            </mat-icon>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- EDIT SECTION -->
+    <div class="nav-button-container">
+        <button [disabled]="this.graphService.inAnimateMode" (click)="this.graphService.addNode()" class="nav-button"
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj węzeł" matTooltipPosition="right"
+            mat-icon-button>
+            <mat-icon *ngIf="!graphService.isAddNode"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="add-icon">
+            </mat-icon>
+            <mat-icon *ngIf="graphService.isAddNode"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="add-icon-active">
+            </mat-icon>
+        </button>
+    </div>
+    <mat-divider style="opacity: 0;"></mat-divider>
+    <div class="nav-button-container">
+        <button [disabled]="this.graphService.inAnimateMode" (click)="this.graphService.addEdge()" class="nav-button"
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj krawędź" matTooltipPosition="right"
+            mat-icon-button>
+            <mat-icon *ngIf="!graphService.isAddEdge"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="edge-icon">
+            </mat-icon>
+            <mat-icon *ngIf="graphService.isAddEdge"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="edge-icon-active">
+            </mat-icon>
+        </button>
+    </div>
+    <mat-divider style="opacity: 0;"></mat-divider>
+    <div class="nav-button-container">
+        <button [disabled]="!this.graphService.edgeSelected || this.graphService.inAnimateMode"
+            (click)="this.graphService.editEdge()" class="nav-button" #tooltip="matTooltip"
+            matTooltipClass="custom-tooltip" matTooltip="Edytuj krawędź" matTooltipPosition="right" mat-icon-button>
+            <mat-icon *ngIf="!graphService.isEditEdge"
+                [ngStyle]="{'opacity': this.graphService.edgeSelected && !this.graphService.inAnimateMode ? '100%' : '30%' }"
+                svgIcon="edit-edge-icon"></mat-icon>
+            <mat-icon *ngIf="graphService.isEditEdge"
+                [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }"
+                svgIcon="edit-edge-icon-active"></mat-icon>
+        </button>
+    </div>
+    <mat-divider style="opacity: 0;"></mat-divider>
+    <div class="nav-button-container">
+        <button
+            [disabled]="!(this.graphService.edgeSelected || this.graphService.nodeSelected) || this.graphService.inAnimateMode"
+            (click)="this.graphService.deleteSelected()" class="nav-button" #tooltip="matTooltip"
+            matTooltipClass="custom-tooltip" matTooltip="Usuń zaznaczony element" matTooltipPosition="right"
+            mat-icon-button>
+            <mat-icon
+                [ngStyle]="{'opacity': ( this.graphService.edgeSelected || this.graphService.nodeSelected ) && !graphService.inAnimateMode ? '100%' : '30%' }"
+                svgIcon="delete-icon"></mat-icon>
+        </button>
+    </div>
+    <div style="position: absolute; bottom: 0;" class="nav-button-container">
+        <button class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Ustawienia"
+            matTooltipPosition="right" mat-button [matMenuTriggerFor]="afterMenu" mat-icon-button>
+            <mat-icon svgIcon="settings-icon"></mat-icon>
+        </button>
+        <mat-menu class="settings" #afterMenu="matMenu" xPosition="after">
+            <div (click)=$event.stopPropagation()>
+                <div class="settings-item">
+                    <a class="settings-item-text">Gładkie krawędzie</a>
+                    <mat-slide-toggle [disabled]="graphService.inAnimateMode" style="float:right"
+                        [(ngModel)]="graphService.enableSmooth" (change)="graphService.changeSmooth()">
+                    </mat-slide-toggle>
+                </div>
+                <div class="settings-item">
+                    <a class="settings-item-text">Fizyka</a>
+                    <mat-slide-toggle [disabled]="graphService.inAnimateMode" style="float:right"
+                        [(ngModel)]="graphService.enablePhysics" (change)="graphService.changePhysics()">
+                    </mat-slide-toggle>
+                </div>
+                <mat-divider style="opacity: 10%;"></mat-divider>
+                <div class="settings-item" #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+                    matTooltip="Funkcja niezalecana dla dużych grafów." matTooltipPosition="right">
+                    <a class="settings-item-text">Generowanie reprezentacji</a>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableMatrix"
+                        (change)="graphService.getMatrix()"></mat-slide-toggle>
+                </div>
+                <mat-divider style="opacity: 10%;"></mat-divider>
+                <div class="settings-item">
+                    <a class="settings-item-text">Ukryj wagi krawędzi</a>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableEdgeLabel"
+                        (change)="graphService.changeEdgeLabel()"></mat-slide-toggle>
+                </div>
+                <div class="settings-item">
+                    <a class="settings-item-text">Ukryj etykiety węzłów</a>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableNodeLabel"
+                        (change)="graphService.changeNodeLabel()"></mat-slide-toggle>
+                </div>
+                <div class="settings-item">
+                    <a class="settings-item-text">Siatka</a>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableGrid"></mat-slide-toggle>
+                </div>
+            </div>
+        </mat-menu>
+    </div>
+</div>
