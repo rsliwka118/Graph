@@ -121,36 +121,36 @@
                 <div class="settings-item">
                     <a class="settings-item-text">Gładkie krawędzie</a>
                     <mat-slide-toggle [disabled]="graphService.inAnimateMode" style="float:right"
-                        [(ngModel)]="graphService.enableSmooth" (change)="graphService.changeSmooth()">
+                        [(ngModel)]="options.enableSmooth" (change)="options.changeSmooth()">
                     </mat-slide-toggle>
                 </div>
                 <div class="settings-item">
                     <a class="settings-item-text">Fizyka</a>
                     <mat-slide-toggle [disabled]="graphService.inAnimateMode" style="float:right"
-                        [(ngModel)]="graphService.enablePhysics" (change)="graphService.changePhysics()">
+                        [(ngModel)]="options.enablePhysics" (change)="options.changePhysics()">
                     </mat-slide-toggle>
                 </div>
                 <mat-divider style="opacity: 10%;"></mat-divider>
                 <div class="settings-item" #tooltip="matTooltip" matTooltipClass="custom-tooltip"
                     matTooltip="Funkcja niezalecana dla dużych grafów." matTooltipPosition="right">
                     <a class="settings-item-text">Generowanie reprezentacji</a>
-                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableMatrix"
+                    <mat-slide-toggle style="float:right" [(ngModel)]="options.enableMatrix"
                         (change)="graphService.getMatrix()"></mat-slide-toggle>
                 </div>
                 <mat-divider style="opacity: 10%;"></mat-divider>
                 <div class="settings-item">
                     <a class="settings-item-text">Ukryj wagi krawędzi</a>
-                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableEdgeLabel"
-                        (change)="graphService.changeEdgeLabel()"></mat-slide-toggle>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="options.enableEdgeLabel"
+                        (change)="options.changeEdgeLabel()"></mat-slide-toggle>
                 </div>
                 <div class="settings-item">
                     <a class="settings-item-text">Ukryj etykiety węzłów</a>
-                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableNodeLabel"
-                        (change)="graphService.changeNodeLabel()"></mat-slide-toggle>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="options.enableNodeLabel"
+                        (change)="options.changeNodeLabel()"></mat-slide-toggle>
                 </div>
                 <div class="settings-item">
                     <a class="settings-item-text">Siatka</a>
-                    <mat-slide-toggle style="float:right" [(ngModel)]="graphService.enableGrid"></mat-slide-toggle>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="options.enableGrid"></mat-slide-toggle>
                 </div>
             </div>
         </mat-menu>

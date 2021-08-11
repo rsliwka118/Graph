@@ -23,7 +23,7 @@
 
       <!-- VIS.JS CANVAS -->
       <div (click)="this.graphService.disableEditMode()"
-        [ngStyle]="{'background-image' : graphService.enableGrid ? '' : 'none'}" id="network" #network></div>
+        [ngStyle]="{'background-image' : options.enableGrid ? '' : 'none'}" id="network" #network></div>
 
       <!-- SIDEBAR -->
       <app-sidebar [el]='this.el'></app-sidebar>

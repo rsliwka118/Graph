@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavigationService } from 'src/services/navigation.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Icons } from '../../../models/icons.model';
+import { OptionsService } from 'src/services/options.service';
 
 @Component({
     selector: 'app-editor',
@@ -26,7 +27,8 @@ export class EditorComponent implements AfterViewInit {
         public navigationService: NavigationService,
         public iconRegistry: MatIconRegistry,
         private cd: ChangeDetectorRef,
-        public sanitizer: DomSanitizer ) {
+        public sanitizer: DomSanitizer,
+        public options: OptionsService) {
 
         iconRegistry.addSvgIconLiteral('add-icon', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON));
         iconRegistry.addSvgIconLiteral('add-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON_ACTIVE));

@@ -6,6 +6,7 @@ import { NavigationService } from 'src/services/navigation.service';
 import { FilesBottomSheetComponent } from '../../mat-components/files-bottom-sheet/files-bottom-sheet.component';
 import { SaveConfirmComponent } from '../../mat-components/dialogs/save-confirm.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { OptionsService } from 'src/services/options.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -21,7 +22,8 @@ export class SidebarComponent implements OnInit {
         public navigationService: NavigationService,
         public dataService: DataService,
         public dialog: MatDialog,
-        public bottomSheet: MatBottomSheet) { }
+        public bottomSheet: MatBottomSheet,
+        public options: OptionsService) { }
     
     sidebarToggle() {
         this.navigationService.toggle();
