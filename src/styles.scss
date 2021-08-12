@@ -1,3 +1,4 @@
+@import "./assets/scss/vis.scss";
 @import "./assets/scss/representations.scss";
 @import "./assets/scss/custom-material/dialog.scss";
 @import "./assets/scss/custom-material/input.scss";
@@ -5,10 +6,9 @@
 @import "./assets/scss/custom-material/expansion-panel.scss";
 @import "./assets/scss/custom-material/scrollbar.scss";
 @import "./assets/scss/custom-material/snackbar.scss";
-@import "./assets/scss/custom-material/sidebar.scss";
 @import "./assets/scss/custom-material/tooltip.scss";
 @import "./assets/scss/custom-material/text.scss";
-@import "./assets/scss/vis.scss";
+@import "./assets/scss/custom-material/sidebar.scss";
 
 html, body { 
 	height: 100%; 

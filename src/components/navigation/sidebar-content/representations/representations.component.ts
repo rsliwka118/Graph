@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlgorithmsService } from 'src/services/algorithms.service';
 import { GraphService } from 'src/services/graph.service';
 import { OptionsService } from 'src/services/options.service';
 
@@ -8,7 +9,7 @@ import { OptionsService } from 'src/services/options.service';
 })
 export class RepresentationsComponent implements OnInit {
 
-    constructor( public graphService: GraphService, public options: OptionsService ) { }
+    constructor(public options: OptionsService) { }
 
     ngOnInit(): void {
     }

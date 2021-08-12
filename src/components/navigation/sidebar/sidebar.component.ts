@@ -7,11 +7,11 @@ import { FilesBottomSheetComponent } from '../../mat-components/files-bottom-she
 import { SaveConfirmComponent } from '../../mat-components/dialogs/save-confirm.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { OptionsService } from 'src/services/options.service';
+import { AlgorithmsService } from 'src/services/algorithms.service';
 
 @Component({
     selector: 'app-sidebar',
-    templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss']
+    templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
 
@@ -23,7 +23,8 @@ export class SidebarComponent implements OnInit {
         public dataService: DataService,
         public dialog: MatDialog,
         public bottomSheet: MatBottomSheet,
-        public options: OptionsService) { }
+        public options: OptionsService,
+        public algorithmsService: AlgorithmsService) { }
     
     sidebarToggle() {
         this.navigationService.toggle();

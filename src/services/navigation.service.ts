@@ -10,7 +10,7 @@ export class NavigationService {
     private sidenav: MatSidenav;
     
     isNavOpen = false
-    isRepresentationOpen = true
+    isRepresentationOpen = false
     isAlgOpen = true
 
     constructor() { }

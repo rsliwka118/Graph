@@ -23,24 +23,26 @@
 
       <!-- VIS.JS CANVAS -->
       <div (click)="this.graphService.disableEditMode()"
-        [ngStyle]="{'background-image' : options.enableGrid ? '' : 'none'}" id="network" #network></div>
+        [ngStyle]="{'background-image' : options.enableGrid ? '' : 'none'}" class="network" #network></div>
 
       <!-- SIDEBAR -->
       <app-sidebar [el]='this.el'></app-sidebar>
 
       <!-- FLOAT PANELS -->
       <!-- NODE PANEL -->
-      <div *ngIf="graphService.selectedNodeID !== null && !graphService.inAnimateMode" id="node-editor" class="float">
+      <div *ngIf="algorithmsService.selectedNodeID !== null && !graphService.inAnimateMode" id="node-editor"
+        class="float">
         <app-node-panel></app-node-panel>
       </div>
 
       <!-- EDGE PANEL -->
-      <div *ngIf="graphService.selectedEdgeID !== null && !graphService.inAnimateMode" id="node-editor" class="float">
+      <div *ngIf="algorithmsService.selectedEdgeID !== null && !graphService.inAnimateMode" id="node-editor"
+        class="float">
         <app-edge-panel></app-edge-panel>
       </div>
 
       <!-- ANIMATION PANEL -->
-      <div *ngIf="graphService.inAnimateMode" id="animation-panel" class="float">
+      <div *ngIf="graphService.inAnimateMode" class="float animation-panel">
         <app-animation-panel></app-animation-panel>
       </div>
 

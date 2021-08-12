@@ -26,9 +26,9 @@ export class Graph {
             length: 300,
             smooth: false,
             color: {
-                inherit: 'both',
-                //color: '#48648b',
-                //highlight: '#ff4081'
+                //inherit: 'both',
+                color: '#48648b',
+                highlight: '#ff4081'
             },
             font: {
                 size: 20,

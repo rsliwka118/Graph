@@ -135,7 +135,7 @@
                     matTooltip="Funkcja niezalecana dla dużych grafów." matTooltipPosition="right">
                     <a class="settings-item-text">Generowanie reprezentacji</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableMatrix"
-                        (change)="graphService.getMatrix()"></mat-slide-toggle>
+                        (change)="algorithmsService.getMatrix()"></mat-slide-toggle>
                 </div>
                 <mat-divider style="opacity: 10%;"></mat-divider>
                 <div class="settings-item">

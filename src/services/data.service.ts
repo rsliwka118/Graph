@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GraphService } from './graph.service';
-import { Network, Node, Edge} from 'vis-network';
+import { Node, Edge} from 'vis-network';
 import { DataSet } from "vis-data";
 
 import { MatDialog } from '@angular/material/dialog';
@@ -9,6 +9,8 @@ import { SaveDialogNewComponent } from 'src/components/mat-components/dialogs/sa
 import { SnackBarService } from './snack-bar.service';
 import { DeleteConfirmComponent } from 'src/components/mat-components/dialogs/delete-confirm.component';
 import { OptionsService } from './options.service';
+import { VisService } from './vis.service';
+import { AlgorithmsService } from './algorithms.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,12 +21,13 @@ export class DataService {
         public graphService: GraphService,
         public dialog: MatDialog, 
         public snackBarService: SnackBarService,
-        private options: OptionsService
-        ) { }
+        private options: OptionsService,
+        private visService: VisService,
+        public algorithmsService: AlgorithmsService) { }
 
-    currentTitle = ""
-    graphList = []
-    isDeleteProject = false
+    currentTitle = "";
+    graphList = [];
+    isDeleteProject = false;
 
     switchDeleteProjectMode() {
         this.isDeleteProject = !this.isDeleteProject;
@@ -46,7 +49,7 @@ export class DataService {
         this.graphService.buildGraph(container, {nodes: nodes, edges: edges});
 
         this.currentTitle = "";
-        this.graphService.startNodeID = "";  
+        this.algorithmsService.startNodeID = "";  
     }
 
     deleteGraph(container, title){
@@ -87,8 +90,8 @@ export class DataService {
             let graph = {
                 title: this.currentTitle,
                 data: {
-                    nodes: this.graphService.networkInstance.body.data.nodes.get(),
-                    edges: this.graphService.networkInstance.body.data.edges.get()
+                    nodes: this.visService.networkInstance.body.data.nodes.get(),
+                    edges: this.visService.networkInstance.body.data.edges.get()
                 }
             };
 

@@ -4,12 +4,13 @@
 }
 
 .custom-bottom-sheet .item-list {
-  	display: inline-block;
+  	display: inline-block; 
 }
 
 .custom-bottom-sheet .item {
 	background-color: rgba(0, 0, 0, 0.1);
 	width: 100px;
+	height: 100px !important; 
 	height: auto;
 	margin: 2px;
 	overflow: hidden;

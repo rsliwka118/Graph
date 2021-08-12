@@ -32,15 +32,15 @@
     padding-bottom: 0px;
 }
 
-#animation-panel {
-    padding: 5px;
+.animation-panel {
+    padding: 5px !important;
 }
 
 .animate-button {
     background-color: rgba(0, 0, 0, 0.1);
     width: 100px;
     height: 50px;
-    margin: 2px;
+    margin: 2px !important;
     margin-top: 0px;
     padding: 0;
 }

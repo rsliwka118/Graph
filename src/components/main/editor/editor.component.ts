@@ -9,6 +9,8 @@ import { NavigationService } from 'src/services/navigation.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Icons } from '../../../models/icons.model';
 import { OptionsService } from 'src/services/options.service';
+import { AlgorithmsComponent } from 'src/components/navigation/sidebar-content/algorithms/algorithms.component';
+import { AlgorithmsService } from 'src/services/algorithms.service';
 
 @Component({
     selector: 'app-editor',
@@ -28,7 +30,8 @@ export class EditorComponent implements AfterViewInit {
         public iconRegistry: MatIconRegistry,
         private cd: ChangeDetectorRef,
         public sanitizer: DomSanitizer,
-        public options: OptionsService) {
+        public options: OptionsService,
+        public algorithmsService: AlgorithmsService) {
 
         iconRegistry.addSvgIconLiteral('add-icon', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON));
         iconRegistry.addSvgIconLiteral('add-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON_ACTIVE));
@@ -61,10 +64,9 @@ export class EditorComponent implements AfterViewInit {
         this.navigationService.setSidenav(this.sidenav);
         this.dataService.getGraphList();
         this.cd.detectChanges();
+        ;
     }
 
-    // ngOnInit(): void {
-    //     this.dataService.getGraphList();
-    // }
+    ngOnInit(): void {  }
     
 }

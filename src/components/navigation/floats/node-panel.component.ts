@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlgorithmsService } from 'src/services/algorithms.service';
 import { GraphService } from 'src/services/graph.service';
 
 @Component({
@@ -13,13 +14,13 @@ import { GraphService } from 'src/services/graph.service';
         <div style="padding-bottom: 10px;">
             <a class="edit-text" style="font-size: 15px">Węzeł startowy</a>
             <mat-slide-toggle style="float:right" [checked]="graphService.getStartNode()"
-                (change)="graphService.setStartNode()"></mat-slide-toggle>
+                (change)="algorithmsService.setStartNode()"></mat-slide-toggle>
         </div>
     `
 })
 export class NodePanelComponent implements OnInit {
 
-    constructor( public graphService: GraphService ) { }
+    constructor( public graphService: GraphService, public algorithmsService: AlgorithmsService) { }
 
     editNode(event: any) {
         let label = "";
