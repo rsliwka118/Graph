@@ -24,6 +24,7 @@
     "@egjs/hammerjs": "^2.0.17",
     "keycharm": "^0.4.0",
     "mix-color": "^1.1.2",
+    "ngx-virtual-scroller": "^4.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "uuid": "^8.3.2",
