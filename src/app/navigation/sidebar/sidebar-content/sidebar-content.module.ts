@@ -9,28 +9,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { SidebarContentComponent } from './sidebar-content.component';
 
 @NgModule({
-  declarations: [
-    AdjacencyMatrixComponent,
-    IncidenceMatrixComponent,
-    AdjacencyListComponent,
-    RepresentationsComponent,
-    AlgorithmsComponent
-  ],
-  imports: [
-    CommonModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    MatListModule,
-    MatButtonModule
-  ],
-  exports: [
-    AdjacencyMatrixComponent,
-    IncidenceMatrixComponent,
-    AdjacencyListComponent,
-    RepresentationsComponent,
-    AlgorithmsComponent
-  ]
+    declarations: [
+        AdjacencyMatrixComponent,
+        IncidenceMatrixComponent,
+        AdjacencyListComponent,
+        RepresentationsComponent,
+        AlgorithmsComponent,
+        SidebarContentComponent
+    ],
+    imports: [
+        CommonModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        MatListModule,
+        MatButtonModule
+    ],
+    exports: [
+        SidebarContentComponent
+    ]
 })
-export class SidebarContentModule { }
+export class SidebarContentModule {}

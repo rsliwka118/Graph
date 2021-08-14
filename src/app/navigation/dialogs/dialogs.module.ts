@@ -6,24 +6,26 @@ import { SaveDialogNewComponent } from './save-dialog-new.component';
 import { SaveDialogComponent } from './save-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    SaveDialogComponent,
-    SaveConfirmComponent,
-    DeleteConfirmComponent,
-    SaveDialogNewComponent
-  ],
-  imports: [
-    CommonModule,
-    MatInputModule,
-    FormsModule
-  ],
-  exports: [
-    SaveDialogComponent,
-    SaveConfirmComponent,
-    DeleteConfirmComponent,
-    SaveDialogNewComponent
-  ]
+    declarations: [
+        SaveDialogComponent,
+        SaveConfirmComponent,
+        DeleteConfirmComponent,
+        SaveDialogNewComponent
+    ],
+    imports: [
+        CommonModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule
+    ],
+    exports: [
+        SaveDialogComponent,
+        SaveConfirmComponent,
+        DeleteConfirmComponent,
+        SaveDialogNewComponent
+    ]
 })
 export class DialogsModule { }

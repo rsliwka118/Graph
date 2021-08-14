@@ -21,9 +21,9 @@ export class AlgorithmsService {
 	constructor(public options: OptionsService, private visService: VisService) {
 	    this.adjConnections = [];
      	this.incConnections = [];
-		this.startNodeID = '';
-		this.selectedNodeID = null;
-		this.selectedEdgeID = null;
+	    this.startNodeID = '';
+	    this.selectedNodeID = null;
+	    this.selectedEdgeID = null;
 	}
 
 	clickAdjMatrix(node1Index ,node2Index) {
@@ -227,57 +227,57 @@ export class AlgorithmsService {
 
 	degreeSort() {
 			
-		let sortedNodes = [];
+	    let sortedNodes = [];
 
-		this.visService.networkInstance.body.data.nodes.get().forEach( (node) => {
+	    this.visService.networkInstance.body.data.nodes.get().forEach( (node) => {
 
-			sortedNodes.push({
-				id: node.id,
-				degree: this.visService.networkInstance.getConnectedEdges(node.id).length,
-				color: ''
-			});
+	        sortedNodes.push({
+	            id: node.id,
+	            degree: this.visService.networkInstance.getConnectedEdges(node.id).length,
+	            color: ''
+	        });
 
-		});
+	    });
 			
-		sortedNodes.sort( (a, b) => { return a.degree > b.degree ? -1 : a.degree < b.degree ? 1 : 0; } );
+	    sortedNodes.sort( (a, b) => { return a.degree > b.degree ? -1 : a.degree < b.degree ? 1 : 0; } );
 			
-		return sortedNodes;
+	    return sortedNodes;
 	}
 
 	randSort() {
 
-		let sortedNodes = [];
+	    let sortedNodes = [];
 
-		this.visService.networkInstance.body.data.nodes.get().forEach( (node) => {
+	    this.visService.networkInstance.body.data.nodes.get().forEach( (node) => {
 
-			sortedNodes.push({
-				id: node.id,
-				degree: this.visService.networkInstance.getConnectedEdges(node.id).length,
-				color: ''
-			});
+	        sortedNodes.push({
+	            id: node.id,
+	            degree: this.visService.networkInstance.getConnectedEdges(node.id).length,
+	            color: ''
+	        });
 
-		});
+	    });
 			
-		sortedNodes.sort( (a, b) => { return 0.5 - Math.random(); } );
+	    sortedNodes.sort( (a, b) => { return 0.5 - Math.random(); } );
 			
-		return sortedNodes;
+	    return sortedNodes;
 	}
 
 	adjSort() {
 
-		let sortedNodes = [];
+	    let sortedNodes = [];
 
-		this.visService.networkInstance.body.data.nodes.get().forEach( (node) => {
+	    this.visService.networkInstance.body.data.nodes.get().forEach( (node) => {
 
-			sortedNodes.push({
-				id: node.id,
-				degree: this.visService.networkInstance.getConnectedEdges(node.id).length,
-				color: ''
-			});
+	        sortedNodes.push({
+	            id: node.id,
+	            degree: this.visService.networkInstance.getConnectedEdges(node.id).length,
+	            color: ''
+	        });
 
-		});
+	    });
 			
-		return sortedNodes;
+	    return sortedNodes;
 	}
 
 	setStartNode() {

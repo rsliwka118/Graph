@@ -6,7 +6,7 @@ import { SnackBarComponent } from './snack-bar.component';
 import { FormsModule } from '@angular/forms';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { PanelsModule } from './panels/panels.module';
-import { SidebarContentModule } from './sidebar-content/sidebar-content.module';
+import { SidebarContentModule } from './sidebar/sidebar-content/sidebar-content.module';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,35 +21,35 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    FilesBottomSheetComponent,
-    SnackBarComponent,
-    SidebarComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatTooltipModule
+    declarations: [
+        FilesBottomSheetComponent,
+        SnackBarComponent,
+        SidebarComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatBadgeModule,
+        MatBottomSheetModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatListModule,
+        MatMenuModule,
+        MatSlideToggleModule,
+        MatSnackBarModule,
+        MatTooltipModule
 
-  ],
-  exports: [
-    FilesBottomSheetComponent,
-    SnackBarComponent,
-    SidebarComponent,
-    DialogsModule,
-    PanelsModule,
-    SidebarContentModule
-  ]
+    ],
+    exports: [
+        FilesBottomSheetComponent,
+        SnackBarComponent,
+        SidebarComponent,
+        DialogsModule,
+        PanelsModule,
+    //SidebarContentModule
+    ]
 })
 export class NavigationModule { }

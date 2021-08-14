@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild, ViewContainerRef} from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GraphService } from '../core/services/graph.service';
@@ -19,6 +19,7 @@ import { AlgorithmsService } from 'src/app/core/services/algorithms.service';
 export class EditorComponent implements AfterViewInit {
     @ViewChild('network') el: ElementRef
     @ViewChild('snav') public sidenav: MatSidenav;
+    @ViewChild('sidenavContent', { read: ViewContainerRef }) sidenavContent: ViewContainerRef;
     
     constructor( 
         public dialog: MatDialog,
@@ -56,11 +57,11 @@ export class EditorComponent implements AfterViewInit {
         iconRegistry.addSvgIconLiteral('replay-icon', sanitizer.bypassSecurityTrustHtml(Icons.REPLAY_ICON));
 
     }
-    
+      
     ngAfterViewInit() {
         let data = this.graphService.getGraph();
         this.graphService.buildGraph(this.el, data);
-        this.navigationService.setSidenav(this.sidenav);
+        this.navigationService.setSidenav(this.sidenav, this.sidenavContent);
         this.dataService.getGraphList();
         this.cd.detectChanges();
     }

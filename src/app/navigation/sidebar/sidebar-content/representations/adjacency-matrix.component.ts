@@ -27,7 +27,7 @@ export class AdjacencyMatrixComponent implements OnInit {
     }
 
     trackById(index: number, item: any) {
-        return item.id
+        return item.id;
     }
 }
 

@@ -7,14 +7,14 @@
       <mat-nav-list style="padding: 5px">
 
         <!-- REPRESENTATIONS -->
-        <div *ngIf="!navigationService.isRepresentationOpen">
-          <app-representations></app-representations>
-        </div>
-
-        <!-- ALGORITHMS -->
-        <div *ngIf="!navigationService.isAlgOpen">
-          <app-algorithms></app-algorithms>
-        </div>
+        <!-- <app-sidebar-content></app-sidebar-content> -->
+        <!-- <button (click)="loadModule1()">Load module 1</button>
+        <ul>
+          <li *ngFor="let factory of lazyLoadingService.componentFactories"
+            (click)="lazyLoadingService.createComponent(this.sidenavContent, factory)">
+            {{factory.componentType.name}}</li>
+        </ul> -->
+        <ng-container #sidenavContent></ng-container>
       </mat-nav-list>
     </mat-sidenav>
 

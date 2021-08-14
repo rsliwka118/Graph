@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewContainerRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { LazyLoadingService } from './lazyloading.service';
 
 @Injectable({
     providedIn: 'root'
@@ -8,15 +9,18 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class NavigationService {
 
     private sidenav: MatSidenav;
-    
-    isNavOpen = false
-    isRepresentationOpen = false
-    isAlgOpen = true
+    private sidenavContent: ViewContainerRef;
 
-    constructor() { }
+    isNavOpen = false;
+    isRepresentationOpen = false;
+    isAlgOpen = true;
+    isSidenavContentLoaded = false;
 
-    public setSidenav(sidenav: MatSidenav) {
+    constructor(private lazyLoadingService: LazyLoadingService) { }
+
+    public setSidenav(sidenav: MatSidenav, sidenavContent: ViewContainerRef) {
         this.sidenav = sidenav;
+        this.sidenavContent = sidenavContent;
     }
 
     public toggle(): void {
@@ -24,6 +28,9 @@ export class NavigationService {
     }
    
     public openRepresentationsPanel(): boolean {
+
+        if(!this.isSidenavContentLoaded) this.loadSidenavContent();
+
         if(this.isNavOpen && this.isRepresentationOpen) {
 
             this.isRepresentationOpen = false;
@@ -40,6 +47,9 @@ export class NavigationService {
     }
 
     public openAlgorithmsPanel(): boolean {
+
+        if(!this.isSidenavContentLoaded) this.loadSidenavContent();
+
         if(this.isNavOpen && this.isAlgOpen) {
 
             this.isAlgOpen = false;
@@ -53,5 +63,10 @@ export class NavigationService {
 
             return true;
         }
+    }
+
+    async loadSidenavContent() {
+        this.lazyLoadingService.loadModule(this.sidenavContent, await import('../../navigation/sidebar/sidebar-content/sidebar-content.module').then(m => m.SidebarContentModule));
+        this.lazyLoadingService.createComponent(this.sidenavContent, "app-sidebar-content");
     }
 }

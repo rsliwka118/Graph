@@ -10,23 +10,23 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [
-    NodePanelComponent,
-    AnimationPanelComponent,
-    EdgePanelComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatInputModule,
-    MatSlideToggleModule
-  ],
-  exports: [
-    NodePanelComponent,
-    AnimationPanelComponent,
-    EdgePanelComponent
-  ]
+    declarations: [
+        NodePanelComponent,
+        AnimationPanelComponent,
+        EdgePanelComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatInputModule,
+        MatSlideToggleModule
+    ],
+    exports: [
+        NodePanelComponent,
+        AnimationPanelComponent,
+        EdgePanelComponent
+    ]
 })
 export class PanelsModule { }

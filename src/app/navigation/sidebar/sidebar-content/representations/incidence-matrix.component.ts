@@ -26,6 +26,6 @@ export class IncidenceMatrixComponent implements OnInit {
     ngOnInit(): void { }
 
     trackById(index, item) {
-        return item.id
+        return item.id;
     }
 }
