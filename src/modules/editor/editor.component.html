@@ -1,0 +1,45 @@
+<div class="container">
+  <mat-sidenav-container [autosize]="true" class="example-sidenav-container">
+
+    <!-- SIDEBAR CONTENT -->
+    <mat-sidenav #snav style="background-color: #2e3033;" mode="side" (opened)="navigationService.isNavOpen = true"
+      (closed)="navigationService.isNavOpen = false">
+      <mat-nav-list style="padding: 5px">
+
+        <!-- <ng-container #sidenavContent></ng-container> -->
+        <app-sidebar-content></app-sidebar-content>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- EDITOR CONTENT -->
+    <mat-sidenav-content>
+
+      <!-- VIS.JS CANVAS -->
+      <div (click)="this.graphService.disableEditMode()"
+        [ngStyle]="{'background-image' : options.enableGrid ? '' : 'none'}" class="network" #network></div>
+
+      <!-- SIDEBAR -->
+      <app-sidebar [el]='this.el'></app-sidebar>
+
+      <!-- FLOAT PANELS -->
+      <!-- NODE PANEL -->
+      <div *ngIf="algorithmsService.selectedNodeID !== null && !graphService.inAnimateMode" id="node-editor"
+        class="float">
+        <app-node-panel></app-node-panel>
+      </div>
+
+      <!-- EDGE PANEL -->
+      <div *ngIf="algorithmsService.selectedEdgeID !== null && !graphService.inAnimateMode" id="node-editor"
+        class="float">
+        <app-edge-panel></app-edge-panel>
+      </div>
+
+      <!-- ANIMATION PANEL -->
+      <div *ngIf="graphService.inAnimateMode" class="float animation-panel">
+        <app-animation-panel></app-animation-panel>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
