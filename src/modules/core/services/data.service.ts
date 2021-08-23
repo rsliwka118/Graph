@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GraphService } from './graph.service';
 import { Node, Edge } from 'vis-network';
 import { DataSet } from "vis-data";
+import { GraphData } from '../models/graphdata.model'
 
 import { MatDialog } from '@angular/material/dialog';
 import { SaveDialogComponent } from '../../editor/navigation/dialogs/save-dialog.component';
@@ -28,6 +29,8 @@ export class DataService {
     currentTitle = "";
     graphList = [];
     isDeleteProject = false;
+    context: CanvasRenderingContext2D;
+    previewGraph: string;
 
     switchDeleteProjectMode() {
         this.isDeleteProject = !this.isDeleteProject;
@@ -43,10 +46,7 @@ export class DataService {
     }
 
     createNewGraph(container) {
-        let nodes = new DataSet<Node>([]);
-        let edges = new DataSet<Edge>([]);
-
-        this.graphService.buildGraph(container, {nodes: nodes, edges: edges});
+        this.graphService.buildGraph(container);
 
         this.currentTitle = "";
         this.algorithmsService.startNodeID = "";  
@@ -66,7 +66,8 @@ export class DataService {
         this.snackBarService.openSnackBar("Usunięto " + title + ".");  
     }
 
-    loadGraph(container, title) {        
+    loadGraph(container, title) {
+
         this.currentTitle = title;
 
         let nodes = JSON.parse(localStorage.getItem(title)).data.nodes as DataSet<Node>;
@@ -80,6 +81,7 @@ export class DataService {
     }
 
     saveAndCreateNew(container, isNew) {
+
         if(this.currentTitle === "") {
         
             if(isNew) this.dialog.open(SaveDialogNewComponent, {data: {container: container}});
@@ -87,13 +89,14 @@ export class DataService {
 
         } else {
 
-            let graph = {
-                title: this.currentTitle,
-                data: {
-                    nodes: this.visService.networkInstance.body.data.nodes.get(),
-                    edges: this.visService.networkInstance.body.data.edges.get()
-                }
+            let data = {
+                nodes: this.visService.networkInstance.body.data.nodes.get(),
+                edges: this.visService.networkInstance.body.data.edges.get()
             };
+
+            this.previewGraph = data.nodes.length ? this.getPreview() : "";
+
+            let graph = new GraphData(this.currentTitle, this.previewGraph, data);
 
             console.log(graph);
             localStorage.setItem(this.currentTitle, JSON.stringify(graph));
@@ -115,6 +118,40 @@ export class DataService {
         }
     }
 
-    
+    getPreview(): string {
+        this.context = document.getElementsByTagName("canvas")[0].getContext('2d');
+
+        let ctx = this.context;
+        let copy = document.createElement('canvas').getContext('2d'),
+        canvas = ctx.canvas,
+        w = canvas.width, h = canvas.height,
+        pix = {x:[], y:[]},
+        imageData = ctx.getImageData(0,0,canvas.width,canvas.height),
+        x, y, index;
+      
+        for (y = 0; y < h; y++) {
+          for (x = 0; x < w; x++) {
+            index = (y * w + x) * 4;
+            if (imageData.data[index+3] > 0) {
+              pix.x.push(x);
+              pix.y.push(y);
+            } 
+          }
+        }
+
+        pix.x.sort((a,b) => {return a-b});
+        pix.y.sort((a,b) => {return a-b});
+        let n = pix.x.length-1;
+      
+        w = 1 + pix.x[n] - pix.x[0];
+        h = 1 + pix.y[n] - pix.y[0];
+        let cut = ctx.getImageData(pix.x[0], pix.y[0], w, h);
+      
+        copy.canvas.width = w;
+        copy.canvas.height = h;
+        copy.putImageData(cut, 0, 0);
+        
+        return copy.canvas.toDataURL();
+      }
 
 }

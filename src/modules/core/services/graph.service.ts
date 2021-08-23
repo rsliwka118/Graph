@@ -5,8 +5,8 @@ import { DataSet } from "vis-data";
 import { AlgorithmsService } from './algorithms.service';
 import { VisService } from './vis.service';
 
-const nodes = new DataSet<Node>([]);
-const edges = new DataSet<Edge>([]);
+const	nodes = new DataSet<Node>([]);
+const	edges = new DataSet<Edge>([]);
 
 @Injectable({
     providedIn: 'root'
@@ -25,16 +25,36 @@ export class GraphService {
 	isAddEdge = false;
 	isEditEdge = false;
 
-	constructor( private algorithmsService: AlgorithmsService, private visService: VisService ) {}
+	constructor( private algorithmsService: AlgorithmsService, private visService: VisService ) {
 
-  	public buildGraph(cont, data){
-			
+	}
+
+  	public buildGraph(cont, data?){
+
+		let graphData = data ? data : { nodes: nodes, edges: edges }
+
 	    let container = cont.nativeElement;
-	    this.visService.networkInstance = new Network(container, data, Graph.option);
+	    this.visService.networkInstance = new Network(container, graphData, Graph.option);
 
-
+		this.algorithmsService.getGraph();
 	    this.algorithmsService.getMatrix();
-	    this.selectedListener();
+	    this.listener();
+		
+  	}
+
+	listener(){
+
+		this.visService.networkInstance.body.data.nodes.on('*', () => {
+			this.algorithmsService.getGraph();
+			this.algorithmsService.searchGraph();
+			this.algorithmsService.getMatrix();
+		});
+
+		this.visService.networkInstance.body.data.edges.on('*', () => {
+			this.algorithmsService.getGraph();
+			this.algorithmsService.searchGraph();
+			this.algorithmsService.getMatrix();
+		});
 
 	    this.visService.networkInstance.on("dragEnd", (() => {
 
@@ -46,25 +66,11 @@ export class GraphService {
 	            item.y = positions[item.id].y;
 
 	        });
-			
 	    }));
-  	}
-	
-	getGraph(){
-	    let data = {
-	        nodes: nodes,
-	        edges: edges
-	    };
-
-	    return data;
-	}
-
-	selectedListener(){
 
 	    this.visService.networkInstance.on("click", (params => {
 
 	        this.nodeSelected = (params.nodes.length > 0) ? true : false;
-
 	        this.edgeSelected = (params.edges.length > 0 && params.nodes.length == 0 ) ? true : false;
 
 	        this.editNodeListener(params);
@@ -74,7 +80,7 @@ export class GraphService {
 	}
 
 	editNodeListener(params){
-
+		
 	    if(params.nodes.length > 0) {
 	        let nodeId = params.nodes[0];
 	        let node = this.visService.networkInstance.body.data.nodes.get(nodeId);
@@ -135,15 +141,13 @@ export class GraphService {
 
 	getNodeLabel(id): string {
 
-	    return id.length ? this.visService.networkInstance.body.data.nodes.get(id).label : "";
+	    return id ? this.visService.networkInstance.body.data.nodes.get(id).label : "";
 
 	}
 
 	addNode() {
 	    if(!this.inAnimateMode) {
 	        this.visService.networkInstance.addNodeMode();
-			
-	        this.algorithmsService.getMatrix();
 	    }
 
 	    this.isAddNode = true;
@@ -154,7 +158,6 @@ export class GraphService {
 	disableEditMode(){
 	    this.visService.networkInstance.disableEditMode();
 
-	    this.algorithmsService.getMatrix();
 	    this.isAddNode = false;
 	    this.isAddEdge = false;
 	    this.isEditEdge = false;
@@ -162,7 +165,7 @@ export class GraphService {
 
 	deleteSelected(){
 	    this.visService.networkInstance.deleteSelected();
-	    this.algorithmsService.getMatrix();
+		if(this.algorithmsService.selectedNodeID === this.algorithmsService.startNodeID) this.algorithmsService.startNodeID = '';
 	    this.unselect();
 	}
 

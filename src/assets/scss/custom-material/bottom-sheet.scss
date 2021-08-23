@@ -1,0 +1,41 @@
+.custom-bottom-sheet{
+	background-color: #202124;
+	max-width: 695px !important;
+}
+
+.custom-bottom-sheet .item-list {
+  	display: inline-block; 
+}
+
+.custom-bottom-sheet .item {
+	background-color: rgba(0, 0, 0, 0.1);
+	width: 210px;
+	margin: 5px;
+    padding: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.custom-bottom-sheet .item-title{
+	color: #a3a5a8;
+	font-family: 'Montserrat';
+	font-size: 15px;
+	text-overflow: ellipsis;
+}
+
+.item-preview {
+    width: 200px;
+    height: 130px;
+    background-color: #242529;
+}
+
+.preview {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.preview:hover {
+    transform: scale(.95);
+    transition: ease-out .3s;
+}

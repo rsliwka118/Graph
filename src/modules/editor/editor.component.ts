@@ -59,11 +59,9 @@ export class EditorComponent implements AfterViewInit {
     }
       
     ngAfterViewInit() {
-        let data = this.graphService.getGraph();
-        this.graphService.buildGraph(this.el, data);
+        this.graphService.buildGraph(this.el);
         this.navigationService.setSidenav(this.sidenav, this.sidenavContent);
         this.dataService.getGraphList();
         this.cd.detectChanges();
     }
-    
 }

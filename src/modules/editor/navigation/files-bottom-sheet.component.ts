@@ -27,8 +27,12 @@ import { DataService } from 'src/modules/core/services/data.service';
             #tooltip="matTooltip"
             matTooltipClass="custom-tooltip" 
             matTooltip="{{graph.title}}" class="item" mat-button *ngFor="let graph of dataService.graphList">
-                <mat-icon inline="true" style="opacity: 0.5;" svgIcon="graph-icon"></mat-icon>
-                <br>
+                <div class="item-preview">
+                    <!--<mat-icon style="opacity: 0.5;" svgIcon="graph-icon"></mat-icon>-->
+                    <img *ngIf="graph.image" class="preview" src="{{graph.image}}"/>
+                    <img *ngIf="!graph.image" style="opacity: 0; width: 200px; height: 130px;"/>
+                </div>
+                
                 <a class="item-title">{{graph.title}}</a>
             </button>
         </div>

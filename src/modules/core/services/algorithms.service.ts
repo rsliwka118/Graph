@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { OptionsService } from './options.service';
 import { VisService } from './vis.service';
+import { Matrix } from '../models/matrix.model';
 
 @Injectable({
   	providedIn: 'root'
@@ -9,104 +10,116 @@ export class AlgorithmsService {
 
 	nodes: any;
   	edges: any;
-	adjConnections: boolean[][];
-	incConnections: boolean[][];
+	adjConnections: Matrix[][] = [];
+	incConnections: Matrix[][] = [];
 	dfsResult: number[];
 	bfsResult: number[];
 	startNodeID = '';
-	selectedNodeID;
-	selectedEdgeID;
+	selectedNodeID = null;
+	selectedEdgeID = null;
 
-	constructor(public options: OptionsService, private visService: VisService) {
-	    this.adjConnections = [];
-     	this.incConnections = [];
-	    this.startNodeID = '';
-	    this.selectedNodeID = null;
-	    this.selectedEdgeID = null;
-	}
+	constructor(public options: OptionsService, private visService: VisService) {}
 
 	clickAdjMatrix(node1Index ,node2Index) {
 
-	    let nodes = this.getNodes();
-	    let edges = this.getEdges();
+	    if(this.adjConnections[node1Index][node2Index].isConnected) {
 
-	    if(this.adjConnections[node1Index][node2Index]) {
-
-	        let edge1 = edges.find(e => (e.from === nodes[node1Index].id && e.to === nodes[node2Index].id)) ? edges.find(e => (e.from === nodes[node1Index].id && e.to === nodes[node2Index].id)) : null;
-	        let edge2 = edges.find(e => (e.to === nodes[node1Index].id && e.from === nodes[node2Index].id)) ? edges.find(e => (e.to === nodes[node1Index].id && e.from === nodes[node2Index].id)) : null;
+	        let edge1 = this.edges.find(e => (e.from === this.nodes[node1Index].id && e.to === this.nodes[node2Index].id)) ? this.edges.find(e => (e.from === this.nodes[node1Index].id && e.to === this.nodes[node2Index].id)) : null;
+	        let edge2 = this.edges.find(e => (e.to === this.nodes[node1Index].id && e.from === this.nodes[node2Index].id)) ? this.edges.find(e => (e.to === this.nodes[node1Index].id && e.from === this.nodes[node2Index].id)) : null;
 
 	        if(edge1 !== null) this.visService.networkInstance.body.data.edges.remove(edge1.id);
 	        if(edge2 !== null) this.visService.networkInstance.body.data.edges.remove(edge2.id);
 
 	    } else {
 
-	        let node1Id = nodes[node1Index].id;
-	        let node2Id = nodes[node2Index].id;
+	        let node1Id = this.nodes[node1Index].id;
+	        let node2Id = this.nodes[node2Index].id;
 		
 	        this.visService.networkInstance.body.data.edges.add([{from: node1Id, to: node2Id, label: "0"}]);
 	    }
-
-	    this.getMatrix();
-		
 	}
 
-	clickIncMatrix(nodeIndex, edgeIndex){
+	// clickIncMatrix(nodeIndex, edgeIndex){
 
-	    let nodes = this.getNodes();
-	    let edges = this.getEdges();
+	//     let nodes = this.getNodes();
+	//     let edges = this.getEdges();
 
-	    let nodeId = nodes[nodeIndex].id;
-	    let edgeId = edges[edgeIndex].id;
+	//     let nodeId = nodes[nodeIndex].id;
+	//     let edgeId = edges[edgeIndex].id;
 
-	    if(!this.adjConnections[nodeIndex][edgeIndex]) {
+	//     if(!this.adjConnections[nodeIndex][edgeIndex].isConnected) {
 
-	        if( edges[edgeIndex].from === "" && edges[edgeIndex].to === "" )
-	            this.visService.networkInstance.body.data.edges.update([{ id: edgeId, from: nodeId, to: nodeId, label: "0"}]);
+	//         if( edges[edgeIndex].from === "" && edges[edgeIndex].to === "" )
+	//             this.visService.networkInstance.body.data.edges.update([{ id: edgeId, from: nodeId, to: nodeId, label: "0"}]);
 
-	    } else {
+	//     } else {
 
-	        if(edges[edgeIndex].from === edges[edgeIndex].to) {
+	//         if(edges[edgeIndex].from === edges[edgeIndex].to) {
 
-	            this.visService.networkInstance.body.data.edges.update([{ id: edgeId, from: "", to: "", label: "0"}]);
+	//             this.visService.networkInstance.body.data.edges.update([{ id: edgeId, from: "", to: "", label: "0"}]);
 
-	        } else {
+	//         } else {
 
-	            if(edges[edgeIndex].from === nodeId) this.visService.networkInstance.body.data.edges.update([{ id: edgeId, from: nodeId, label: "0"}]);
+	//             if(edges[edgeIndex].from === nodeId) this.visService.networkInstance.body.data.edges.update([{ id: edgeId, from: nodeId, label: "0"}]);
 
-	            else this.visService.networkInstance.body.data.edges.update([{ id: edgeId, to: nodeId, label: "0"}]);
+	//             else this.visService.networkInstance.body.data.edges.update([{ id: edgeId, to: nodeId, label: "0"}]);
 
-	        }
-	    }
+	//         }
+	//     }
 
-	    this.getMatrix();
+	//     this.getMatrix();
 
-	}
+	// }
 
 	getMatrix() {
-
 	    if(this.options.enableMatrix) {
-			
-	        let nodes = this.getNodes();
-	        let edges = this.getEdges();
 
-	        this.getIncMatrix(nodes, edges);
-	        this.getAdjMatrix(nodes, edges);
-			
+	        this.getIncMatrix();
+			this.getAdjMatrix();
 	    }
 	}
 
-	getAdjMatrix(nodes, edges) {
+	getGraph() {
+	    this.nodes = this.visService.networkInstance.body.data.nodes.get();
+		this.edges = this.visService.networkInstance.body.data.edges.get();
+	}
 
-	    if(nodes.length) this.adjConnections = new Array(nodes.length).fill(false).map(() => new Array(nodes.length).fill(false));
+	fillAdjMatrix(){
+		this.adjConnections = [];
 		
-	    for(let i=0; i < nodes.length ; i++){
+		for(let i=0; i < this.nodes.length ; i++) {
+			this.adjConnections[i] = [];
+			for(let j=0; j < this.nodes.length ; j++) {
+				this.adjConnections[i][j] = new Matrix(i+''+j, false);
+			}
+		}
+	}
 
-	        for(let j=0; j < nodes.length ; j++) {
+	fillIncMatrix(){
+		this.incConnections = [];
+		
+		for(let i=0; i < this.nodes.length ; i++) {
+			this.incConnections[i] = [];
+			for(let j=0; j < this.edges.length ; j++) {
+				this.incConnections[i][j] = new Matrix(i+''+j, false);
+			}
+		}
+	}
+
+	getAdjMatrix() {
+
+	    //if(nodes.length) this.adjConnections = new Array(nodes.length).fill(false).map(() => new Array(nodes.length).fill(false));
+
+		this.fillAdjMatrix();
+		
+	    for(let i=0; i < this.nodes.length ; i++){
+
+	        for(let j=0; j < this.nodes.length ; j++) {
 			
-	            if( (edges.find(e => (e.from === nodes[i].id && e.to === nodes[j].id))) || 
-					(edges.find(e => (e.to === nodes[i].id && e.from === nodes[j].id)))
+	            if( (this.edges.find(e => (e.from === this.nodes[i].id && e.to === this.nodes[j].id))) || 
+					(this.edges.find(e => (e.to === this.nodes[i].id && e.from === this.nodes[j].id)))
 	            ) {
-	                this.adjConnections[i][j] = true;
+	                this.adjConnections[i][j].isConnected = true;
 	            }
 	        }
 	    }
@@ -115,17 +128,19 @@ export class AlgorithmsService {
 
 	}
 
-	getIncMatrix(nodes, edges){
+	getIncMatrix(){
 
-	    if(nodes.length && edges.length) this.incConnections = new Array(nodes.length).fill(false).map(() => new Array(edges.length).fill(false));
-		
-	    for(let i=0; i < nodes.length ; i++) {
+	    //if(this.nodes.length && this.edges.length) this.incConnections = new Array(this.nodes.length).fill(false).map(() => new Array(this.edges.length).fill(false));
 
-	        for(let j=0; j < edges.length ; j++) {
+		this.fillIncMatrix();
+
+	    for(let i=0; i < this.nodes.length ; i++) {
+
+	        for(let j=0; j < this.edges.length ; j++) {
 			
-	            if( edges[j].from === nodes[i].id || edges[j].to === nodes[i].id ) {
+	            if( this.edges[j].from === this.nodes[i].id || this.edges[j].to === this.nodes[i].id ) {
 
-	                this.incConnections[i][j] = true;
+	                this.incConnections[i][j].isConnected = true;
 
 	            }
 	        }
@@ -134,18 +149,19 @@ export class AlgorithmsService {
 	    return this.incConnections;
 	}
 
-	getAdjList(nodes, edges){
+	getAdjList(){
 
 	    let adjList = new Array();
-	    let adjArr = this.getAdjMatrix(nodes, edges);
 
-	    for(let i=0; i < nodes.length; i++) {
+		this.getAdjMatrix();
+
+	    for(let i=0; i < this.nodes.length; i++) {
 		
 	        adjList.push([]);
 
-	        for(let j=0; j < nodes.length; j++) {
+	        for(let j=0; j < this.nodes.length; j++) {
 			
-	            if(adjArr[i][j]) adjList[i].push(j);
+	            if(this.adjConnections[i][j]) adjList[i].push(j);
 
 	        }
 	    }
@@ -155,10 +171,7 @@ export class AlgorithmsService {
 
 	depthFirstSearch(nodeID) {
 
-	    let nodes = this.getNodes();
-	    let edges = this.getEdges();
-
-	    let adjList = this.getAdjList(nodes, edges);
+	    let adjList = this.getAdjList();
 
 	    const stack = [nodeID];
 	    const visited = {};
@@ -185,10 +198,7 @@ export class AlgorithmsService {
 
 	breadthFirstSearch(nodeID) {
 
-	    let nodes = this.getNodes();
-	    let edges = this.getEdges();
-
-	    let adjList = this.getAdjList(nodes, edges);
+	    let adjList = this.getAdjList();
 
 	    const queue = [nodeID];
 	    const visited = {};
@@ -210,18 +220,6 @@ export class AlgorithmsService {
 
 	        });
 	    }
-	}
-
-	getNodes(){
-	    this.nodes = this.visService.networkInstance.body.data.nodes.get();
-
-	    return this.nodes;
-	}
-
-	getEdges(){
-	    this.edges = this.visService.networkInstance.body.data.edges.get();
-
-	    return this.edges;
 	}
 
 	degreeSort() {
@@ -280,7 +278,6 @@ export class AlgorithmsService {
 	}
 
 	setStartNode() {
-    
 	    if(this.selectedNodeID !== this.startNodeID) {
 
 	        this.visService.networkInstance.body.data.nodes.update({id: this.selectedNodeID, color: { border: '#ff4081', background: '#ffa4c3' }});
@@ -301,14 +298,16 @@ export class AlgorithmsService {
 	}
 
 	searchGraph() {
-        
-	    let nodes = this.getNodes();
-	    let startNodeIndex = nodes.indexOf( nodes.find(node => (node.id === this.startNodeID)) );
+	    let startNodeIndex = this.nodes.indexOf( this.nodes.find(node => (node.id === this.startNodeID)) );
 	    this.dfsResult = [];
 	    this.bfsResult = [];
 
-	    this.depthFirstSearch(startNodeIndex);
-	    this.breadthFirstSearch(startNodeIndex);
+		if(startNodeIndex !== -1) {
+
+	    	this.depthFirstSearch(startNodeIndex);
+	    	this.breadthFirstSearch(startNodeIndex);
+
+		}
 
 	}
 }
