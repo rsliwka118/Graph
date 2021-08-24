@@ -3,7 +3,7 @@
     <!-- FILE SECTION -->
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="openFilesMenu()" class="nav-button"
-            mat-icon-button #tooltip="matTooltip" matTooltip="Zapisane grafy" matTooltipClass="custom-tooltip"
+            mat-icon-button #tooltip="matTooltip" matTooltip="Zapisane grafy (P)" matTooltipClass="custom-tooltip"
             matTooltipPosition="right" aria-label="Open saved graphs">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }"
                 [matBadge]="dataService.graphList.length" matBadgeColor="accent" matBadgePosition="below after"
@@ -13,7 +13,7 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="openSaveGraphConfirm()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Nowy graf" matTooltipPosition="right"
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Nowy graf (N)" matTooltipPosition="right"
             mat-icon-button aria-label="Create new graph">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="new-icon">
             </mat-icon>
@@ -22,7 +22,7 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="dataService.saveAndCreateNew(this.el, false)"
-            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Zapisz zmiany"
+            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Zapisz zmiany (S)"
             matTooltipPosition="right" mat-icon-button aria-label="Save graph">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="save-icon">
             </mat-icon>
@@ -33,8 +33,9 @@
     <!-- MATH SECTION -->
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="matrixToggle() ? sidebarToggle() : matrixToggle()"
-            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Reprezentacje grafu"
-            matTooltipPosition="right" mat-icon-button aria-label="Open representations">
+            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+            matTooltip="Reprezentacje grafu (Shift)" matTooltipPosition="right" mat-icon-button
+            aria-label="Open representations">
             <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isRepresentationOpen"
                 [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="matrix-icon">
             </mat-icon>
@@ -47,7 +48,7 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button (click)="algToggle() ? sidebarToggle() : algToggle()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Algorytmy" matTooltipPosition="right" mat-icon-button
+            matTooltipClass="custom-tooltip" matTooltip="Algorytmy (Ctrl)" matTooltipPosition="right" mat-icon-button
             aria-label="Open algorithms">
             <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isAlgOpen" svgIcon="alg-icon"></mat-icon>
             <mat-icon *ngIf="navigationService.isNavOpen && !navigationService.isAlgOpen" svgIcon="alg-icon-active">
@@ -59,8 +60,8 @@
     <!-- EDIT SECTION -->
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="this.graphService.addNode()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj węzeł" matTooltipPosition="right"
-            mat-icon-button aria-label="Add node">
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj węzeł (W)"
+            matTooltipPosition="right" mat-icon-button aria-label="Add node">
             <mat-icon *ngIf="!graphService.isAddNode"
                 [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="add-icon">
             </mat-icon>
@@ -72,8 +73,8 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="this.graphService.addEdge()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj krawędź" matTooltipPosition="right"
-            mat-icon-button aria-label="Add edge">
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj krawędź (E)"
+            matTooltipPosition="right" mat-icon-button aria-label="Add edge">
             <mat-icon *ngIf="!graphService.isAddEdge"
                 [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="edge-icon">
             </mat-icon>
@@ -86,7 +87,7 @@
     <div class="nav-button-container">
         <button [disabled]="!this.graphService.edgeSelected || this.graphService.inAnimateMode"
             (click)="this.graphService.editEdge()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Edytuj krawędź" matTooltipPosition="right" mat-icon-button
+            matTooltipClass="custom-tooltip" matTooltip="Edytuj krawędź (R)" matTooltipPosition="right" mat-icon-button
             aria-label="Edit edge">
             <mat-icon *ngIf="!graphService.isEditEdge"
                 [ngStyle]="{'opacity': this.graphService.edgeSelected && !this.graphService.inAnimateMode ? '100%' : '30%' }"
@@ -101,7 +102,7 @@
         <button
             [disabled]="!(this.graphService.edgeSelected || this.graphService.nodeSelected) || this.graphService.inAnimateMode"
             (click)="this.graphService.deleteSelected()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Usuń zaznaczony element" matTooltipPosition="right"
+            matTooltipClass="custom-tooltip" matTooltip="Usuń zaznaczony element (Del)" matTooltipPosition="right"
             mat-icon-button aria-label="Delete selected">
             <mat-icon
                 [ngStyle]="{'opacity': ( this.graphService.edgeSelected || this.graphService.nodeSelected ) && !graphService.inAnimateMode ? '100%' : '30%' }"

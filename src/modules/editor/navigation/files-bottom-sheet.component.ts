@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, HostListener, Inject, OnDestroy } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { DataService } from 'src/modules/core/services/data.service';
 
@@ -42,6 +42,14 @@ import { DataService } from 'src/modules/core/services/data.service';
 export class FilesBottomSheetComponent implements OnDestroy {
 
     constructor(public dataService: DataService, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
+
+    @HostListener('window:keydown', ['$event'])
+    onKeyDown(event: KeyboardEvent) {
+
+        if (event.key === "Delete") {
+            this.dataService.isDeleteProject = !this.dataService.isDeleteProject;
+        }
+    }
 
     ngOnDestroy(): void {
         this.dataService.isDeleteProject = false;

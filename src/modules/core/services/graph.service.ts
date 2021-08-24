@@ -169,9 +169,11 @@ export class GraphService {
 	}
 
 	deleteSelected(){
-	    this.visService.networkInstance.deleteSelected();
-		if(this.algorithmsService.selectedNodeID === this.algorithmsService.startNodeID) this.algorithmsService.startNodeID = '';
-	    this.unselect();
+		if( this.nodeSelected || this.edgeSelected) {
+			this.visService.networkInstance.deleteSelected();
+			if(this.algorithmsService.selectedNodeID === this.algorithmsService.startNodeID) this.algorithmsService.startNodeID = '';
+			this.unselect();
+		}
 	}
 
 	addEdge() {
@@ -184,12 +186,14 @@ export class GraphService {
 	}
 
 	editEdge() {
-	    this.visService.networkInstance.editEdgeMode();
+		if(this.edgeSelected) {
+			this.visService.networkInstance.editEdgeMode();
 
-	    this.isEditEdge = true;
-	    this.isAddEdge = false;
-	    this.isAddNode = false;
-	    this.unselect();
+			this.isEditEdge = true;
+			this.isAddEdge = false;
+			this.isAddNode = false;
+			this.unselect();
+		}
 	}
 
 	unselect(){
