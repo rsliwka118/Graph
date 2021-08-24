@@ -22,11 +22,11 @@ import { DataService } from 'src/modules/core/services/data.service';
         <mat-divider style="margin-bottom: 10px; margin-left: 20px; margin-right: 20px; border-color:white; opacity: 20%;"></mat-divider>
 
         <div mat-icon-button class="item-list">
-            <button
-            (click)="dataService.graphListEdit(data.container, graph.title)" 
+            <button *ngFor="let graph of dataService.graphList"
+            (click)="dataService.graphListEdit(data.container, graph.title, graph.id)" 
             #tooltip="matTooltip"
             matTooltipClass="custom-tooltip" 
-            matTooltip="{{graph.title}}" class="item" mat-button *ngFor="let graph of dataService.graphList">
+            matTooltip="{{graph.title}}" class="item" mat-button>
                 <div class="item-preview">
                     <!--<mat-icon style="opacity: 0.5;" svgIcon="graph-icon"></mat-icon>-->
                     <img *ngIf="graph.image" class="preview" src="{{graph.image}}"/>

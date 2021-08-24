@@ -25,7 +25,6 @@ export class SaveDialogComponent implements OnInit {
 
   saveButton(): void{
       this.dataService.currentTitle = this.title;
-
       this.dataService.saveAndCreateNew(this.data.container, false);
       this.dataService.getGraphList();
       this.dialogRef.close();

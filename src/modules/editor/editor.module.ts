@@ -15,8 +15,12 @@ import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
     {
-      path: '',
-      component: EditorComponent,
+        path: '',
+        component: EditorComponent,
+    },
+    {
+        path: ':id',
+        component: EditorComponent
     }
   ];
 

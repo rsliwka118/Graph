@@ -19,7 +19,7 @@ export class DeleteConfirmComponent implements OnInit {
     constructor(public dialogRef:MatDialogRef<DeleteConfirmComponent>, @Inject(MAT_DIALOG_DATA) public data: any,  public dataService: DataService) { }
 
     saveButton(): void{
-        this.dataService.deleteGraph(this.data.container, this.data.title);
+        this.dataService.deleteGraph(this.data.container, this.data.title, this.data.id);
         this.dialogRef.close();
     }
 

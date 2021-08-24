@@ -5,9 +5,6 @@ import { DataSet } from "vis-data";
 import { AlgorithmsService } from './algorithms.service';
 import { VisService } from './vis.service';
 
-const	nodes = new DataSet<Node>([]);
-const	edges = new DataSet<Edge>([]);
-
 @Injectable({
     providedIn: 'root'
 })
@@ -31,8 +28,7 @@ export class GraphService {
 
   	public buildGraph(cont, data?){
 
-		let graphData = data ? data : { nodes: nodes, edges: edges }
-
+		let graphData = data ? data : { nodes: new DataSet<Node>([]), edges: new DataSet<Edge>([]) }
 	    let container = cont.nativeElement;
 	    this.visService.networkInstance = new Network(container, graphData, Graph.option);
 

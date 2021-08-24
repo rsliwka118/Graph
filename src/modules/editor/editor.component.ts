@@ -10,6 +10,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Icons } from '../core/models/icons.model';
 import { OptionsService } from 'src/modules/core/services/options.service';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SnackBarService } from '../core/services/snack-bar.service';
 
 @Component({
     selector: 'app-editor',
@@ -21,6 +24,9 @@ export class EditorComponent implements AfterViewInit {
     @ViewChild('snav') public sidenav: MatSidenav;
     @ViewChild('sidenavContent', { read: ViewContainerRef }) sidenavContent: ViewContainerRef;
     
+    id: string;
+    sub;
+
     constructor( 
         public dialog: MatDialog,
         public graphService: GraphService,
@@ -31,7 +37,10 @@ export class EditorComponent implements AfterViewInit {
         private cd: ChangeDetectorRef,
         public sanitizer: DomSanitizer,
         public options: OptionsService,
-        public algorithmsService: AlgorithmsService) {
+        public algorithmsService: AlgorithmsService,
+        private Activatedroute:ActivatedRoute,
+        private router: Router,
+        private snackBarService: SnackBarService) {
 
         iconRegistry.addSvgIconLiteral('add-icon', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON));
         iconRegistry.addSvgIconLiteral('add-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON_ACTIVE));
@@ -57,11 +66,32 @@ export class EditorComponent implements AfterViewInit {
         iconRegistry.addSvgIconLiteral('replay-icon', sanitizer.bypassSecurityTrustHtml(Icons.REPLAY_ICON));
 
     }
-      
-    ngAfterViewInit() {
-        this.graphService.buildGraph(this.el);
+
+    ngAfterViewInit(): void {
+
+        this.sub = this.Activatedroute.paramMap.subscribe(params => { 
+            this.dataService.getGraphList();
+            this.id = params.get('id'); 
+            
+            if(this.id){
+                let graph = this.dataService.graphList.find(g => g.id === this.id);
+                if(graph) {
+                    this.dataService.loadGraph(this.el, graph.title, graph.id);
+                } else {
+                    this.snackBarService.openSnackBar("Nie znaleziono projektu.");
+                    this.router.navigate(['/editor']);
+                }
+            } else {
+                this.graphService.buildGraph(this.el);
+            }
+        });
+
         this.navigationService.setSidenav(this.sidenav, this.sidenavContent);
-        this.dataService.getGraphList();
         this.cd.detectChanges();
+        //localStorage.clear();
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 }

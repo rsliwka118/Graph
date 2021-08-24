@@ -3,6 +3,7 @@ import { GraphService } from './graph.service';
 import { Node, Edge } from 'vis-network';
 import { DataSet } from "vis-data";
 import { GraphData } from '../models/graphdata.model'
+import { v4 as uuidv4 } from 'uuid';
 
 import { MatDialog } from '@angular/material/dialog';
 import { SaveDialogComponent } from '../../editor/navigation/dialogs/save-dialog.component';
@@ -12,6 +13,7 @@ import { DeleteConfirmComponent } from 'src/modules/editor/navigation/dialogs/de
 import { OptionsService } from './options.service';
 import { VisService } from './vis.service';
 import { AlgorithmsService } from './algorithms.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -24,9 +26,11 @@ export class DataService {
         public snackBarService: SnackBarService,
         private options: OptionsService,
         private visService: VisService,
-        public algorithmsService: AlgorithmsService) { }
+        public algorithmsService: AlgorithmsService,
+        private router: Router) { }
 
     currentTitle = "";
+    currentId = "";
     graphList = [];
     isDeleteProject = false;
     context: CanvasRenderingContext2D;
@@ -36,42 +40,46 @@ export class DataService {
         this.isDeleteProject = !this.isDeleteProject;
     }
 
-    graphListEdit(container, title) {
+    graphListEdit(container, title, id) {
         if(this.isDeleteProject){
-            this.dialog.open(DeleteConfirmComponent, {data: {container: container, title: title}});
+            this.dialog.open(DeleteConfirmComponent, {data: {container: container, title: title, id: id}});
         }
         else {
-            this.loadGraph(container, title);
+            this.router.navigate(['/editor/'+ id]);
         }
     }
 
     createNewGraph(container) {
-        this.graphService.buildGraph(container);
-
         this.currentTitle = "";
-        this.algorithmsService.startNodeID = "";  
+        this.currentId = "";
+        this.algorithmsService.startNodeID = ""; 
+        this.router.navigate(['/editor']);
+
+        this.graphService.buildGraph(container);
     }
 
-    deleteGraph(container, title){
-        if(title === this.currentTitle) this.createNewGraph(container);
+    deleteGraph(container, title, id){
+        
+        if(id === this.currentId) this.createNewGraph(container);
 
-        let find = this.graphList.find(i => i.title === title);
+        let find = this.graphList.find(i => i.id === id);
         let index = this.graphList.indexOf(find);
 
         if (index > -1) {
             this.graphList.splice(index, 1);
         }
 
-        localStorage.removeItem(title);
+        localStorage.removeItem(id);
         this.snackBarService.openSnackBar("Usunięto " + title + ".");  
     }
 
-    loadGraph(container, title) {
+    loadGraph(container, title, id) {
 
         this.currentTitle = title;
+        this.currentId = id;
 
-        let nodes = JSON.parse(localStorage.getItem(title)).data.nodes as DataSet<Node>;
-        let edges = JSON.parse(localStorage.getItem(title)).data.edges as DataSet<Edge>;
+        let nodes = JSON.parse(localStorage.getItem(id)).data.nodes as DataSet<Node>;
+        let edges = JSON.parse(localStorage.getItem(id)).data.edges as DataSet<Edge>;
 
         this.graphService.buildGraph(container, {nodes: nodes, edges: edges});
 
@@ -95,15 +103,15 @@ export class DataService {
             };
 
             this.previewGraph = data.nodes.length ? this.getPreview() : "";
+            this.currentId = this.currentId ? this.currentId : uuidv4();
 
-            let graph = new GraphData(this.currentTitle, this.previewGraph, data);
-
-            console.log(graph);
-            localStorage.setItem(this.currentTitle, JSON.stringify(graph));
+            let graph = new GraphData(this.currentTitle, this.previewGraph, data, this.currentId);
+            localStorage.setItem(this.currentId, JSON.stringify(graph));
 
             this.snackBarService.openSnackBar("Zapisano " + this.currentTitle + "!");
 
             if(isNew) this.createNewGraph(container);
+            this.router.navigate(['/editor/'+this.currentId]);
         }    
     }
 
