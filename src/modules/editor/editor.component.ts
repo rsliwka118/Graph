@@ -10,7 +10,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Icons } from '../core/models/icons.model';
 import { OptionsService } from 'src/modules/core/services/options.service';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
-import { OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarService } from '../core/services/snack-bar.service';
 
@@ -25,7 +24,7 @@ export class EditorComponent implements AfterViewInit {
     @ViewChild('sidenavContent', { read: ViewContainerRef }) sidenavContent: ViewContainerRef;
     
     id: string;
-    sub;
+    routeSub;
 
     constructor( 
         public dialog: MatDialog,
@@ -69,7 +68,7 @@ export class EditorComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
 
-        this.sub = this.Activatedroute.paramMap.subscribe(params => { 
+        this.routeSub = this.Activatedroute.paramMap.subscribe(params => { 
             this.dataService.getGraphList();
             this.id = params.get('id'); 
             
@@ -92,6 +91,6 @@ export class EditorComponent implements AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
+        this.routeSub.unsubscribe();
     }
 }

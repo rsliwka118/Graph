@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Network, Node, Edge } from 'vis-network';
-import { Graph } from '../models/graph.model';
 import { DataSet } from "vis-data";
 import { AlgorithmsService } from './algorithms.service';
 import { VisService } from './vis.service';
-import { DIR_DOCUMENT_FACTORY } from '@angular/cdk/bidi/dir-document-token';
 
 @Injectable({
     providedIn: 'root'
@@ -22,11 +20,10 @@ export class GraphService {
 	isAddNode = false;
 	isAddEdge = false;
 	isEditEdge = false;
-	//options: any
 
-	constructor( private algorithmsService: AlgorithmsService, private visService: VisService ) {
-		//this.options = new Graph(this.visService.networkInstance)
-	}
+	constructor( 
+		private algorithmsService: AlgorithmsService,
+		private visService: VisService) { }
 
   	public buildGraph(cont, data?){
 
@@ -41,6 +38,14 @@ export class GraphService {
   	}
 
 	listener(){
+
+		// this.visService.networkInstance.once("hoverNode", (params) => {
+		// 	this.visService.networkInstance.canvas.body.container.style.cursor = 'pointer';
+	 	// });
+
+		// this.visService.networkInstance.once("blurNode", (params) => {
+		// 	this.visService.networkInstance.canvas.body.container.style.cursor = 'default';
+	 	// });
 
 		this.visService.networkInstance.body.data.nodes.on('*', () => {
 			this.algorithmsService.getGraph();
@@ -148,6 +153,8 @@ export class GraphService {
 	        this.visService.networkInstance.addNodeMode();
 	    }
 
+		//this.renderer.addClass(this.hostElement.nativeElement, 'custom-cursor');
+
 	    this.isAddNode = true;
 	    this.isAddEdge = false;
 	    this.isEditEdge = false;
@@ -202,6 +209,7 @@ export class GraphService {
 	
 			font: {
 				size: 30,
+				
 				color: "#ffffff",
 				face: 'Montserrat',
 				align: "right"
@@ -210,6 +218,10 @@ export class GraphService {
 			color: {
 				background: "#6a87af",
 				border: "#48648b",
+				hover: {
+					background: "#6a87af",
+					border: "#48648b"
+				},
 				highlight: {
 					border: 'rgba(255, 64, 128)',
 					background: '#ffa4c3'
@@ -224,6 +236,7 @@ export class GraphService {
 			color: {
 				//inherit: 'both',
 				color: '#48648b',
+				hover: '#48648b',
 				highlight: '#ff4081'
 			},
 			font: {
@@ -240,22 +253,34 @@ export class GraphService {
 		},
 		manipulation: { enabled: true,
 			addNode: (data, callback) => {
-				let nodesLength = this.visService.networkInstance.body.data.nodes.length; 
+				let nodes = this.visService.networkInstance.body.data.nodes.get(),
+					lastLabel = nodes.length ? nodes[nodes.length - 1].label.slice(1,-1) : "@";
+
+				let getLabelValue = (label) => {
+					let	length = label.length,
+						value = 0;
+
+					for(let i = 0; i <= length - 1 ; i++){
+						value += i + Math.pow(25,i) + label.charCodeAt(i) - 65;
+					}
+
+					return value;
+				}
 
 				let generateLabel = (number) => {
 					let baseChar = ("A").charCodeAt(0),
 						label  = "";
 				  
 					do {
-					  number -= 1;
-					  label = String.fromCharCode(baseChar + (number % 26)) + label;
-					  number = (number / 26) >> 0;
+						number -= 1;
+						label = String.fromCharCode(baseChar + (number % 26)) + label;
+						number = (number / 26) >> 0;
 					} while(number > 0);
 				  
 					return ' ' + label + ' ';
 				}
-				
-				data.label = generateLabel(nodesLength + 1);
+
+				data.label = generateLabel( getLabelValue(lastLabel) + 1);
 
 				this.visService.networkInstance.body.data.nodes.add(data);
 			},
@@ -265,7 +290,8 @@ export class GraphService {
 			},
 		},
 		interaction:{
-			multiselect: true
+			multiselect: true,
+			hover: true
 		}
 	};
 }

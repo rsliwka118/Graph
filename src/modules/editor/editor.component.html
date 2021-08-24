@@ -16,7 +16,7 @@
     <mat-sidenav-content>
 
       <!-- VIS.JS CANVAS -->
-      <div (click)="this.graphService.disableEditMode()"
+      <div (click)="this.graphService.disableEditMode()" [ngClass]="{'add-node-cursor': graphService.isAddNode}"
         [ngStyle]="{'background-image' : options.enableGrid ? '' : 'none'}" class="network" #network></div>
 
       <!-- SIDEBAR -->
