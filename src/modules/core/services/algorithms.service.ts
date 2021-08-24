@@ -35,7 +35,7 @@ export class AlgorithmsService {
 	        let node1Id = this.nodes[node1Index].id;
 	        let node2Id = this.nodes[node2Index].id;
 		
-	        this.visService.networkInstance.body.data.edges.add([{from: node1Id, to: node2Id, label: "0"}]);
+	        this.visService.networkInstance.body.data.edges.add([{from: node1Id, to: node2Id, label: "1"}]);
 	    }
 	}
 

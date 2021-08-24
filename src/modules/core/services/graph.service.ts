@@ -4,6 +4,7 @@ import { Graph } from '../models/graph.model';
 import { DataSet } from "vis-data";
 import { AlgorithmsService } from './algorithms.service';
 import { VisService } from './vis.service';
+import { DIR_DOCUMENT_FACTORY } from '@angular/cdk/bidi/dir-document-token';
 
 @Injectable({
     providedIn: 'root'
@@ -21,16 +22,17 @@ export class GraphService {
 	isAddNode = false;
 	isAddEdge = false;
 	isEditEdge = false;
+	//options: any
 
 	constructor( private algorithmsService: AlgorithmsService, private visService: VisService ) {
-
+		//this.options = new Graph(this.visService.networkInstance)
 	}
 
   	public buildGraph(cont, data?){
 
 		let graphData = data ? data : { nodes: new DataSet<Node>([]), edges: new DataSet<Edge>([]) }
 	    let container = cont.nativeElement;
-	    this.visService.networkInstance = new Network(container, graphData, Graph.option);
+	    this.visService.networkInstance = new Network(container, graphData, this.option);
 
 		this.algorithmsService.getGraph();
 	    this.algorithmsService.getMatrix();
@@ -193,4 +195,78 @@ export class GraphService {
 	    this.algorithmsService.selectedEdgeID = null;
 
 	}
+
+	option = {
+		nodes: {
+			shape: "circle",
+	
+			font: {
+				size: 30,
+				color: "#ffffff",
+				face: 'Montserrat',
+				align: "right"
+			},
+			borderWidth: 6,
+			color: {
+				background: "#6a87af",
+				border: "#48648b",
+				highlight: {
+					border: 'rgba(255, 64, 128)',
+					background: '#ffa4c3'
+				}
+			}
+		},
+		edges: {
+			label: '1',
+			width: 7,
+			length: 300,
+			smooth: false,
+			color: {
+				//inherit: 'both',
+				color: '#48648b',
+				highlight: '#ff4081'
+			},
+			font: {
+				size: 20,
+				color: "#d0dfeb",
+				face: 'Montserrat',
+				align: 'top',
+				strokeWidth: 0
+			}
+	
+		},
+		physics: {
+			enabled: false,
+		},
+		manipulation: { enabled: true,
+			addNode: (data, callback) => {
+				let nodesLength = this.visService.networkInstance.body.data.nodes.length; 
+
+				let generateLabel = (number) => {
+					let baseChar = ("A").charCodeAt(0),
+						label  = "";
+				  
+					do {
+					  number -= 1;
+					  label = String.fromCharCode(baseChar + (number % 26)) + label;
+					  number = (number / 26) >> 0;
+					} while(number > 0);
+				  
+					return ' ' + label + ' ';
+				}
+				
+				data.label = generateLabel(nodesLength + 1);
+
+				this.visService.networkInstance.body.data.nodes.add(data);
+			},
+			addEdge: (data, callback) => {
+				data.label = "1"
+				this.visService.networkInstance.body.data.edges.add(data);
+			},
+		},
+		interaction:{
+			multiselect: true
+		}
+	};
 }
+

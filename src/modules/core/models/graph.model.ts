@@ -1,6 +1,12 @@
 export class Graph {
+    
+    public network: any;
+    
+    constructor(network){
+        this.network = network;
+    }
 
-    public static option = {
+    public option = {
         nodes: {
             shape: "circle",
     
@@ -42,7 +48,12 @@ export class Graph {
         physics: {
             enabled: false,
         },
-        manipulation: { enabled: true },
+        manipulation: { enabled: true,
+            addNode: (data, callback) => {
+                data.label = " DD "
+                this.network.body.data.nodes.add(data);
+            },
+        },
         interaction:{
             multiselect: true
         }
