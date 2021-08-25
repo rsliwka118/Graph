@@ -4,13 +4,15 @@ import { SaveConfirmComponent } from './save-confirm.component';
 import { SaveDialogNewComponent } from './save-dialog-new.component';
 import { SaveDialogComponent } from './save-dialog.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { EditDialogComponent } from './edit-dialog.component';
 
 @NgModule({
     declarations: [
         SaveDialogComponent,
         SaveConfirmComponent,
         DeleteConfirmComponent,
-        SaveDialogNewComponent
+        SaveDialogNewComponent,
+        EditDialogComponent
     ],
     imports: [
         SharedModule
@@ -19,7 +21,8 @@ import { SharedModule } from '../../../shared/shared.module';
         SaveDialogComponent,
         SaveConfirmComponent,
         DeleteConfirmComponent,
-        SaveDialogNewComponent
+        SaveDialogNewComponent,
+        EditDialogComponent
     ]
 })
 export class DialogsModule { }

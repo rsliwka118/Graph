@@ -10,7 +10,7 @@ export class SnackBarService {
     constructor(private snackBar: MatSnackBar) { }
 
     openSnackBar(text) {
-        this.snackBar.openFromComponent(SnackBarComponent, {data: {text: text}, duration: 5000, horizontalPosition: "right", verticalPosition: "top", panelClass: ['snackbar-background']});
+        this.snackBar.openFromComponent(SnackBarComponent, {data: {text: text}, duration: 3000, horizontalPosition: "right", verticalPosition: "top", panelClass: ['snackbar-background']});
     }
   
 }

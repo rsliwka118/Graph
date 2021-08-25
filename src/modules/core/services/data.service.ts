@@ -14,6 +14,7 @@ import { OptionsService } from './options.service';
 import { VisService } from './vis.service';
 import { AlgorithmsService } from './algorithms.service';
 import { Router } from '@angular/router';
+import { EditDialogComponent } from 'src/modules/editor/navigation/dialogs/edit-dialog.component';
 
 @Injectable({
     providedIn: 'root'
@@ -33,16 +34,26 @@ export class DataService {
     currentId = "";
     graphList = [];
     isDeleteProject = false;
+    isEditProject = false;
     context: CanvasRenderingContext2D;
     previewGraph: string;
 
     switchDeleteProjectMode() {
         this.isDeleteProject = !this.isDeleteProject;
+        this.isEditProject = false;
+    }
+
+    switchEditProjectMode() {
+        this.isEditProject = !this.isEditProject;
+        this.isDeleteProject = false;
     }
 
     graphListEdit(container, title, id) {
         if(this.isDeleteProject){
             this.dialog.open(DeleteConfirmComponent, {data: {container: container, title: title, id: id}});
+        }
+        if(this.isEditProject){
+            this.dialog.open(EditDialogComponent, {data: {container: container, title: title, id: id}});
         }
         else {
             this.router.navigate(['/editor/'+ id]);
@@ -109,10 +120,18 @@ export class DataService {
             localStorage.setItem(this.currentId, JSON.stringify(graph));
 
             this.snackBarService.openSnackBar("Zapisano " + this.currentTitle + "!");
-
             if(isNew) this.createNewGraph(container);
-            this.router.navigate(['/editor/'+this.currentId]);
+            this.router.navigate(['/editor/' + this.currentId]);
         }    
+    }
+
+    editGraph(title, id) {
+        
+        let graph = JSON.parse(localStorage.getItem(id));
+        graph.title = title;
+        
+        localStorage.setItem(id, JSON.stringify(graph));
+        this.snackBarService.openSnackBar("Edytowano " + title + "!");
     }
 
     getGraphList() {

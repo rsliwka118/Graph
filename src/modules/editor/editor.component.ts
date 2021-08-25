@@ -66,7 +66,8 @@ export class EditorComponent implements AfterViewInit {
         iconRegistry.addSvgIconLiteral('pause-icon', sanitizer.bypassSecurityTrustHtml(Icons.PAUSE_ICON));
         iconRegistry.addSvgIconLiteral('stop-icon', sanitizer.bypassSecurityTrustHtml(Icons.STOP_ICON));
         iconRegistry.addSvgIconLiteral('replay-icon', sanitizer.bypassSecurityTrustHtml(Icons.REPLAY_ICON));
-
+        iconRegistry.addSvgIconLiteral('edit-icon', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_ICON));
+        iconRegistry.addSvgIconLiteral('edit-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_ICON_ACTIVE));
     }
 
     ngAfterViewInit(): void {

@@ -8,6 +8,15 @@ import { DataService } from 'src/modules/core/services/data.service';
         <div class="list-title">Zapisane grafy</div>
 
         <div style="position: absolute; right: 0px; top: 0px; margin: 20px;">
+        <button (click) = "dataService.switchEditProjectMode()"
+            #tooltip="matTooltip"
+            matTooltip="Zmień nazwę"
+            matTooltipClass="custom-tooltip"
+            matTooltipPosition="right"
+            mat-icon-button>
+            <mat-icon *ngIf="!dataService.isEditProject" inline="true" svgIcon="edit-icon"></mat-icon>
+            <mat-icon *ngIf="dataService.isEditProject" inline="true" svgIcon="edit-icon-active"></mat-icon>
+        </button>
         <button (click) = "dataService.switchDeleteProjectMode()"
             #tooltip="matTooltip"
             matTooltip="Usuń wybrane projekty"
@@ -42,14 +51,6 @@ import { DataService } from 'src/modules/core/services/data.service';
 export class FilesBottomSheetComponent implements OnDestroy {
 
     constructor(public dataService: DataService, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
-
-    @HostListener('window:keydown', ['$event'])
-    onKeyDown(event: KeyboardEvent) {
-
-        if (event.key === "Delete") {
-            this.dataService.isDeleteProject = !this.dataService.isDeleteProject;
-        }
-    }
 
     ngOnDestroy(): void {
         this.dataService.isDeleteProject = false;
