@@ -7,12 +7,13 @@ import { Options } from '../models/options.model';
 })
 export class OptionsService {
 
-    enablePhysics: boolean
-	enableSmooth: boolean
-	enableMatrix: boolean
-	enableEdgeLabel: boolean
-	enableNodeLabel: boolean
-	enableGrid: boolean
+    enablePhysics: boolean;
+	enableSmooth: boolean;
+	enableMatrix: boolean;
+	enableEdgeLabel: boolean;
+	enableNodeLabel: boolean;
+	enableGrid: boolean;
+	enableHelper: boolean;
 
 	constructor(private visService: VisService) {
 	    this.enablePhysics = Options.enablePhysics;
@@ -21,6 +22,7 @@ export class OptionsService {
 	    this.enableEdgeLabel = Options.enableEdgeLabel;
 	    this.enableNodeLabel = Options.enableNodeLabel;
 	    this.enableGrid = Options.enableGrid;
+		this.enableHelper = Options.enableHelper;
 	}
 
 	changePhysics() {

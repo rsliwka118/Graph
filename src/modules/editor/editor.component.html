@@ -16,7 +16,8 @@
     <mat-sidenav-content>
 
       <!-- VIS.JS CANVAS -->
-      <div (click)="this.graphService.disableEditMode()" [ngClass]="{'add-node-cursor': graphService.isAddNode}"
+      <div (click)="this.graphService.disableEditMode()"
+        [ngClass]="{'add-node-cursor': graphService.isAddNode, 'add-edge-cursor': graphService.isAddEdge}"
         [ngStyle]="{'background-image' : options.enableGrid ? '' : 'none'}" class="network" #network></div>
 
       <!-- SIDEBAR -->
@@ -34,7 +35,15 @@
         class="float">
         <app-edge-panel></app-edge-panel>
       </div>
-
+      <!-- KEYBOARD HELPER -->
+      <div *ngIf="options.enableHelper" class="keyboard-helper">
+        <div *ngFor="let item of keyboardMenu">
+          <div class="keyboard-helper-item">
+            <span>{{item.label}}</span>
+            <span>{{item.key}}</span>
+          </div>
+        </div>
+      </div>
       <!-- ANIMATION PANEL -->
       <div *ngIf="graphService.inAnimateMode" class="float animation-panel">
         <app-animation-panel></app-animation-panel>

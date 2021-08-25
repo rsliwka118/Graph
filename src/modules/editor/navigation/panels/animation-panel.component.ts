@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationService } from 'src/modules/core/services/animation.service';
 import { GraphService } from 'src/modules/core/services/graph.service';
+import { InputService } from 'src/modules/core/services/input.service';
 
 @Component({
     selector: 'app-animation-panel',
@@ -18,14 +19,15 @@ import { GraphService } from 'src/modules/core/services/graph.service';
         <mat-form-field color="accent" appearance="fill" style="margin-top: 2px">
             <mat-label>Czas przejścia</mat-label>
             <input [disabled]="animationService.isAnimationPlayed" matInput min="0" type="number" autocomplete="off"
-                (keyup)="animationService.editAnimationSpeed($event)" [(ngModel)]="this.animationService.animationSpeed">
+                (keyup)="animationService.editAnimationSpeed($event)" [(ngModel)]="this.animationService.animationSpeed"
+                (focus)="inputService.isTyping = true" (focusout)="inputService.isTyping = false">
             <span [ngStyle]="{'opacity' : animationService.isAnimationPlayed ? '50%' : '100%' }" matSuffix>s</span>
         </mat-form-field>
     `
 })
 export class AnimationPanelComponent implements OnInit {
 
-    constructor( public graphService: GraphService, public animationService: AnimationService ) { }
+    constructor( public graphService: GraphService, public animationService: AnimationService, public inputService: InputService ) { }
 
     ngOnInit(): void {
     }

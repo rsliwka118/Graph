@@ -48,7 +48,7 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button (click)="algToggle() ? sidebarToggle() : algToggle()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Algorytmy (Ctrl)" matTooltipPosition="right" mat-icon-button
+            matTooltipClass="custom-tooltip" matTooltip="Algorytmy (Alt)" matTooltipPosition="right" mat-icon-button
             aria-label="Open algorithms">
             <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isAlgOpen" svgIcon="alg-icon"></mat-icon>
             <mat-icon *ngIf="navigationService.isNavOpen && !navigationService.isAlgOpen" svgIcon="alg-icon-active">
@@ -152,6 +152,10 @@
                 <div class="settings-item">
                     <a class="settings-item-text">Siatka</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableGrid"></mat-slide-toggle>
+                </div>
+                <div class="settings-item">
+                    <a class="settings-item-text">Pokaż skróty</a>
+                    <mat-slide-toggle style="float:right" [(ngModel)]="options.enableHelper"></mat-slide-toggle>
                 </div>
             </div>
         </mat-menu>

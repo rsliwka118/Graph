@@ -32,6 +32,29 @@
     padding-bottom: 0px;
 }
 
+.keyboard-helper {
+    opacity: .6;
+    position: absolute;
+    width: 220px;
+    height: auto;
+    top:20px;
+    right: 20px;
+    background-color:#2e3033;
+    color: white;
+    border-radius:3px;
+    z-index: 2;
+    padding: 10px 15px;
+}
+
+.keyboard-helper-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.keyboard-helper-item span:first-child {
+    color:rgb(192, 192, 192);
+}
+
 .animation-panel {
     padding: 5px !important;
 }

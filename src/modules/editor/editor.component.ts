@@ -12,6 +12,7 @@ import { OptionsService } from 'src/modules/core/services/options.service';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarService } from '../core/services/snack-bar.service';
+import { HELPER } from '../core/models/keyboardhelper.model'
 
 @Component({
     selector: 'app-editor',
@@ -23,9 +24,10 @@ export class EditorComponent implements AfterViewInit {
     @ViewChild('snav') public sidenav: MatSidenav;
     @ViewChild('sidenavContent', { read: ViewContainerRef }) sidenavContent: ViewContainerRef;
     
-    id: string;
-    routeSub;
-
+    private id: string;
+    private routeSub;
+    public keyboardMenu;
+    
     constructor( 
         public dialog: MatDialog,
         public graphService: GraphService,
@@ -40,7 +42,8 @@ export class EditorComponent implements AfterViewInit {
         private Activatedroute:ActivatedRoute,
         private router: Router,
         private snackBarService: SnackBarService) {
-
+        
+        this.keyboardMenu = HELPER;
         iconRegistry.addSvgIconLiteral('add-icon', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON));
         iconRegistry.addSvgIconLiteral('add-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON_ACTIVE));
         iconRegistry.addSvgIconLiteral('files-icon', sanitizer.bypassSecurityTrustHtml(Icons.FILES_ICON));
