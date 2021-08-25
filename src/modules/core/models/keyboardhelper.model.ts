@@ -24,7 +24,7 @@ export const HELPER = [
         label: 'Nowy graf'
     },
     {
-        key: 'S',
+        key: 'Ctrl + S',
         label: 'Zapisz zmiany'
     },
     {

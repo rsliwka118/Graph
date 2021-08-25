@@ -44,7 +44,8 @@ export class SidebarComponent implements OnInit {
                 this.openSaveGraphConfirm();
             }
 
-            if(event.key === "s") {
+            if(event.ctrlKey && event.key === "s") {
+                event.preventDefault();
                 this.dataService.saveAndCreateNew(this.el, false);
             }
 

@@ -37,7 +37,7 @@ export class DataService {
     isEditProject = false;
     context: CanvasRenderingContext2D;
     previewGraph: string;
-
+    
     switchDeleteProjectMode() {
         this.isDeleteProject = !this.isDeleteProject;
         this.isEditProject = false;
@@ -101,6 +101,8 @@ export class DataService {
 
     saveAndCreateNew(container, isNew) {
 
+        this.graphService.resetGraph();
+        
         if(this.currentTitle === "") {
         
             if(isNew) this.dialog.open(SaveDialogNewComponent, {data: {container: container}});
@@ -123,6 +125,8 @@ export class DataService {
             if(isNew) this.createNewGraph(container);
             this.router.navigate(['/editor/' + this.currentId]);
         }    
+
+        this.graphService.hasChanges = false;
     }
 
     editGraph(title, id) {

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild, ViewContainerRef} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild, ViewContainerRef} from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GraphService } from '../core/services/graph.service';
@@ -13,6 +13,8 @@ import { AlgorithmsService } from 'src/modules/core/services/algorithms.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarService } from '../core/services/snack-bar.service';
 import { HELPER } from '../core/models/keyboardhelper.model'
+import { preventDefault } from 'vis-util/esnext';
+import { RepresentationAlertComponent } from './navigation/dialogs/representation-alert';
 
 @Component({
     selector: 'app-editor',
@@ -70,14 +72,24 @@ export class EditorComponent implements AfterViewInit {
         iconRegistry.addSvgIconLiteral('edit-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_ICON_ACTIVE));
     }
 
+    @HostListener('window:beforeunload', ['$event'])
+        beforeunloadHandler(event) {
+            return this.id && this.graphService.hasChanges ? false : true;
+        } 
+
     ngAfterViewInit(): void {
 
         this.routeSub = this.Activatedroute.paramMap.subscribe(params => { 
             this.dataService.getGraphList();
             this.id = params.get('id'); 
-            
+            this.graphService.hasChanges = false;
+
             if(this.id){
                 let graph = this.dataService.graphList.find(g => g.id === this.id);
+
+                if(graph.data.nodes.length > 15 && this.options.enableMatrix) {
+                    this.dialog.open(RepresentationAlertComponent);
+                }
                 if(graph) {
                     this.dataService.loadGraph(this.el, graph.title, graph.id);
                 } else {

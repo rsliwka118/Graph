@@ -5,6 +5,7 @@ import { SaveDialogNewComponent } from './save-dialog-new.component';
 import { SaveDialogComponent } from './save-dialog.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { EditDialogComponent } from './edit-dialog.component';
+import { RepresentationAlertComponent } from './representation-alert';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { EditDialogComponent } from './edit-dialog.component';
         SaveConfirmComponent,
         DeleteConfirmComponent,
         SaveDialogNewComponent,
-        EditDialogComponent
+        EditDialogComponent,
+        RepresentationAlertComponent
     ],
     imports: [
         SharedModule
@@ -22,7 +24,8 @@ import { EditDialogComponent } from './edit-dialog.component';
         SaveConfirmComponent,
         DeleteConfirmComponent,
         SaveDialogNewComponent,
-        EditDialogComponent
+        EditDialogComponent,
+        RepresentationAlertComponent
     ]
 })
 export class DialogsModule { }

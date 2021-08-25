@@ -20,13 +20,15 @@ export class GraphService {
 	isAddNode = false;
 	isAddEdge = false;
 	isEditEdge = false;
+	hasChanges = false;
 
 	constructor( 
 		private algorithmsService: AlgorithmsService,
 		private visService: VisService) { }
 
   	public buildGraph(cont, data?){
-
+		  
+		this.hasChanges = false;
 		let graphData = data ? data : { nodes: new DataSet<Node>([]), edges: new DataSet<Edge>([]) }
 	    let container = cont.nativeElement;
 	    this.visService.networkInstance = new Network(container, graphData, this.option);
@@ -39,24 +41,18 @@ export class GraphService {
 
 	listener(){
 
-		// this.visService.networkInstance.once("hoverNode", (params) => {
-		// 	this.visService.networkInstance.canvas.body.container.style.cursor = 'pointer';
-	 	// });
-
-		// this.visService.networkInstance.once("blurNode", (params) => {
-		// 	this.visService.networkInstance.canvas.body.container.style.cursor = 'default';
-	 	// });
-
 		this.visService.networkInstance.body.data.nodes.on('*', () => {
 			this.algorithmsService.getGraph();
 			this.algorithmsService.searchGraph();
 			this.algorithmsService.getMatrix();
+			this.hasChanges = true;
 		});
 
 		this.visService.networkInstance.body.data.edges.on('*', () => {
 			this.algorithmsService.getGraph();
 			this.algorithmsService.searchGraph();
 			this.algorithmsService.getMatrix();
+			this.hasChanges = true;
 		});
 
 	    this.visService.networkInstance.on("dragEnd", (() => {
@@ -238,7 +234,6 @@ export class GraphService {
 			length: 300,
 			smooth: false,
 			color: {
-				//inherit: 'both',
 				color: '#48648b',
 				hover: '#48648b',
 				highlight: '#ff4081'
