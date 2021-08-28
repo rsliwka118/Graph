@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { GraphService } from 'src/modules/core/services/graph.service';
 
@@ -7,7 +7,7 @@ import { GraphService } from 'src/modules/core/services/graph.service';
     template: `
         <div class="matrix-container">
             <div class="matrix">
-                <tr *ngFor="let nodex of algorithmsService.adjConnections; let i = index; trackBy:trackByItem">
+                <tr *ngFor="let nodex of nodesConnections; let i = index; trackBy:trackByItem">
                     <mat-checkbox *ngIf="i === 0" style="opacity: 0%;" [disabled]="true"></mat-checkbox>
                     <div style="width: 30px; text-align: left; margin-right: 1px; color: #8c8f92;">{{algorithmsService.nodes[i].label}}</div>
                     <td *ngFor="let nodey of nodex; let j = index; trackBy:trackById">
@@ -17,14 +17,19 @@ import { GraphService } from 'src/modules/core/services/graph.service';
                 </tr>    
             </div>
         </div>
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdjacencyMatrixComponent implements OnInit {
 
-    constructor(public graphService: GraphService, public algorithmsService: AlgorithmsService) { }
+    @Input() nodesConnections: any;
 
-    ngOnInit(): void {
+    constructor(public graphService: GraphService, 
+        public algorithmsService: AlgorithmsService
+        ) {
     }
+
+    ngOnInit(): void {}
 
     trackByItem(index: number, node: any): any {
         return index;

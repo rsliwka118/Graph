@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { VisService } from './vis.service';
+import { GraphService } from './graph.service';
 import mix from 'mix-color';
 
 @Injectable({
@@ -9,11 +10,15 @@ export class ColorService {
 
 	colors: string[];
 
-	constructor(private visService: VisService) {
+	constructor(private visService: VisService, private graphService: GraphService) {
 	    this.getRandomColors(1000);
 	}
 
 	colorNodes(nodes) {
+
+		this.graphService.resetGraph();
+		this.graphService.inheritEdges(true);
+		
 	    let tabKS = [];
 	    let tab = nodes;
 
@@ -60,6 +65,8 @@ export class ColorService {
 	}
 
 	degreeColor() {
+
+		this.graphService.inheritEdges(true);
 
 	    let maxDegree = 0;
 

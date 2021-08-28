@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { OptionsService } from 'src/modules/core/services/options.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { OptionsService } from 'src/modules/core/services/options.service';
 })
 export class RepresentationsComponent implements OnInit {
 
-    constructor(public options: OptionsService) { }
+    constructor(public options: OptionsService, public algorithmsService: AlgorithmsService) { }
 
     ngOnInit(): void {
     }

@@ -123,6 +123,7 @@ export class GraphService {
 	    this.visService.networkInstance.body.data.nodes.get().forEach(node => {
 	        this.visService.networkInstance.body.data.nodes.update({id: node.id, color: { background: "#6a87af", border: "#48648b" }, font: { size: 30 }});
 	    });
+		this.inheritEdges(false);
 	}
 
 	editNodeLabel(label) {
@@ -202,6 +203,22 @@ export class GraphService {
 	    this.algorithmsService.selectedEdgeID = null;
 
 	}
+
+	inheritEdges(enable): any {
+		let optionDisable = {
+			color: '#48648b',
+			hover: '#48648b',
+			highlight: '#ff4081'
+		},
+		optionEnable = { inherit: 'both' };
+		
+		this.visService.networkInstance.setOptions({
+	        edges: {   
+	            color: enable ? optionEnable : optionDisable
+			}
+	    });
+	}
+	
 
 	option = {
 		nodes: {

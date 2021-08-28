@@ -5,7 +5,7 @@
                 <div class="edit-text" style="margin-bottom: 0;">Macierz sąsiedztwa</div>
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-adjacency-matrix></app-adjacency-matrix>
+        <app-adjacency-matrix [nodesConnections]="algorithmsService.adjConnections"></app-adjacency-matrix>
     </mat-expansion-panel>
     <!-- INC PANEL-->
     <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
@@ -14,7 +14,8 @@
                 <div class="edit-text" style="margin-bottom: 0;">Macierz incydencji</div>
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-incidence-matrix></app-incidence-matrix>
+        <app-incidence-matrix [nodes]="algorithmsService.nodes" [edges]="algorithmsService.edges">
+        </app-incidence-matrix>
     </mat-expansion-panel>
     <!-- LIST PANEL-->
     <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
@@ -23,7 +24,7 @@
                 <div class="edit-text" style="margin-bottom: 0;">Lista sąsiedztwa</div>
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-adjacency-list></app-adjacency-list>
+        <app-adjacency-list [nodes]="algorithmsService.nodes"></app-adjacency-list>
     </mat-expansion-panel>
 </div>
 <div *ngIf="!options.enableMatrix" class="edit-text"

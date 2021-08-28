@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { GraphService } from 'src/modules/core/services/graph.service';
 
@@ -7,9 +7,9 @@ import { GraphService } from 'src/modules/core/services/graph.service';
     template: `
         <div class="matrix-container">
             <div class="matrix">
-                <div *ngFor="let nodex of algorithmsService.nodes; let i = index; trackBy:trackByItem">
+                <div *ngFor="let nodex of nodes; let i = index; trackBy:trackByItem">
                     <span style="text-align: left; margin-right: 1px; color: #ff4081; font-size: 20px;">{{algorithmsService.nodes[i].label}}</span>
-                    <span *ngFor="let nodey of algorithmsService.nodes; let j = index; trackBy:trackById" >
+                    <span *ngFor="let nodey of nodes; let j = index; trackBy:trackById" >
                         <td *ngIf="algorithmsService.adjConnections[i][j].isConnected">
                             <a style="font-size: 20px; color: #8c8f92;"><span style="opacity: 50%;">&#10142;</span>{{algorithmsService.nodes[j].label}}</a>
                         </td>
@@ -17,9 +17,12 @@ import { GraphService } from 'src/modules/core/services/graph.service';
                 </div>
             </div>
         </div>
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdjacencyListComponent implements OnInit {
+
+    @Input() nodes: any;
 
     constructor(public graphService: GraphService, public algorithmsService: AlgorithmsService) { }
 
