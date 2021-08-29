@@ -28,12 +28,12 @@ export class GraphService {
 
   	public buildGraph(cont, data?){
 		  
-		this.hasChanges = false;
-		let graphData = data ? data : { nodes: new DataSet<Node>([]), edges: new DataSet<Edge>([]) }
+	    this.hasChanges = false;
+	    let graphData = data ? data : { nodes: new DataSet<Node>([]), edges: new DataSet<Edge>([]) };
 	    let container = cont.nativeElement;
 	    this.visService.networkInstance = new Network(container, graphData, this.option);
 
-		this.algorithmsService.getGraph();
+	    this.algorithmsService.getGraph();
 	    this.algorithmsService.getMatrix();
 	    this.listener();
 		
@@ -41,19 +41,19 @@ export class GraphService {
 
 	listener(){
 
-		this.visService.networkInstance.body.data.nodes.on('*', () => {
-			this.algorithmsService.getGraph();
-			this.algorithmsService.searchGraph();
-			this.algorithmsService.getMatrix();
-			this.hasChanges = true;
-		});
+	    this.visService.networkInstance.body.data.nodes.on('*', () => {
+	        this.algorithmsService.getGraph();
+	        this.algorithmsService.searchGraph();
+	        this.algorithmsService.getMatrix();
+	        this.hasChanges = true;
+	    });
 
-		this.visService.networkInstance.body.data.edges.on('*', () => {
-			this.algorithmsService.getGraph();
-			this.algorithmsService.searchGraph();
-			this.algorithmsService.getMatrix();
-			this.hasChanges = true;
-		});
+	    this.visService.networkInstance.body.data.edges.on('*', () => {
+	        this.algorithmsService.getGraph();
+	        this.algorithmsService.searchGraph();
+	        this.algorithmsService.getMatrix();
+	        this.hasChanges = true;
+	    });
 
 	    this.visService.networkInstance.on("dragEnd", (() => {
 
@@ -123,7 +123,7 @@ export class GraphService {
 	    this.visService.networkInstance.body.data.nodes.get().forEach(node => {
 	        this.visService.networkInstance.body.data.nodes.update({id: node.id, color: { background: "#6a87af", border: "#48648b" }, font: { size: 30 }});
 	    });
-		this.inheritEdges(false);
+	    this.inheritEdges(false);
 	}
 
 	editNodeLabel(label) {
@@ -150,7 +150,7 @@ export class GraphService {
 	        this.visService.networkInstance.addNodeMode();
 	    }
 
-		//this.renderer.addClass(this.hostElement.nativeElement, 'custom-cursor');
+	    //this.renderer.addClass(this.hostElement.nativeElement, 'custom-cursor');
 
 	    this.isAddNode = true;
 	    this.isAddEdge = false;
@@ -166,11 +166,11 @@ export class GraphService {
 	}
 
 	deleteSelected(){
-		if( this.nodeSelected || this.edgeSelected) {
-			this.visService.networkInstance.deleteSelected();
-			if(this.algorithmsService.selectedNodeID === this.algorithmsService.startNodeID) this.algorithmsService.startNodeID = '';
-			this.unselect();
-		}
+	    if( this.nodeSelected || this.edgeSelected) {
+	        this.visService.networkInstance.deleteSelected();
+	        if(this.algorithmsService.selectedNodeID === this.algorithmsService.startNodeID) this.algorithmsService.startNodeID = '';
+	        this.unselect();
+	    }
 	}
 
 	addEdge() {
@@ -183,14 +183,14 @@ export class GraphService {
 	}
 
 	editEdge() {
-		if(this.edgeSelected) {
-			this.visService.networkInstance.editEdgeMode();
+	    if(this.edgeSelected) {
+	        this.visService.networkInstance.editEdgeMode();
 
-			this.isEditEdge = true;
-			this.isAddEdge = false;
-			this.isAddNode = false;
-			this.unselect();
-		}
+	        this.isEditEdge = true;
+	        this.isAddEdge = false;
+	        this.isAddNode = false;
+	        this.unselect();
+	    }
 	}
 
 	unselect(){
@@ -205,110 +205,110 @@ export class GraphService {
 	}
 
 	inheritEdges(enable): any {
-		let optionDisable = {
-			color: '#48648b',
-			hover: '#48648b',
-			highlight: '#ff4081'
-		},
-		optionEnable = { inherit: 'both' };
+	    let optionDisable = {
+	            color: '#48648b',
+	            hover: '#48648b',
+	            highlight: '#ff4081'
+	        },
+	        optionEnable = { inherit: 'both' };
 		
-		this.visService.networkInstance.setOptions({
+	    this.visService.networkInstance.setOptions({
 	        edges: {   
 	            color: enable ? optionEnable : optionDisable
-			}
+	        }
 	    });
 	}
 	
 
 	option = {
-		nodes: {
-			shape: "circle",
+	    nodes: {
+	        shape: "circle",
 	
-			font: {
-				size: 30,
+	        font: {
+	            size: 30,
 				
-				color: "#ffffff",
-				face: 'Montserrat',
-				align: "right"
-			},
-			borderWidth: 6,
-			color: {
-				background: "#6a87af",
-				border: "#48648b",
-				hover: {
-					background: "#6a87af",
-					border: "#48648b"
-				},
-				highlight: {
-					border: 'rgba(255, 64, 128)',
-					background: '#ffa4c3'
-				}
-			}
-		},
-		edges: {
-			label: '1',
-			width: 7,
-			length: 300,
-			smooth: false,
-			color: {
-				color: '#48648b',
-				hover: '#48648b',
-				highlight: '#ff4081'
-			},
-			font: {
-				size: 20,
-				color: "#d0dfeb",
-				face: 'Montserrat',
-				align: 'top',
-				strokeWidth: 0
-			}
+	            color: "#ffffff",
+	            face: 'Montserrat',
+	            align: "right"
+	        },
+	        borderWidth: 6,
+	        color: {
+	            background: "#6a87af",
+	            border: "#48648b",
+	            hover: {
+	                background: "#6a87af",
+	                border: "#48648b"
+	            },
+	            highlight: {
+	                border: 'rgba(255, 64, 128)',
+	                background: '#ffa4c3'
+	            }
+	        }
+	    },
+	    edges: {
+	        label: '1',
+	        width: 7,
+	        length: 300,
+	        smooth: false,
+	        color: {
+	            color: '#48648b',
+	            hover: '#48648b',
+	            highlight: '#ff4081'
+	        },
+	        font: {
+	            size: 20,
+	            color: "#d0dfeb",
+	            face: 'Montserrat',
+	            align: 'top',
+	            strokeWidth: 0
+	        }
 	
-		},
-		physics: {
-			enabled: false,
-		},
-		manipulation: { enabled: true,
-			addNode: (data, callback) => {
-				let nodes = this.visService.networkInstance.body.data.nodes.get(),
-					lastLabel = nodes.length ? nodes[nodes.length - 1].label.slice(1,-1) : "@";
+	    },
+	    physics: {
+	        enabled: false,
+	    },
+	    manipulation: { enabled: true,
+	        addNode: (data, callback) => {
+	            let nodes = this.visService.networkInstance.body.data.nodes.get(),
+	                lastLabel = nodes.length ? nodes[nodes.length - 1].label.slice(1,-1) : "@";
 
-				let getLabelValue = (label) => {
-					let	length = label.length,
-						value = 0;
+	            let getLabelValue = (label) => {
+	                let	length = label.length,
+	                    value = 0;
 
-					for(let i = 0; i <= length - 1 ; i++){
-						value += i + Math.pow(25,i) + label.charCodeAt(i) - 65;
-					}
+	                for(let i = 0; i <= length - 1 ; i++){
+	                    value += i + Math.pow(25,i) + label.charCodeAt(i) - 65;
+	                }
 
-					return value;
-				}
+	                return value;
+	            };
 
-				let generateLabel = (number) => {
-					let baseChar = ("A").charCodeAt(0),
-						label  = "";
+	            let generateLabel = (number) => {
+	                let baseChar = ("A").charCodeAt(0),
+	                    label  = "";
 				  
-					do {
-						number -= 1;
-						label = String.fromCharCode(baseChar + (number % 26)) + label;
-						number = (number / 26) >> 0;
-					} while(number > 0);
+	                do {
+	                    number -= 1;
+	                    label = String.fromCharCode(baseChar + (number % 26)) + label;
+	                    number = (number / 26) >> 0;
+	                } while(number > 0);
 				  
-					return ' ' + label + ' ';
-				}
+	                return ' ' + label + ' ';
+	            };
 
-				data.label = generateLabel( getLabelValue(lastLabel) + 1);
+	            data.label = generateLabel( getLabelValue(lastLabel) + 1);
 
-				this.visService.networkInstance.body.data.nodes.add(data);
-			},
-			addEdge: (data, callback) => {
-				data.label = "1"
-				this.visService.networkInstance.body.data.edges.add(data);
-			},
-		},
-		interaction:{
-			multiselect: true,
-			hover: true
-		}
+	            this.visService.networkInstance.body.data.nodes.add(data);
+	        },
+	        addEdge: (data, callback) => {
+	            data.label = "1";
+	            this.visService.networkInstance.body.data.edges.add(data);
+	        },
+	    },
+	    interaction:{
+	        multiselect: true,
+	        hover: true
+	    }
 	};
 }
 

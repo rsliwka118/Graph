@@ -17,6 +17,6 @@ export class SidebarContentComponent implements OnInit {
     constructor(public navigationService: NavigationService) { }
 
     ngOnInit(): void {
-      //this.navigationService.isSidenavContentLoaded = true;
+        //this.navigationService.isSidenavContentLoaded = true;
     }
 }

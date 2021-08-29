@@ -75,42 +75,42 @@ export class AlgorithmsService {
 	    if(this.options.enableMatrix) {
 
 	        this.getIncMatrix();
-			this.getAdjMatrix();
+	        this.getAdjMatrix();
 	    }
 	}
 
 	getGraph() {
 	    this.nodes = this.visService.networkInstance.body.data.nodes.get();
-		this.edges = this.visService.networkInstance.body.data.edges.get();
+	    this.edges = this.visService.networkInstance.body.data.edges.get();
 	}
 
 	fillAdjMatrix(){
-		this.adjConnections = [];
+	    this.adjConnections = [];
 		
-		for(let i=0; i < this.nodes.length ; i++) {
-			this.adjConnections[i] = [];
-			for(let j=0; j < this.nodes.length ; j++) {
-				this.adjConnections[i][j] = new Matrix(i+''+j, false);
-			}
-		}
+	    for(let i=0; i < this.nodes.length ; i++) {
+	        this.adjConnections[i] = [];
+	        for(let j=0; j < this.nodes.length ; j++) {
+	            this.adjConnections[i][j] = new Matrix(i+''+j, false);
+	        }
+	    }
 	}
 
 	fillIncMatrix(){
-		this.incConnections = [];
+	    this.incConnections = [];
 		
-		for(let i=0; i < this.nodes.length ; i++) {
-			this.incConnections[i] = [];
-			for(let j=0; j < this.edges.length ; j++) {
-				this.incConnections[i][j] = new Matrix(i+''+j, false);
-			}
-		}
+	    for(let i=0; i < this.nodes.length ; i++) {
+	        this.incConnections[i] = [];
+	        for(let j=0; j < this.edges.length ; j++) {
+	            this.incConnections[i][j] = new Matrix(i+''+j, false);
+	        }
+	    }
 	}
 
 	getAdjMatrix() {
 
 	    //if(nodes.length) this.adjConnections = new Array(nodes.length).fill(false).map(() => new Array(nodes.length).fill(false));
 
-		this.fillAdjMatrix();
+	    this.fillAdjMatrix();
 		
 	    for(let i=0; i < this.nodes.length ; i++){
 
@@ -132,7 +132,7 @@ export class AlgorithmsService {
 
 	    //if(this.nodes.length && this.edges.length) this.incConnections = new Array(this.nodes.length).fill(false).map(() => new Array(this.edges.length).fill(false));
 
-		this.fillIncMatrix();
+	    this.fillIncMatrix();
 
 	    for(let i=0; i < this.nodes.length ; i++) {
 
@@ -153,7 +153,7 @@ export class AlgorithmsService {
 
 	    let adjList = new Array();
 
-		this.getAdjMatrix();
+	    this.getAdjMatrix();
 
 	    for(let i=0; i < this.nodes.length; i++) {
 		
@@ -302,12 +302,12 @@ export class AlgorithmsService {
 	    this.dfsResult = [];
 	    this.bfsResult = [];
 
-		if(startNodeIndex !== -1) {
+	    if(startNodeIndex !== -1) {
 
 	    	this.depthFirstSearch(startNodeIndex);
 	    	this.breadthFirstSearch(startNodeIndex);
 
-		}
+	    }
 
 	}
 }

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from 'src/modules/core/services/data.service';
+import { SaveDialogComponent } from './save-dialog.component';
 
 @Component({
     selector: 'app-save-confirm',
@@ -16,10 +17,18 @@ import { DataService } from 'src/modules/core/services/data.service';
 })
 export class SaveConfirmComponent implements OnInit {
 
-    constructor(public dialogRef:MatDialogRef<SaveConfirmComponent>, @Inject(MAT_DIALOG_DATA) public data: any,  public dataService: DataService) { }
+    constructor(public dialogRef:MatDialogRef<SaveConfirmComponent>, @Inject(MAT_DIALOG_DATA) public data: any,  public dataService: DataService, public dialog: MatDialog) { }
 
     saveButton(): void{
-        this.dataService.saveAndCreateNew(this.data.container, true);
+        let isNew = this.dataService.currentTitle === '',
+            isExample = this.dataService.currentId.includes('example');
+        
+        if(isNew || isExample) this.dialog.open(SaveDialogComponent, {data: {container: this.data.container, isExample: isExample, isNew: isNew, isCreateNew: this.data.isCreateNew}});
+        else{
+            this.dataService.saveGraph();
+            this.dataService.createNewGraph(this.data.container);
+        }
+
         this.dialogRef.close();
     }
 

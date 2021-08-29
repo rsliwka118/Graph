@@ -3,12 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/modules/core/services/data.service';
 import { GraphService } from 'src/modules/core/services/graph.service';
 import { NavigationService } from 'src/modules/core/services/navigation.service';
-import { FilesBottomSheetComponent } from '../files-bottom-sheet.component';
+import { FilesBottomSheetComponent } from '../files-bottom-sheet/files-bottom-sheet.component';
 import { SaveConfirmComponent } from '../dialogs/save-confirm.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { OptionsService } from 'src/modules/core/services/options.service';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { InputService } from 'src/modules/core/services/input.service';
+import { SaveDialogComponent } from '../dialogs/save-dialog.component';
 
 @Component({
     selector: 'app-sidebar',
@@ -41,12 +42,12 @@ export class SidebarComponent implements OnInit {
             }
 
             if (event.key === "n") {
-                this.openSaveGraphConfirm();
+                this.newGraph();
             }
 
             if(event.ctrlKey && event.key === "s") {
                 event.preventDefault();
-                this.dataService.saveAndCreateNew(this.el, false);
+                this.saveGraph();
             }
 
             if (event.key === "e") {
@@ -85,8 +86,16 @@ export class SidebarComponent implements OnInit {
         return this.navigationService.openAlgorithmsPanel();
     }
 
-    openSaveGraphConfirm() {
-        this.dialog.open(SaveConfirmComponent, {data: { container: this.el }});
+    newGraph() {
+        this.dialog.open(SaveConfirmComponent, {data: { container: this.el, isCreateNew: true }});
+    }
+
+    saveGraph(){
+        let isNew = this.dataService.currentTitle === '',
+            isExample = this.dataService.currentId.includes('example');
+        
+        if(isNew || isExample) this.dialog.open(SaveDialogComponent, {data: {container: this.el, isNew: isNew}});
+        else this.dataService.saveGraph();
     }
 
     openFilesMenu() {

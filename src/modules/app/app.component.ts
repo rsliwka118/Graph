@@ -17,30 +17,30 @@ export class AppComponent {
 
   	title = 'grafbudowlaniec';
 
-	constructor( router: Router ) {
+  	constructor( router: Router ) {
  
-		this.isShowingRouteLoadIndicator = false;
-		this.isViewInit = false;
+  	    this.isShowingRouteLoadIndicator = false;
+  	    this.isViewInit = false;
 
-		let asyncLoadCount = 0;
+  	    let asyncLoadCount = 0;
  
-		router.events.subscribe(
-			( event: RouterEvent ) : void => {
+  	    router.events.subscribe(
+  	        ( event: RouterEvent ) : void => {
  
-				if ( event instanceof RouteConfigLoadStart ) {
+  	            if ( event instanceof RouteConfigLoadStart ) {
  
-					asyncLoadCount++;
+  	                asyncLoadCount++;
  
-				} else if ( event instanceof RouteConfigLoadEnd ) {
+  	            } else if ( event instanceof RouteConfigLoadEnd ) {
  
-					asyncLoadCount--;
+  	                asyncLoadCount--;
  
-				}
+  	            }
  
-				this.isShowingRouteLoadIndicator = !! asyncLoadCount;
+  	            this.isShowingRouteLoadIndicator = !! asyncLoadCount;
  
-			}
-		);
+  	        }
+  	    );
  
-	}
+  	}
 }

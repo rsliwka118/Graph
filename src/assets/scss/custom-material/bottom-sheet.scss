@@ -1,10 +1,29 @@
+.mat-tab-label-content {
+	color: #b9bcc4 !important;
+	font-family: 'Montserrat', normal !important;
+	font-size: 1.5em;
+}
+
+.graph-list-empty {
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+    color: #606468;
+}
+
 .custom-bottom-sheet{
 	background-color: #202124;
-	max-width: 695px !important;
+	max-width: 670px !important;
+	padding: 0 !important;
 }
 
 .custom-bottom-sheet .item-list {
-  	display: inline-block; 
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+	padding: .5em 0 .5em 0 !important;
 }
 
 .custom-bottom-sheet .item {

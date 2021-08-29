@@ -15,16 +15,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-declarations: [],
-	imports: [
-		CommonModule,
-		MatCheckboxModule,
-		MatExpansionModule,
-		MatListModule,
-		MatButtonModule,
-		FormsModule,
+    declarations: [],
+    imports: [
+        CommonModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        MatListModule,
+        MatButtonModule,
+        FormsModule,
         MatTooltipModule,
         MatIconModule,
         MatInputModule,
@@ -34,15 +35,16 @@ declarations: [],
         MatDialogModule,
         MatMenuModule,
         MatSnackBarModule,
-        MatSidenavModule
-	],
-	exports: [
-		CommonModule,
-		MatCheckboxModule,
-		MatExpansionModule,
-		MatListModule,
-		MatButtonModule,
-		FormsModule,
+        MatSidenavModule,
+        MatTabsModule
+    ],
+    exports: [
+        CommonModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        MatListModule,
+        MatButtonModule,
+        FormsModule,
         MatTooltipModule,
         MatIconModule,
         MatInputModule,
@@ -52,7 +54,8 @@ declarations: [],
         MatDialogModule,
         MatMenuModule,
         MatSnackBarModule,
-        MatSidenavModule
-	]
+        MatSidenavModule,
+        MatTabsModule
+    ]
 })
 export class SharedModule { }

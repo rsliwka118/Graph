@@ -10,13 +10,13 @@ export class LazyLoadingService {
 	componentFactories: ComponentFactory<any>[];
 
 	loadModule(el: ViewContainerRef, moduleType: Type<any>) {
-		el.clear();
-		const moduleFactories = this.compiler.compileModuleAndAllComponentsSync(moduleType);
-		this.componentFactories = moduleFactories.componentFactories;
+	    el.clear();
+	    const moduleFactories = this.compiler.compileModuleAndAllComponentsSync(moduleType);
+	    this.componentFactories = moduleFactories.componentFactories;
 	}
 
 	createComponent(el: ViewContainerRef, componentName: string) {
-		const component = this.componentFactories.find(e => e.selector === componentName);
-		el.createComponent(component);
+	    const component = this.componentFactories.find(e => e.selector === componentName);
+	    el.createComponent(component);
 	}
 }

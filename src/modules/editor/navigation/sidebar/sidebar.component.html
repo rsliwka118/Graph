@@ -12,7 +12,7 @@
     </div>
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
-        <button [disabled]="this.graphService.inAnimateMode" (click)="openSaveGraphConfirm()" class="nav-button"
+        <button [disabled]="this.graphService.inAnimateMode" (click)="newGraph()" class="nav-button"
             #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Nowy graf (N)" matTooltipPosition="right"
             mat-icon-button aria-label="Create new graph">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="new-icon">
@@ -21,8 +21,8 @@
     </div>
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
-        <button [disabled]="this.graphService.inAnimateMode" (click)="dataService.saveAndCreateNew(this.el, false)"
-            class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Zapisz zmiany (S)"
+        <button [disabled]="this.graphService.inAnimateMode" (click)="saveGraph()" class="nav-button"
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Zapisz zmiany (S)"
             matTooltipPosition="right" mat-icon-button aria-label="Save graph">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="save-icon">
             </mat-icon>

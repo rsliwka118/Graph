@@ -16,8 +16,8 @@ export class ColorService {
 
 	colorNodes(nodes) {
 
-		this.graphService.resetGraph();
-		this.graphService.inheritEdges(true);
+	    this.graphService.resetGraph();
+	    this.graphService.inheritEdges(true);
 		
 	    let tabKS = [];
 	    let tab = nodes;
@@ -66,7 +66,7 @@ export class ColorService {
 
 	degreeColor() {
 
-		this.graphService.inheritEdges(true);
+	    this.graphService.inheritEdges(true);
 
 	    let maxDegree = 0;
 

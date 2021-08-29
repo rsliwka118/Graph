@@ -22,7 +22,7 @@ export class OptionsService {
 	    this.enableEdgeLabel = Options.enableEdgeLabel;
 	    this.enableNodeLabel = Options.enableNodeLabel;
 	    this.enableGrid = Options.enableGrid;
-		this.enableHelper = Options.enableHelper;
+	    this.enableHelper = Options.enableHelper;
 	}
 
 	changePhysics() {

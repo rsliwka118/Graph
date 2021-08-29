@@ -7,12 +7,12 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationService } from 'src/modules/core/services/navigation.service';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Icons } from '../core/models/icons.model';
+import { ICONS } from '../core/models/icons.model';
 import { OptionsService } from 'src/modules/core/services/options.service';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackBarService } from '../core/services/snack-bar.service';
-import { HELPER } from '../core/models/keyboardhelper.model'
+import { HELPER } from '../core/models/keyboardhelper.model';
 import { preventDefault } from 'vis-util/esnext';
 import { RepresentationAlertComponent } from './navigation/dialogs/representation-alert';
 
@@ -46,36 +46,16 @@ export class EditorComponent implements AfterViewInit {
         private snackBarService: SnackBarService) {
         
         this.keyboardMenu = HELPER;
-        iconRegistry.addSvgIconLiteral('add-icon', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON));
-        iconRegistry.addSvgIconLiteral('add-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ADD_ICON_ACTIVE));
-        iconRegistry.addSvgIconLiteral('files-icon', sanitizer.bypassSecurityTrustHtml(Icons.FILES_ICON));
-        iconRegistry.addSvgIconLiteral('save-icon', sanitizer.bypassSecurityTrustHtml(Icons.SAVE_ICON));
-        iconRegistry.addSvgIconLiteral('delete-icon', sanitizer.bypassSecurityTrustHtml(Icons.DELETE_ICON));
-        iconRegistry.addSvgIconLiteral('delete-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.DELETE_ICON_ACTIVE));
-        iconRegistry.addSvgIconLiteral('new-icon', sanitizer.bypassSecurityTrustHtml(Icons.NEW_ICON));
-        iconRegistry.addSvgIconLiteral('edge-icon', sanitizer.bypassSecurityTrustHtml(Icons.ADD_EDGE));
-        iconRegistry.addSvgIconLiteral('edge-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ADD_EDGE_ACTIVE));
-        iconRegistry.addSvgIconLiteral('edit-edge-icon', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_EDGE));
-        iconRegistry.addSvgIconLiteral('edit-edge-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_EDGE_ACTIVE));
-        iconRegistry.addSvgIconLiteral('settings-icon', sanitizer.bypassSecurityTrustHtml(Icons.SETTINGS_ICON));
-        iconRegistry.addSvgIconLiteral('matrix-icon', sanitizer.bypassSecurityTrustHtml(Icons.MATRIX_ICON));
-        iconRegistry.addSvgIconLiteral('alg-icon', sanitizer.bypassSecurityTrustHtml(Icons.ALG_ICON));
-        iconRegistry.addSvgIconLiteral('matrix-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.MATRIX_ICON_ACTIVE));
-        iconRegistry.addSvgIconLiteral('alg-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.ALG_ICON_ACTIVE));
-        iconRegistry.addSvgIconLiteral('graph-icon', sanitizer.bypassSecurityTrustHtml(Icons.GRAPH_ICON));
-        iconRegistry.addSvgIconLiteral('arrow-icon', sanitizer.bypassSecurityTrustHtml(Icons.ARROW));
-        iconRegistry.addSvgIconLiteral('play-icon', sanitizer.bypassSecurityTrustHtml(Icons.PLAY_ICON));
-        iconRegistry.addSvgIconLiteral('pause-icon', sanitizer.bypassSecurityTrustHtml(Icons.PAUSE_ICON));
-        iconRegistry.addSvgIconLiteral('stop-icon', sanitizer.bypassSecurityTrustHtml(Icons.STOP_ICON));
-        iconRegistry.addSvgIconLiteral('replay-icon', sanitizer.bypassSecurityTrustHtml(Icons.REPLAY_ICON));
-        iconRegistry.addSvgIconLiteral('edit-icon', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_ICON));
-        iconRegistry.addSvgIconLiteral('edit-icon-active', sanitizer.bypassSecurityTrustHtml(Icons.EDIT_ICON_ACTIVE));
+
+        ICONS.map( i => {
+            iconRegistry.addSvgIconLiteral(i.name, sanitizer.bypassSecurityTrustHtml(i.icon));
+        })
     }
 
     @HostListener('window:beforeunload', ['$event'])
-        beforeunloadHandler(event) {
-            return this.id && this.graphService.hasChanges ? false : true;
-        } 
+    beforeunloadHandler(event) {
+        return this.id && this.graphService.hasChanges ? false : true;
+    } 
 
     ngAfterViewInit(): void {
 
@@ -85,17 +65,20 @@ export class EditorComponent implements AfterViewInit {
             this.graphService.hasChanges = false;
 
             if(this.id){
-                let graph = this.dataService.graphList.find(g => g.id === this.id);
-
-                if(graph.data.nodes.length > 15 && this.options.enableMatrix) {
-                    this.dialog.open(RepresentationAlertComponent);
-                }
-                if(graph) {
-                    this.dataService.loadGraph(this.el, graph.title, graph.id);
-                } else {
+                let graph = this.id.includes('example') ? this.dataService.examples.find(e => e.id === this.id) : this.dataService.graphList.find(g => g.id === this.id);
+                
+                if( graph === undefined){
                     this.snackBarService.openSnackBar("Nie znaleziono projektu.");
                     this.router.navigate(['/editor']);
+                } else {
+                    if(graph !== undefined) {
+                        this.dataService.loadGraph(this.el, graph);
+                    }
+                    if(graph.data.nodes.length > 15 && this.options.enableMatrix) {
+                        this.dialog.open(RepresentationAlertComponent);
+                    }  
                 }
+               
             } else {
                 this.graphService.buildGraph(this.el);
             }

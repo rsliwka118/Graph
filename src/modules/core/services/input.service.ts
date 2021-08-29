@@ -12,7 +12,7 @@ export class InputService {
     }
 
     get isTyping(): boolean {
-        return this._isTyping
+        return this._isTyping;
     }
 
 }

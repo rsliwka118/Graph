@@ -22,7 +22,7 @@ const routes: Routes = [
         path: ':id',
         component: EditorComponent
     }
-  ];
+];
 
 @NgModule({
     declarations: [ EditorComponent ],

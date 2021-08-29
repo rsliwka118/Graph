@@ -15,7 +15,7 @@ import { InputService } from 'src/modules/core/services/input.service';
       		<div style="margin: 0px; padding: 0px" mat-dialog-actions align="end">
           		<button (click)="saveButton()" mat-raised-button color="accent" style="border-color: #ff4081 !important;">Zapisz</button>
       		</div>
-    	</div>
+    	  </div>
     `
 })
 export class SaveDialogComponent implements OnInit {
@@ -26,11 +26,11 @@ export class SaveDialogComponent implements OnInit {
 
   saveButton(): void{
       this.dataService.currentTitle = this.title;
-      this.dataService.saveAndCreateNew(this.data.container, false);
+      this.dataService.saveGraph();
+      if(this.data.isExample || this.data.isCreateNew) this.dataService.createNewGraph(this.data.container);
       this.dataService.getGraphList();
       this.dialogRef.close();
   }
-
   
   ngOnInit(): void {
   }

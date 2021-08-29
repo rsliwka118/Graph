@@ -48,7 +48,7 @@ export class NavigationService {
 
     public openAlgorithmsPanel(): boolean {
 
-       // if(!this.isSidenavContentLoaded) this.loadSidenavContent();
+        // if(!this.isSidenavContentLoaded) this.loadSidenavContent();
 
         if(this.isNavOpen && this.isAlgOpen) {
 

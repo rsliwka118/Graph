@@ -26,7 +26,7 @@ export class AdjacencyMatrixComponent implements OnInit {
 
     constructor(public graphService: GraphService, 
         public algorithmsService: AlgorithmsService
-        ) {
+    ) {
     }
 
     ngOnInit(): void {}

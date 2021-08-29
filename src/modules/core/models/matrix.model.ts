@@ -3,7 +3,7 @@ export class Matrix {
 	isConnected: boolean;
 
 	constructor(id: string, isConnected: boolean) {
-		this.id = id;
-		this.isConnected = isConnected;
+	    this.id = id;
+	    this.isConnected = isConnected;
 	}
 }
