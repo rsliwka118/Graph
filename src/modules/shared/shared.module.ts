@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
     declarations: [],
@@ -36,7 +37,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatMenuModule,
         MatSnackBarModule,
         MatSidenavModule,
-        MatTabsModule
+        MatTabsModule,
+        MatGridListModule
     ],
     exports: [
         CommonModule,
@@ -55,7 +57,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatMenuModule,
         MatSnackBarModule,
         MatSidenavModule,
-        MatTabsModule
+        MatTabsModule,
+        MatGridListModule
     ]
 })
 export class SharedModule { }

@@ -18,9 +18,9 @@ export class AlgorithmsService {
 	selectedNodeID = null;
 	selectedEdgeID = null;
 
-	constructor(public options: OptionsService, private visService: VisService) {}
-
-	clickAdjMatrix(node1Index ,node2Index) {
+	constructor(public options: OptionsService, private visService: VisService) { }
+	
+	clickAdjMatrix(node1Index: number ,node2Index: number) {
 
 	    if(this.adjConnections[node1Index][node2Index].isConnected) {
 

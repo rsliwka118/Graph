@@ -4,6 +4,7 @@ import { GraphService } from 'src/modules/core/services/graph.service';
 
 @Component({
     selector: 'app-adjacency-list',
+    styleUrls: ['representations.scss'],
     template: `
         <div class="matrix-container">
             <div class="matrix">

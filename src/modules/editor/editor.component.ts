@@ -18,6 +18,7 @@ import { RepresentationAlertComponent } from './navigation/dialogs/representatio
 
 @Component({
     selector: 'app-editor',
+    styleUrls: ['./editor.component.scss'],
     templateUrl: './editor.component.html'
 })
 

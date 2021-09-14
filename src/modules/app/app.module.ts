@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { HomeComponent } from './home/home.component';
     ],
     imports: [
         AppRoutingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatGridListModule
     ],
     providers: [],
     bootstrap: [AppComponent]
