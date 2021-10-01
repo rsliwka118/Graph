@@ -1,6 +1,11 @@
 .container {
     overflow: hidden;
-    background: linear-gradient(180deg, #131415 0%, #2E2E30 117.01%);
+    //background: linear-gradient(180deg, #131415 0%, #2E2E30 117.01%);
+    background-color: #202124;
+	background-image: radial-gradient(circle, #28292c 30%, transparent 10%), radial-gradient(circle, #28292c 30%, transparent 10%);
+	background-size: 15px 15px;
+	background-position: 0 0, 30px 30px;
+	z-index: 1;
     padding: 20px 120px;
 }
 
@@ -107,7 +112,7 @@ h2 {
     .text-container {text-align: center;}
     h1 {
         font-weight: normal;
-        font-size: 1.5em;
+        font-size: calc(2vw + 1em); //1.5em;
         color: #FFFFFF;
         margin-bottom: 0px;
         line-height: 1.1em;
@@ -115,7 +120,7 @@ h2 {
     
     h2 {
         font-weight: normal;
-        font-size: .7rem;
+        font-size: calc(1vw + .5em); //.7rem;
         margin-bottom: 20px;
     }
     .landing-image {
