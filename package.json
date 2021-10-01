@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "~12.0.0",
     "@angular/router": "~12.0.0",
     "@egjs/hammerjs": "^2.0.17",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "keycharm": "^0.4.0",
     "mix-color": "^1.1.2",
     "ngx-virtual-scroller": "^4.0.3",

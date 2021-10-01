@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router, RouterEvent } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
@@ -17,8 +18,10 @@ export class AppComponent {
 
   	title = 'grafbudowlaniec';
 
-  	constructor( router: Router ) {
- 
+  	constructor( router: Router, translate: TranslateService ) {
+		
+		translate.setDefaultLang('pl');
+
   	    this.isShowingRouteLoadIndicator = false;
   	    this.isViewInit = false;
 

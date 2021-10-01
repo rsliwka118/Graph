@@ -5,6 +5,7 @@ import { SnackBarComponent } from './snack-bar.component';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { PanelsModule } from './panels/panels.module';
 import { SharedModule } from '../../shared/shared.module';
+import { MatModule } from 'src/modules/mat/mat.module';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { SharedModule } from '../../shared/shared.module';
         SidebarComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        MatModule
     ],
     exports: [
         FilesBottomSheetComponent,

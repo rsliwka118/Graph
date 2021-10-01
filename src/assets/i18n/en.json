@@ -1,0 +1,176 @@
+{   
+    "EXAMPLES": {
+        "HAMIL": "Hamiltonian graph",
+        "PETER": "Petersen graph",
+        "GROTZ": "Grötzsch graph",
+        "TREE": "Tree",
+        "NETWORK": "Network"
+    },
+    "TOASTS": {
+        "DELETE": "Removed",
+        "SAVED": "Saved",
+        "EDIT": "Edited",
+        "LOADED": "Loaded"
+    },
+    "HOME": {
+        "TITLE": "Interactive Graph Editor",
+        "SUBTITLE": "Draw graphs and learn graph algorithms.",
+        "BUTTON": "Open Editor"
+    },
+    "EDITOR": {
+        "SNACKBAR": {},
+        "OPTIONS": {
+            "LANGUAGE": {
+                "LABEL": "Language",
+                "PL": "Polish",
+                "EN": "English"
+            },
+            "SMOOTH": "Smooth edges",
+            "PHYSICS": "Physics",
+            "REPRESENTATIONS": {
+                "LABEL": "Generating a representation",
+                "TOOLTIP": "Not recommended for large graphs."
+            },
+            "WEIGHTS": "Hide edge weights",
+            "LABELS": "Hide node labels",
+            "GRID": "Grid",
+            "KEYBOARD": "Show shortcuts"
+        },
+        "NAVIGATION": {
+            "KEYBOARD": {
+                "FILES": {
+                    "LABEL": "Saved graphs",
+                    "KEY": "P"
+                },
+                "NEW": {
+                    "LABEL": "New graph",
+                    "KEY": "N"
+                },
+                "SAVE": {
+                    "LABEL": "Save changes",
+                    "KEY": "Ctrl + S"
+                },
+                "REPRESENTATIONS": {
+                    "LABEL": "Open the representation panel",
+                    "KEY": "Shift"
+                },
+                "ALGORITHMS": {
+                    "LABEL": "Open the algorithms panel",
+                    "KEY": "Alt"
+                },
+                "ADD_NODE": {
+                    "LABEL": "Add node",
+                    "KEY": "W"
+                },
+                "ADD_EDGE": {
+                    "LABEL": "Add edge",
+                    "KEY": "E"
+                },
+                "EDIT_EDGE": {
+                    "LABEL": "Edit edge",
+                    "KEY": "R"
+                },
+                "DELETE": {
+                    "LABEL": "Delete selected",
+                    "KEY": "Del"
+                }
+            },
+            "DIALOGS": {
+                "BUTTONS": {
+                    "ACCEPT": "Yes",
+                    "NO": "No",
+                    "SAVE": "Save",
+                    "DONT_SAVE": "Don't save",
+                    "DELETE": "Delete",
+                    "CANCEL": "Cancel"
+                },
+                "DELETE": "Delete project?",
+                "EDIT": {
+                    "LABEL1": "Rename",
+                    "LABEL2": "Name"
+                },
+                "SAVE_CONFIRM": "Do you want to save the changes?",
+                "SAVE": {
+                    "LABEL1": "Save project as",
+                    "LABEL2": "Name"
+                },
+                "REPRESENTATION": {
+                    "LABEL1": "Generating a representation for large graphs can significantly slow down the application.",
+                    "LABEL2": "Turn off representation generation?"
+                }
+            },
+            "BOTTOM_SHEET": {
+                "SAVED": {
+                    "LABEL": "Saved",
+                    "EDIT": "Rename",
+                    "DELETE": "Delete selected projects"
+                },
+                "EXAMPLES": "Examples",
+                "EMPTY": "No saved graphs"
+            },
+            "PANELS": {
+                "ANIMATION": {
+                    "PLAY": "Play",
+                    "CLOSE": "Stop",
+                    "TEXT": "Time of transition"
+                },
+                "EDGE": {
+                    "LABEL": "Edge",
+                    "TEXT": "Change the weight"
+                },
+                "NODE": {
+                    "LABEL": "Node",
+                    "TEXT": "Change the label",
+                    "START_NODE": "Start node"
+                }
+            },
+            "SIDEBAR": {
+                "FILES": "Saved graphs (P)",
+                "NEW": "New graph (N)",
+                "SAVE": "Save changes (Ctrl + S)",
+                "REPRESENTATIONS": "Graph representations (Shift)",
+                "ALGORITHMS": "Algorithms (Alt)",
+                "ADD_NODE": "Add node (W)",
+                "ADD_EDGE": "Add edge (E)",
+                "EDIT_EDGE": "Edit edge (R)",
+                "DELETE": "Delete selected (Del)",
+                "SETTINGS": "Settings",
+                "CONTENT": {
+                    "ALGORITHMS": {
+                        "BUTTONS": {
+                            "COLOR": "Colorize",
+                            "CHANGE": "Change the colors",
+                            "RESET": "Reset",
+                            "ANIMATION": "Animation"
+                        },
+                        "START_NODE": {
+                            "LABEL": "Start node:",
+                            "EMPTY": "none"
+                        },
+                        "DFS": "Depth First Search",
+                        "BFS": "Breadth First Search",
+                        "COLOR": {
+                            "LABEL": "Coloring the nodes",
+                            "WEIGHT": "Marking the degrees"
+                        },
+                        "COLOR2": {
+                            "LABEL": "Greedy coloring:",
+                            "ADJACENCY": "By a neighbor",
+                            "WEIGHT": "By degrees",
+                            "RANDOM": "Random"
+                        }
+                    },
+                    "REPRESENTATIONS": {
+                        "DISABLED": {
+                            "1": "Generation of representations",
+                            "2": "disabled in the settings."
+                        },
+                        "ADJACENCY_LIST": "Adjacency list",
+                        "ADJACENCY_MATRIX": "Adjacency matrix",
+                        "INCIDENCE_MATRIX": "Incidence matrix"
+                    }
+                }
+            }
+        }
+    }
+}

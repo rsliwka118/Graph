@@ -1,8 +1,8 @@
 .container {
     overflow: hidden;
     //background: linear-gradient(180deg, #131415 0%, #2E2E30 117.01%);
-    background-color: #202124;
-	background-image: radial-gradient(circle, #28292c 30%, transparent 10%), radial-gradient(circle, #28292c 30%, transparent 10%);
+    background-color: #18191a;
+	background-image: radial-gradient(circle, #212122 30%, transparent 10%), radial-gradient(circle, #28292c 30%, transparent 10%);
 	background-size: 15px 15px;
 	background-position: 0 0, 30px 30px;
 	z-index: 1;
@@ -86,7 +86,7 @@ h1 {
 h2 {
     font-family: 'Montserrat';
     font-weight: normal;
-    font-size: calc(1.5vw + .1em); //2rem;
+    font-size: calc(.6vw + 1em); //2rem;
     margin-bottom: 80px;
     color: #959595;
     line-height: 1em;
@@ -107,7 +107,7 @@ h2 {
 @media (max-width: 800px) { 
     .container {padding: 20px;}
     .content {flex-direction: column; margin: 0 0;}
-    .header {width: auto; align-items: center; height: 100%; justify-content: space-around;}
+    .header {width: auto; align-items: center; height: 200px; justify-content: space-around;}
     .brand {display: flex;justify-content: center;}
     .text-container {text-align: center;}
     h1 {
@@ -124,12 +124,12 @@ h2 {
         margin-bottom: 20px;
     }
     .landing-image {
-        max-height: 80vh;
+        max-height: calc(200px + 20vw);
         animation: none;
         position: relative;
         transform: scale(2.5);
-        bottom: -30%;
-        left: -10%;
+        bottom: -55%;
+        right: 8%;
     }
      
 }

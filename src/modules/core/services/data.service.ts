@@ -12,6 +12,7 @@ import { AlgorithmsService } from './algorithms.service';
 import { Router } from '@angular/router';
 import { EditDialogComponent } from 'src/modules/editor/navigation/dialogs/edit-dialog.component';
 import { EXAMPLES } from '../models/examples.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +26,8 @@ export class DataService {
         private options: OptionsService,
         private visService: VisService,
         public algorithmsService: AlgorithmsService,
-        private router: Router) {
+        private router: Router,
+        private translate: TranslateService) {
         this.examples = EXAMPLES;
     }
 
@@ -81,7 +83,7 @@ export class DataService {
         }
 
         localStorage.removeItem(id);
-        this.snackBarService.openSnackBar("Usunięto " + title + ".");  
+        this.snackBarService.openSnackBar(this.translate.instant('TOASTS.DELETE') + " " + title + ".");  
     }
 
     loadGraph(container, graph) {
@@ -94,7 +96,7 @@ export class DataService {
 
         this.options.loadOptions();
         this.graphService.resetGraph();
-        this.snackBarService.openSnackBar("Wczytano " + graph.title + "!");
+        this.snackBarService.openSnackBar(this.translate.instant('TOASTS.LOADED') + " " + graph.title + "!");
     }
 
     saveGraph(){
@@ -111,7 +113,7 @@ export class DataService {
         let graph = new GraphData(this.currentTitle, this.previewGraph, data, this.currentId);
         localStorage.setItem(this.currentId, JSON.stringify(graph));
 
-        this.snackBarService.openSnackBar("Zapisano " + this.currentTitle + "!");
+        this.snackBarService.openSnackBar(this.translate.instant('TOASTS.SAVED') + " " + this.currentTitle + "!");
         this.router.navigate(['/editor/' + this.currentId]);
 
         this.graphService.hasChanges = false;
@@ -123,7 +125,7 @@ export class DataService {
         graph.title = title;
         
         localStorage.setItem(id, JSON.stringify(graph));
-        this.snackBarService.openSnackBar("Edytowano " + title + "!");
+        this.snackBarService.openSnackBar(this.translate.instant('TOASTS.EDIT') + " " + title + "!");
     }
 
     getGraphList() {

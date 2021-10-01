@@ -15,6 +15,7 @@ import { SnackBarService } from '../core/services/snack-bar.service';
 import { HELPER } from '../core/models/keyboardhelper.model';
 import { preventDefault } from 'vis-util/esnext';
 import { RepresentationAlertComponent } from './navigation/dialogs/representation-alert';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-editor',
@@ -44,13 +45,16 @@ export class EditorComponent implements AfterViewInit {
         public algorithmsService: AlgorithmsService,
         private Activatedroute:ActivatedRoute,
         private router: Router,
-        private snackBarService: SnackBarService) {
+        private snackBarService: SnackBarService,
+        public translate: TranslateService) {
         
-        this.keyboardMenu = HELPER;
+            translate.setDefaultLang('pl');
+        
+            this.keyboardMenu = HELPER;
 
-        ICONS.map( i => {
-            iconRegistry.addSvgIconLiteral(i.name, sanitizer.bypassSecurityTrustHtml(i.icon));
-        })
+            ICONS.map( i => {
+                iconRegistry.addSvgIconLiteral(i.name, sanitizer.bypassSecurityTrustHtml(i.icon));
+            })
     }
 
     @HostListener('window:beforeunload', ['$event'])

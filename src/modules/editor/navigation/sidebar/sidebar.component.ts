@@ -10,6 +10,8 @@ import { OptionsService } from 'src/modules/core/services/options.service';
 import { AlgorithmsService } from 'src/modules/core/services/algorithms.service';
 import { InputService } from 'src/modules/core/services/input.service';
 import { SaveDialogComponent } from '../dialogs/save-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/modules/core/services/language.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -27,7 +29,9 @@ export class SidebarComponent implements OnInit {
         public bottomSheet: MatBottomSheet,
         public options: OptionsService,
         public algorithmsService: AlgorithmsService,
-        public inputService: InputService) { }
+        public inputService: InputService,
+        public translate: TranslateService,
+        public language: LanguageService) { }
     
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event: KeyboardEvent) {
@@ -101,6 +105,10 @@ export class SidebarComponent implements OnInit {
     openFilesMenu() {
         this.bottomSheet.open(FilesBottomSheetComponent, {data: { container: this.el }, panelClass: 'custom-bottom-sheet'});
         this.dataService.getGraphList();
+    }
+
+    changeLanguage(language: string) {
+        this.language.useLanguage(language);
     }
 
     ngOnInit(): void { }

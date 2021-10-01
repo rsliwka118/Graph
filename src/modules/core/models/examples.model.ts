@@ -29,7 +29,7 @@ export const EXAMPLES = [
                 { from: "869365ca-fb68-4bd9-bd9a-41994e82da51", to: "bbfbfa13-8084-4881-a802-51b55b27c5a5", label: "1", id: "a22e5716-db2b-4478-88ea-96bc2c885af9" }
             ]
         },
-        title: "Graf Hamiltonowski",
+        title: "EXAMPLES.HAMIL",
         image: "hamiltonian_graph.png"
     },
     {
@@ -65,7 +65,7 @@ export const EXAMPLES = [
                 { from: "f9f94d42-5e10-40f5-a202-8e7e54e8b574", to: "6ceec0fd-6680-4bfb-9c11-f3e210dba147", label: "1", id: "c77f79c8-dce0-4707-9d43-13d34b104c77" }
             ]
         },
-        title: "Graf Petersena",
+        title: "EXAMPLES.PETER",
         image: "petersen_graph.png"
     },
     {
@@ -107,7 +107,7 @@ export const EXAMPLES = [
                 { from: "f9f94d42-5e10-40f5-a202-8e7e54e8b574", to: "7811a52a-0b8a-4b9e-8d4f-e0828674d82b", label: "1", id: "4ada787b-4ce0-46e0-93b9-5bbf0048a02c" }
             ]
         },
-        title: "Graf Grötzscha",
+        title: "EXAMPLES.GROTZ",
         image: "grotzsch_graph.png"
     },
     {
@@ -147,7 +147,7 @@ export const EXAMPLES = [
                 { from: "1332bf0d-9f46-4c98-aa03-badf318b286a", to: "98e1fed5-0ee4-4364-9091-6f428b489647", label: "1", id: "0282e11d-a701-4bbb-a9bb-4a84c4da9d14" }
             ]
         },
-        title: "Drzewo",
+        title: "EXAMPLES.TREE",
         image: "tree.png"
     },
     {
@@ -324,7 +324,7 @@ export const EXAMPLES = [
                 { from: "030ae56b-4538-4092-9d3e-78a79c245dfe", to: "d91eb708-a4d4-455e-ad03-43196adbbfad", label: "1", id: "b34448e8-cfc1-49ca-a9ef-64efbc780362" }
             ]
         },
-        title: "Sieć",
+        title: "EXAMPLES.NETWORK",
         image: "network.png"
     }
 ];

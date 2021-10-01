@@ -2,7 +2,8 @@
     <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <div class="edit-text" style="margin-bottom: 0;">Macierz sąsiedztwa</div>
+                <div class="edit-text" style="margin-bottom: 0;">
+                    {{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.REPRESENTATIONS.ADJACENCY_MATRIX' | translate}}</div>
             </mat-panel-title>
         </mat-expansion-panel-header>
         <app-adjacency-matrix [nodesConnections]="algorithmsService.adjConnections"></app-adjacency-matrix>
@@ -11,7 +12,8 @@
     <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <div class="edit-text" style="margin-bottom: 0;">Macierz incydencji</div>
+                <div class="edit-text" style="margin-bottom: 0;">
+                    {{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.REPRESENTATIONS.INCIDENCE_MATRIX' | translate}}</div>
             </mat-panel-title>
         </mat-expansion-panel-header>
         <app-incidence-matrix [nodes]="algorithmsService.nodes" [edges]="algorithmsService.edges">
@@ -21,14 +23,15 @@
     <mat-expansion-panel style="margin-bottom: 5px;" [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <div class="edit-text" style="margin-bottom: 0;">Lista sąsiedztwa</div>
+                <div class="edit-text" style="margin-bottom: 0;">
+                    {{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.REPRESENTATIONS.ADJACENCY_LIST' | translate}}</div>
             </mat-panel-title>
         </mat-expansion-panel-header>
         <app-adjacency-list [nodes]="algorithmsService.nodes"></app-adjacency-list>
     </mat-expansion-panel>
 </div>
 <div *ngIf="!options.enableMatrix" class="edit-text"
-    style="padding-top: 100%; height: 100%; width: 280px; text-align: center;">Generowanie
-    reprezentacji
-    <b>wyłączone w ustawieniach.</b>
+    style="padding-top: 100%; height: 100%; width: 280px; text-align: center;">
+    {{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.REPRESENTATIONS.DISABLED.1' | translate}}
+    <b>{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.REPRESENTATIONS.DISABLED.2' | translate}}</b>
 </div>

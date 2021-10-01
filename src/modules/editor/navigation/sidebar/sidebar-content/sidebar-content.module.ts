@@ -6,6 +6,7 @@ import { IncidenceMatrixComponent } from './representations/incidence-matrix.com
 import { RepresentationsComponent } from './representations/representations.component';
 import { SidebarContentComponent } from './sidebar-content.component';
 import { SharedModule } from '../../../../shared/shared.module';
+import { MatModule } from 'src/modules/mat/mat.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { SharedModule } from '../../../../shared/shared.module';
         SidebarContentComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        MatModule
     ],
     exports: [
         SidebarContentComponent

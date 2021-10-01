@@ -39,8 +39,8 @@
       <div *ngIf="options.enableHelper" class="keyboard-helper">
         <div *ngFor="let item of keyboardMenu">
           <div class="keyboard-helper-item">
-            <span>{{item.label}}</span>
-            <span>{{item.key}}</span>
+            <span>{{item.label | translate}}</span>
+            <span>{{item.key | translate}}</span>
           </div>
         </div>
       </div>

@@ -12,6 +12,8 @@ import { OptionsService } from '../core/services/options.service';
 import { AlgorithmsService } from '../core/services/algorithms.service';
 import { SidebarContentModule } from './navigation/sidebar/sidebar-content/sidebar-content.module';
 import { SharedModule } from '../shared/shared.module';
+import { MatModule } from '../mat/mat.module';
+import { LanguageService } from '../core/services/language.service';
 
 const routes: Routes = [
     {
@@ -28,6 +30,7 @@ const routes: Routes = [
     declarations: [ EditorComponent ],
     imports: [
         SharedModule,
+        MatModule,
         SidebarContentModule,
         NavigationModule,
         RouterModule.forChild(routes)

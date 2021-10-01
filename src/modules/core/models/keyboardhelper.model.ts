@@ -1,42 +1,38 @@
 export const HELPER = [
     {
-        key: 'W',
-        label: 'Dodaj węzeł'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.ADD_NODE.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.ADD_NODE.LABEL'
     },
     {
-        key: 'E',
-        label: 'Dodaj krawędź'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.ADD_EDGE.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.ADD_EDGE.LABEL'
     },
     {
-        key: 'R',
-        label: 'Edytuj krawędź'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.EDIT_EDGE.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.EDIT_EDGE.LABEL'
     },
     {
-        key: 'Del',
-        label: 'Usuń zaznaczone'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.DELETE.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.DELETE.LABEL'
     },
     {
-        key: 'P',
-        label: 'Zapisane grafy'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.FILES.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.FILES.LABEL'
     },
     {
-        key: 'N',
-        label: 'Nowy graf'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.SAVE.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.SAVE.LABEL'
     },
     {
-        key: 'Ctrl + S',
-        label: 'Zapisz zmiany'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.NEW.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.NEW.LABEL'
     },
     {
-        key: 'N',
-        label: 'Nowy graf'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.REPRESENTATIONS.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.REPRESENTATIONS.LABEL'
     },
     {
-        key: 'Shift',
-        label: 'Otwórz panel reprezentacji'
-    },
-    {
-        key: 'Alt',
-        label: 'Otwórz panel algorytmów'
+        key: 'EDITOR.NAVIGATION.KEYBOARD.ALGORITHMS.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.ALGORITHMS.LABEL'
     }
 ];

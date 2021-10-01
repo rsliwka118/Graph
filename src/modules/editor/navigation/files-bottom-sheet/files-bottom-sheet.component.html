@@ -1,14 +1,15 @@
 <mat-tab-group color="accent" mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-    <mat-tab label="Zapisane">
+    <mat-tab label="{{'EDITOR.NAVIGATION.BOTTOM_SHEET.SAVED.LABEL' | translate}}">
         <div style="display: flex; justify-content: center; padding-top: .5em;">
-            <button (click)="dataService.switchEditProjectMode()" #tooltip="matTooltip" matTooltip="Zmień nazwę"
+            <button (click)="dataService.switchEditProjectMode()" #tooltip="matTooltip"
+                matTooltip="{{'EDITOR.NAVIGATION.BOTTOM_SHEET.SAVED.EDIT' | translate}}"
                 matTooltipClass="custom-tooltip" matTooltipPosition="right" mat-icon-button>
                 <mat-icon *ngIf="!dataService.isEditProject" inline="true" svgIcon="edit-icon"></mat-icon>
                 <mat-icon *ngIf="dataService.isEditProject" inline="true" svgIcon="edit-icon-active"></mat-icon>
             </button>
             <button (click)="dataService.switchDeleteProjectMode()" #tooltip="matTooltip"
-                matTooltip="Usuń wybrane projekty" matTooltipClass="custom-tooltip" matTooltipPosition="right"
-                mat-icon-button>
+                matTooltip="{{'EDITOR.NAVIGATION.BOTTOM_SHEET.SAVED.DELETE' | translate}}"
+                matTooltipClass="custom-tooltip" matTooltipPosition="right" mat-icon-button>
                 <mat-icon *ngIf="!dataService.isDeleteProject" inline="true" svgIcon="delete-icon"></mat-icon>
                 <mat-icon *ngIf="dataService.isDeleteProject" inline="true" svgIcon="delete-icon-active"></mat-icon>
             </button>
@@ -24,19 +25,20 @@
                 <a class="item-title">{{graph.title}}</a>
             </button>
         </div>
-        <div *ngIf="!dataService.graphList.length" class="graph-list-empty">Brak zapisanych grafów</div>
+        <div *ngIf="!dataService.graphList.length" class="graph-list-empty">{{'EDITOR.NAVIGATION.BOTTOM_SHEET.EMPTY' |
+            translate}}</div>
     </mat-tab>
-    <mat-tab label="Przykłady">
+    <mat-tab label="{{'EDITOR.NAVIGATION.BOTTOM_SHEET.EXAMPLES' | translate}}">
         <div mat-icon-button class="item-list">
             <button *ngFor="let graph of dataService.examples"
                 (click)="dataService.graphListEdit(data.container, graph.title, graph.id)" #tooltip="matTooltip"
-                matTooltipClass="custom-tooltip" matTooltip="{{graph.title}}" class="item" mat-button>
+                matTooltipClass="custom-tooltip" matTooltip="{{graph.title | translate}}" class="item" mat-button>
                 <div class="item-preview">
                     <img *ngIf="graph.image" class="preview" src="../../../../assets/images/{{graph.image}}" />
                     <img *ngIf="!graph.image" style="opacity: 0; width: 200px; height: 130px;" />
                 </div>
 
-                <a class="item-title">{{graph.title}}</a>
+                <a class="item-title">{{graph.title | translate}}</a>
             </button>
         </div>
     </mat-tab>

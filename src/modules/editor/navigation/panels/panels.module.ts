@@ -3,6 +3,7 @@ import { AnimationPanelComponent } from './animation-panel.component';
 import { EdgePanelComponent } from './edge-panel.component';
 import { NodePanelComponent } from './node-panel.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { MatModule } from 'src/modules/mat/mat.module';
 
 @NgModule({
     declarations: [
@@ -11,7 +12,8 @@ import { SharedModule } from '../../../shared/shared.module';
         EdgePanelComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        MatModule
     ],
     exports: [
         NodePanelComponent,

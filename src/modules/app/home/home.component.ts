@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-home',
@@ -8,17 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-    breakpoint: number;
-
-    constructor( private router: Router) { }
-
-    ngOnInit() {
-        this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
-    }
-      
-    onResize(event) {
-        this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
-    }
+    constructor( private router: Router, public translate: TranslateService) {}
 
     loadEditor(): void {
         this.router.navigateByUrl('/editor');

@@ -5,6 +5,7 @@ import { SaveDialogComponent } from './save-dialog.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { EditDialogComponent } from './edit-dialog.component';
 import { RepresentationAlertComponent } from './representation-alert';
+import { MatModule } from 'src/modules/mat/mat.module';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { RepresentationAlertComponent } from './representation-alert';
         RepresentationAlertComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        MatModule
     ],
     exports: [
         SaveDialogComponent,

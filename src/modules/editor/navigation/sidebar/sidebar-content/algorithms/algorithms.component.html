@@ -1,12 +1,14 @@
-<div class="edit-text matrix">Węzeł startowy:
+<div class="edit-text matrix">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.START_NODE.LABEL' | translate}}
     <span *ngIf="graphService.isStartNodeSet()">{{graphService.getNodeLabel(algorithmsService.startNodeID)}}</span>
-    <span *ngIf="!graphService.isStartNodeSet()">brak</span>
+    <span *ngIf="!graphService.isStartNodeSet()">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.START_NODE.EMPTY' |
+        translate}}</span>
 </div>
 <mat-expansion-panel style="margin-bottom: 5px;" [disabled]="!graphService.isStartNodeSet()"
     [expanded]="graphService.isStartNodeSet()">
     <mat-expansion-panel-header>
         <mat-panel-title>
-            <div class="edit-text" style="margin-bottom: 0;">Przeszukiwanie w głąb (DFS)</div>
+            <div class="edit-text" style="margin-bottom: 0;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.DFS' |
+                translate}}</div>
         </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="matrix-container matrix" style="max-height: 150px;">
@@ -20,13 +22,16 @@
     </div>
     <button [disabled]="this.graphService.inAnimateMode"
         (click)="animationService.animateSearch(algorithmsService.dfsResult)" mat-stroked-button color="accent"
-        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">Wizualizacja</button>
+        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.ANIMATION'
+        |
+        translate}}</button>
 </mat-expansion-panel>
 <mat-expansion-panel style="margin-bottom: 5px;" [disabled]="!graphService.isStartNodeSet()"
     [expanded]="graphService.isStartNodeSet()">
     <mat-expansion-panel-header>
         <mat-panel-title>
-            <div class="edit-text" style="margin-bottom: 0;">Przeszukiwanie wszerz (BFS)</div>
+            <div class="edit-text" style="margin-bottom: 0;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BFS' |
+                translate}}</div>
         </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="matrix-container matrix" style="max-height: 150px;">
@@ -40,43 +45,70 @@
     </div>
     <button [disabled]="this.graphService.inAnimateMode"
         (click)="animationService.animateSearch(algorithmsService.bfsResult)" mat-stroked-button color="accent"
-        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">Wizualizacja</button>
+        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.ANIMATION'
+        |
+        translate}}</button>
 </mat-expansion-panel>
 <mat-expansion-panel style="margin-bottom: 5px;" expanded="true">
     <mat-expansion-panel-header>
         <mat-panel-title>
-            <div class="edit-text" style="margin-bottom: 0;">Kolorowanie węzłów</div>
+            <div class="edit-text" style="margin-bottom: 0;">
+                {{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.COLOR.LABEL' | translate}}</div>
         </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="matrix-container matrix">
         <div style="height: 36px;">
-            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Oznaczenie stopni</a>
+            <a class="edit-text"
+                style="font-size: 18px; color: #8c8f92;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.COLOR.WEIGHT' |
+                translate}}</a>
             <button (click)="colorService.degreeColor()" mat-stroked-button color="accent"
-                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+                style="float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.COLOR'
+                |
+                translate}}</button>
         </div>
         <mat-divider style="opacity: 10%; margin-top: 10px; margin-bottom: 10px;"></mat-divider>
         <div class="edit-text" style="margin-bottom: 15px;
-        color: #e2e2e2;">Kolorowanie zachłanne:</div>
+        color: #e2e2e2;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.COLOR2.LABEL' |
+            translate}}</div>
         <div style="height: 36px;">
-            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Wg sąsiedztwa</a>
+            <a class="edit-text"
+                style="font-size: 18px; color: #8c8f92;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.COLOR2.ADJACENCY'
+                |
+                translate}}</a>
             <button (click)="colorService.colorNodes(algorithmsService.adjSort())" mat-stroked-button color="accent"
-                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+                style="float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.COLOR'
+                |
+                translate}}</button>
         </div>
         <mat-divider style="opacity: 10%; margin-top: 10px; margin-bottom: 10px;"></mat-divider>
         <div style="height: 36px;">
-            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Wg stopni</a>
+            <a class="edit-text"
+                style="font-size: 18px; color: #8c8f92;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.COLOR2.WEIGHT'
+                |
+                translate}}</a>
             <button (click)="colorService.colorNodes(algorithmsService.degreeSort())" mat-stroked-button color="accent"
-                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+                style="float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.COLOR'
+                |
+                translate}}</button>
         </div>
         <mat-divider style="opacity: 10%; margin-top: 10px; margin-bottom: 10px;"></mat-divider>
         <div style="height: 36px;">
-            <a class="edit-text" style="font-size: 18px; color: #8c8f92;">Losowo</a>
+            <a class="edit-text"
+                style="font-size: 18px; color: #8c8f92;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.COLOR2.RANDOM'
+                |
+                translate}}</a>
             <button (click)="colorService.colorNodes(algorithmsService.randSort())" mat-stroked-button color="accent"
-                style="float: right; border-color: #ff4081 !important;">Koloruj</button>
+                style="float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.COLOR'
+                |
+                translate}}</button>
         </div>
     </div>
     <button (click)="colorService.getRandomColors(1000)" mat-stroked-button color="accent"
-        style="margin-top: 10px; float: left; border-color: #ff4081 !important;">Zmień kolory</button>
+        style="margin-top: 10px; float: left; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.CHANGE'
+        |
+        translate}}</button>
     <button (click)="graphService.resetGraph()" mat-stroked-button color="accent"
-        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">Resetuj</button>
+        style="margin-top: 10px; float: right; border-color: #ff4081 !important;">{{'EDITOR.NAVIGATION.SIDEBAR.CONTENT.ALGORITHMS.BUTTONS.RESET'
+        |
+        translate}}</button>
 </mat-expansion-panel>

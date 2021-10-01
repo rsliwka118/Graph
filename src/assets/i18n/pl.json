@@ -1,0 +1,176 @@
+{   
+    "EXAMPLES": {
+        "HAMIL": "Graf Hamiltonowski",
+        "PETER": "Graf Petersena",
+        "GROTZ": "Graf Grötzscha",
+        "TREE": "Drzewo",
+        "NETWORK": "Sieć"
+    },
+    "TOASTS": {
+        "DELETE": "Usunięto",
+        "SAVED": "Zapisano",
+        "EDIT": "Edytowano",
+        "LOADED": "Wczytano"
+    },
+    "HOME": {
+        "TITLE": "Interaktywny Edytor Grafów",
+        "SUBTITLE": "Rysuj grafy oraz ucz się algorytmów grafowych.",
+        "BUTTON": "Otwórz Edytor"
+    },
+    "EDITOR": {
+        "SNACKBAR": {},
+        "OPTIONS": {
+            "LANGUAGE": {
+                "LABEL": "Język",
+                "PL": "Polski",
+                "EN": "Angielski"
+            },
+            "SMOOTH": "Gładkie krawędzie",
+            "PHYSICS": "Fizyka",
+            "REPRESENTATIONS": {
+                "LABEL": "Generowanie reprezentacji",
+                "TOOLTIP": "Funkcja niezalecana dla dużych grafów."
+            },
+            "WEIGHTS": "Ukryj wagi krawędzi",
+            "LABELS": "Ukryj etykiety węzłów",
+            "GRID": "Siatka",
+            "KEYBOARD": "Pokaż skróty"
+        },
+        "NAVIGATION": {
+            "KEYBOARD": {
+                "FILES": {
+                    "LABEL": "Zapisane grafy",
+                    "KEY": "P"
+                },
+                "NEW": {
+                    "LABEL": "Nowy graf",
+                    "KEY": "N"
+                },
+                "SAVE": {
+                    "LABEL": "Zapisz zmiany",
+                    "KEY": "Ctrl + S"
+                },
+                "REPRESENTATIONS": {
+                    "LABEL": "Otwórz panel reprezentacji",
+                    "KEY": "Shift"
+                },
+                "ALGORITHMS": {
+                    "LABEL": "Otwórz panel algorytmów",
+                    "KEY": "Alt"
+                },
+                "ADD_NODE": {
+                    "LABEL": "Dodaj węzeł",
+                    "KEY": "W"
+                },
+                "ADD_EDGE": {
+                    "LABEL": "Dodaj krawędź",
+                    "KEY": "E"
+                },
+                "EDIT_EDGE": {
+                    "LABEL": "Edytuj krawędź",
+                    "KEY": "R"
+                },
+                "DELETE": {
+                    "LABEL": "Usuń zaznaczone",
+                    "KEY": "Del"
+                }
+            },
+            "DIALOGS": {
+                "BUTTONS": {
+                    "ACCEPT": "Tak",
+                    "NO": "Nie",
+                    "SAVE": "Zapisz",
+                    "DONT_SAVE": "Nie zapisuj",
+                    "DELETE": "Usuń",
+                    "CANCEL": "Anuluj"
+                },
+                "DELETE": "Usunąć projekt?",
+                "EDIT": {
+                    "LABEL1": "Zmień nazwę",
+                    "LABEL2": "Nazwa"
+                },
+                "SAVE_CONFIRM": "Czy chcesz zapisać zmiany?",
+                "SAVE": {
+                    "LABEL1": "Zapisz projekt jako",
+                    "LABEL2": "Nazwa"
+                },
+                "REPRESENTATION": {
+                    "LABEL1": "Generowanie reprezentacji dla dużych grafów może znacząco spowolnić aplikację.",
+                    "LABEL2": "Wyłączyć generowanie reprezentacji?"
+                }
+            },
+            "BOTTOM_SHEET": {
+                "SAVED": {
+                    "LABEL": "Zapisane",
+                    "EDIT": "Zmień nazwę",
+                    "DELETE": "Usuń wybrane projekty"
+                },
+                "EXAMPLES": "Przykłady",
+                "EMPTY": "Brak zapisanych grafów"
+            },
+            "PANELS": {
+                "ANIMATION": {
+                    "PLAY": "Odtwarzaj",
+                    "CLOSE": "Zakończ",
+                    "TEXT": "Czas przejścia"
+                },
+                "EDGE": {
+                    "LABEL": "Krawędź",
+                    "TEXT": "Zmień wagę"
+                },
+                "NODE": {
+                    "LABEL": "Węzeł",
+                    "TEXT": "Zmień etykietę",
+                    "START_NODE": "Węzeł startowy"
+                }
+            },
+            "SIDEBAR": {
+                "FILES": "Zapisane grafy (P)",
+                "NEW": "Nowy graf (N)",
+                "SAVE": "Zapisz zmiany (Ctrl + S)",
+                "REPRESENTATIONS": "Reprezentacje grafu (Shift)",
+                "ALGORITHMS": "Algorytmy (Alt)",
+                "ADD_NODE": "Dodaj węzeł (W)",
+                "ADD_EDGE": "Dodaj krawędź (E)",
+                "EDIT_EDGE": "Edytuj krawędź (R)",
+                "DELETE": "Usuń zaznaczony element (Del)",
+                "SETTINGS": "Ustawienia",
+                "CONTENT": {
+                    "ALGORITHMS": {
+                        "BUTTONS": {
+                            "COLOR": "Koloruj",
+                            "CHANGE": "Zmień kolory",
+                            "RESET": "Resetuj",
+                            "ANIMATION": "Wizualizacja"
+                        },
+                        "START_NODE": {
+                            "LABEL": "Węzeł startowy:",
+                            "EMPTY": "brak"
+                        },
+                        "DFS": "Przeszukiwanie w głąb (DFS)",
+                        "BFS": "Przeszukiwanie wszerz (BFS)",
+                        "COLOR": {
+                            "LABEL": "Kolorowanie węzłów",
+                            "WEIGHT": "Oznaczenie stopni"
+                        },
+                        "COLOR2": {
+                            "LABEL": "Kolorowanie zachłanne:",
+                            "ADJACENCY": "Wg sąsiedztwa",
+                            "WEIGHT": "Wg stopni",
+                            "RANDOM": "Losowo"
+                        }
+                    },
+                    "REPRESENTATIONS": {
+                        "DISABLED": {
+                            "1": "Generowanie reprezentacji",
+                            "2": "wyłączone w ustawieniach."
+                        },
+                        "ADJACENCY_LIST": "Lista sąsiedztwa",
+                        "ADJACENCY_MATRIX": "Macierz sąsiedztwa",
+                        "INCIDENCE_MATRIX": "Macierz incydencji"
+                    }
+                }
+            }
+        }
+    }
+}

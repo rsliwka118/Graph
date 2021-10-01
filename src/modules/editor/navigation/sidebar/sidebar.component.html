@@ -3,8 +3,8 @@
     <!-- FILE SECTION -->
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="openFilesMenu()" class="nav-button"
-            mat-icon-button #tooltip="matTooltip" matTooltip="Zapisane grafy (P)" matTooltipClass="custom-tooltip"
-            matTooltipPosition="right" aria-label="Open saved graphs">
+            mat-icon-button #tooltip="matTooltip" matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.FILES' | translate}}"
+            matTooltipClass="custom-tooltip" matTooltipPosition="right" aria-label="Open saved graphs">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }"
                 [matBadge]="dataService.graphList.length" matBadgeColor="accent" matBadgePosition="below after"
                 svgIcon="files-icon" [matBadgeHidden]="dataService.graphList.length === 0"></mat-icon>
@@ -13,8 +13,9 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="newGraph()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Nowy graf (N)" matTooltipPosition="right"
-            mat-icon-button aria-label="Create new graph">
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+            matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.NEW' | translate}}" matTooltipPosition="right" mat-icon-button
+            aria-label="Create new graph">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="new-icon">
             </mat-icon>
         </button>
@@ -22,8 +23,9 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="saveGraph()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Zapisz zmiany (S)"
-            matTooltipPosition="right" mat-icon-button aria-label="Save graph">
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+            matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.SAVE' | translate}}" matTooltipPosition="right" mat-icon-button
+            aria-label="Save graph">
             <mat-icon [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="save-icon">
             </mat-icon>
         </button>
@@ -34,8 +36,8 @@
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="matrixToggle() ? sidebarToggle() : matrixToggle()"
             class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip"
-            matTooltip="Reprezentacje grafu (Shift)" matTooltipPosition="right" mat-icon-button
-            aria-label="Open representations">
+            matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.REPRESENTATIONS' | translate}}" matTooltipPosition="right"
+            mat-icon-button aria-label="Open representations">
             <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isRepresentationOpen"
                 [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="matrix-icon">
             </mat-icon>
@@ -48,8 +50,8 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button (click)="algToggle() ? sidebarToggle() : algToggle()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Algorytmy (Alt)" matTooltipPosition="right" mat-icon-button
-            aria-label="Open algorithms">
+            matTooltipClass="custom-tooltip" matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.ALGORITHMS' | translate}}"
+            matTooltipPosition="right" mat-icon-button aria-label="Open algorithms">
             <mat-icon *ngIf="!navigationService.isNavOpen || navigationService.isAlgOpen" svgIcon="alg-icon"></mat-icon>
             <mat-icon *ngIf="navigationService.isNavOpen && !navigationService.isAlgOpen" svgIcon="alg-icon-active">
             </mat-icon>
@@ -60,8 +62,9 @@
     <!-- EDIT SECTION -->
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="this.graphService.addNode()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj węzeł (W)"
-            matTooltipPosition="right" mat-icon-button aria-label="Add node">
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+            matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.ADD_NODE' | translate}}" matTooltipPosition="right" mat-icon-button
+            aria-label="Add node">
             <mat-icon *ngIf="!graphService.isAddNode"
                 [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="add-icon">
             </mat-icon>
@@ -73,8 +76,9 @@
     <mat-divider style="opacity: 0;"></mat-divider>
     <div class="nav-button-container">
         <button [disabled]="this.graphService.inAnimateMode" (click)="this.graphService.addEdge()" class="nav-button"
-            #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Dodaj krawędź (E)"
-            matTooltipPosition="right" mat-icon-button aria-label="Add edge">
+            #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+            matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.ADD_EDGE' | translate}}" matTooltipPosition="right" mat-icon-button
+            aria-label="Add edge">
             <mat-icon *ngIf="!graphService.isAddEdge"
                 [ngStyle]="{'opacity': !this.graphService.inAnimateMode  ? '100%' : '30%' }" svgIcon="edge-icon">
             </mat-icon>
@@ -87,8 +91,8 @@
     <div class="nav-button-container">
         <button [disabled]="!this.graphService.edgeSelected || this.graphService.inAnimateMode"
             (click)="this.graphService.editEdge()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Edytuj krawędź (R)" matTooltipPosition="right" mat-icon-button
-            aria-label="Edit edge">
+            matTooltipClass="custom-tooltip" matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.EDIT_EDGE' | translate}}"
+            matTooltipPosition="right" mat-icon-button aria-label="Edit edge">
             <mat-icon *ngIf="!graphService.isEditEdge"
                 [ngStyle]="{'opacity': this.graphService.edgeSelected && !this.graphService.inAnimateMode ? '100%' : '30%' }"
                 svgIcon="edit-edge-icon"></mat-icon>
@@ -102,8 +106,8 @@
         <button
             [disabled]="!(this.graphService.edgeSelected || this.graphService.nodeSelected) || this.graphService.inAnimateMode"
             (click)="this.graphService.deleteSelected()" class="nav-button" #tooltip="matTooltip"
-            matTooltipClass="custom-tooltip" matTooltip="Usuń zaznaczony element (Del)" matTooltipPosition="right"
-            mat-icon-button aria-label="Delete selected">
+            matTooltipClass="custom-tooltip" matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.DELETE' | translate}}"
+            matTooltipPosition="right" mat-icon-button aria-label="Delete selected">
             <mat-icon
                 [ngStyle]="{'opacity': ( this.graphService.edgeSelected || this.graphService.nodeSelected ) && !graphService.inAnimateMode ? '100%' : '30%' }"
                 svgIcon="delete-icon"></mat-icon>
@@ -112,49 +116,61 @@
 
     <!-- SETTINGS PANEL-->
     <div style="position: absolute; bottom: 0;" class="nav-button-container">
-        <button class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip" matTooltip="Ustawienia"
-            matTooltipPosition="right" mat-button [matMenuTriggerFor]="afterMenu" mat-icon-button
-            aria-label="Open settings">
+        <button class="nav-button" #tooltip="matTooltip" matTooltipClass="custom-tooltip"
+            matTooltip="{{'EDITOR.NAVIGATION.SIDEBAR.SETTINGS' | translate}}" matTooltipPosition="right" mat-button
+            [matMenuTriggerFor]="afterMenu" mat-icon-button aria-label="Open settings">
             <mat-icon svgIcon="settings-icon"></mat-icon>
         </button>
         <mat-menu class="settings" #afterMenu="matMenu" xPosition="after">
             <div (click)=$event.stopPropagation()>
+                <div class="settings-item language">
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.LANGUAGE.LABEL' | translate}}</a>
+                    <div>
+                        <img (click)="changeLanguage('pl')" class="flag" src="../../../assets/images/pl.svg" width="24"
+                        tooltip="matTooltip" matTooltipClass="custom-tooltip"
+                    matTooltip="{{'EDITOR.OPTIONS.LANGUAGE.PL' | translate}}" matTooltipPosition="right"/>
+                        <img (click)="changeLanguage('en')" class="flag" src="../../../assets/images/en.svg" width="24"
+                        tooltip="matTooltip" matTooltipClass="custom-tooltip"
+                    matTooltip="{{'EDITOR.OPTIONS.LANGUAGE.EN' | translate}}" matTooltipPosition="right"/>
+                    </div>
+                </div>
+                <mat-divider style="opacity: 10%;"></mat-divider>
                 <div class="settings-item">
-                    <a class="settings-item-text">Gładkie krawędzie</a>
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.SMOOTH' | translate}}</a>
                     <mat-slide-toggle [disabled]="graphService.inAnimateMode" style="float:right"
                         [(ngModel)]="options.enableSmooth" (change)="options.changeSmooth()">
                     </mat-slide-toggle>
                 </div>
                 <div class="settings-item">
-                    <a class="settings-item-text">Fizyka</a>
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.PHYSICS' | translate}}</a>
                     <mat-slide-toggle [disabled]="graphService.inAnimateMode" style="float:right"
                         [(ngModel)]="options.enablePhysics" (change)="options.changePhysics()">
                     </mat-slide-toggle>
                 </div>
                 <mat-divider style="opacity: 10%;"></mat-divider>
                 <div class="settings-item" #tooltip="matTooltip" matTooltipClass="custom-tooltip"
-                    matTooltip="Funkcja niezalecana dla dużych grafów." matTooltipPosition="right">
-                    <a class="settings-item-text">Generowanie reprezentacji</a>
+                    matTooltip="{{'EDITOR.OPTIONS.REPRESENTATIONS.TOOLTIP' | translate}}" matTooltipPosition="right">
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.REPRESENTATIONS.LABEL' | translate}}</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableMatrix"
                         (change)="algorithmsService.getMatrix()"></mat-slide-toggle>
                 </div>
                 <mat-divider style="opacity: 10%;"></mat-divider>
                 <div class="settings-item">
-                    <a class="settings-item-text">Ukryj wagi krawędzi</a>
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.WEIGHTS' | translate}}</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableEdgeLabel"
                         (change)="options.changeEdgeLabel()"></mat-slide-toggle>
                 </div>
                 <div class="settings-item">
-                    <a class="settings-item-text">Ukryj etykiety węzłów</a>
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.LABELS' | translate}}</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableNodeLabel"
                         (change)="options.changeNodeLabel()"></mat-slide-toggle>
                 </div>
                 <div class="settings-item">
-                    <a class="settings-item-text">Siatka</a>
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.GRID' | translate}}</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableGrid"></mat-slide-toggle>
                 </div>
                 <div class="settings-item">
-                    <a class="settings-item-text">Pokaż skróty</a>
+                    <a class="settings-item-text">{{'EDITOR.OPTIONS.KEYBOARD' | translate}}</a>
                     <mat-slide-toggle style="float:right" [(ngModel)]="options.enableHelper"></mat-slide-toggle>
                 </div>
             </div>
