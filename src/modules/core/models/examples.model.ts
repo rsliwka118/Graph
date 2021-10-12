@@ -150,6 +150,7 @@ export const EXAMPLES = [
         title: "EXAMPLES.TREE",
         image: "tree.png"
     },
+    /*
     {
         id: "example5",
         data: {
@@ -327,4 +328,5 @@ export const EXAMPLES = [
         title: "EXAMPLES.NETWORK",
         image: "network.png"
     }
+    */
 ];

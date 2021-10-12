@@ -172,7 +172,7 @@ export class AlgorithmsService {
 	depthFirstSearch(nodeID) {
 
 	    let adjList = this.getAdjList();
-
+		//console.log(adjList);
 	    const stack = [nodeID];
 	    const visited = {};
 	    visited[nodeID] = true;

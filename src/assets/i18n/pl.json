@@ -73,6 +73,10 @@
                 "DELETE": {
                     "LABEL": "Usuń zaznaczone",
                     "KEY": "Del"
+                },
+                "ESCAPE": {
+                    "LABEL": "Wyjdź z aktywnego trybu",
+                    "KEY": "Esc"
                 }
             },
             "DIALOGS": {
@@ -103,7 +107,8 @@
                 "SAVED": {
                     "LABEL": "Zapisane",
                     "EDIT": "Zmień nazwę",
-                    "DELETE": "Usuń wybrane projekty"
+                    "DELETE": "Usuń projekt",
+                    "OPEN": "Otwórz"
                 },
                 "EXAMPLES": "Przykłady",
                 "EMPTY": "Brak zapisanych grafów"

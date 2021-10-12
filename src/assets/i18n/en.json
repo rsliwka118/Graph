@@ -73,6 +73,10 @@
                 "DELETE": {
                     "LABEL": "Delete selected",
                     "KEY": "Del"
+                },
+                "ESCAPE": {
+                    "LABEL": "Disable active mode",
+                    "KEY": "Esc"
                 }
             },
             "DIALOGS": {
@@ -103,7 +107,8 @@
                 "SAVED": {
                     "LABEL": "Saved",
                     "EDIT": "Rename",
-                    "DELETE": "Delete selected projects"
+                    "DELETE": "Delete project",
+                    "OPEN": "Open"
                 },
                 "EXAMPLES": "Examples",
                 "EMPTY": "No saved graphs"

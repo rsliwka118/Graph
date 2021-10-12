@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { EditDialogComponent } from 'src/modules/editor/navigation/dialogs/edit-dialog.component';
 import { EXAMPLES } from '../models/examples.model';
 import { TranslateService } from '@ngx-translate/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,7 @@ export class DataService {
         public dialog: MatDialog, 
         public snackBarService: SnackBarService,
         private options: OptionsService,
+        public bottomSheet: MatBottomSheet,
         private visService: VisService,
         public algorithmsService: AlgorithmsService,
         private router: Router,
@@ -39,28 +41,6 @@ export class DataService {
     isEditProject = false;
     context: CanvasRenderingContext2D;
     previewGraph: string;
-    
-    switchDeleteProjectMode() {
-        this.isDeleteProject = !this.isDeleteProject;
-        this.isEditProject = false;
-    }
-
-    switchEditProjectMode() {
-        this.isEditProject = !this.isEditProject;
-        this.isDeleteProject = false;
-    }
-
-    graphListEdit(container, title, id) {
-        if(this.isDeleteProject){
-            this.dialog.open(DeleteConfirmComponent, {data: {container: container, title: title, id: id}});
-        }
-        else if(this.isEditProject){
-            this.dialog.open(EditDialogComponent, {data: {container: container, title: title, id: id}});
-        }
-        else {
-            this.router.navigate(['/editor/'+ id]);
-        }
-    }
 
     createNewGraph(container) {
         this.currentTitle = "";
@@ -71,7 +51,7 @@ export class DataService {
         this.graphService.buildGraph(container);
     }
 
-    deleteGraph(container, title, id){
+    deleteGraph(container, title, id) {
         
         if(id === this.currentId) this.createNewGraph(container);
 
@@ -96,7 +76,7 @@ export class DataService {
 
         this.options.loadOptions();
         this.graphService.resetGraph();
-        this.snackBarService.openSnackBar(this.translate.instant('TOASTS.LOADED') + " " + graph.title + "!");
+        this.snackBarService.openSnackBar(this.translate.instant('TOASTS.LOADED') + " " + this.translate.instant(graph.title) + "!");
     }
 
     saveGraph(){

@@ -1,5 +1,9 @@
 export const HELPER = [
     {
+        key: 'EDITOR.NAVIGATION.KEYBOARD.ESCAPE.KEY',
+        label: 'EDITOR.NAVIGATION.KEYBOARD.ESCAPE.LABEL'
+    },
+    {
         key: 'EDITOR.NAVIGATION.KEYBOARD.ADD_NODE.KEY',
         label: 'EDITOR.NAVIGATION.KEYBOARD.ADD_NODE.LABEL'
     },

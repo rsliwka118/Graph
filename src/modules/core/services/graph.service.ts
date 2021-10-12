@@ -175,7 +175,6 @@ export class GraphService {
 
 	addEdge() {
 	    this.visService.networkInstance.addEdgeMode();
-
 	    this.isAddEdge = true;
 	    this.isAddNode = false;
 	    this.isEditEdge = false;

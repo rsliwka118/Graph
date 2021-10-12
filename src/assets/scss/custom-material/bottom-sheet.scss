@@ -13,6 +13,19 @@
     color: #606468;
 }
 
+.item-container {
+    width: 220px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.item-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .custom-bottom-sheet{
 	background-color: #202124;
 	max-width: 670px !important;
@@ -40,6 +53,7 @@
 	font-family: 'Montserrat';
 	font-size: 15px;
 	text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .item-preview {
@@ -57,4 +71,18 @@
 .preview:hover {
     transform: scale(.95);
     transition: ease-out .3s;
+}
+
+.delete-button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #f34545;
+    color: white;
+    font-size: 34px;
+    text-align: center;
+    z-index: 2;
+    /* right: 0; */
+    position: absolute;
+    cursor: pointer;
 }

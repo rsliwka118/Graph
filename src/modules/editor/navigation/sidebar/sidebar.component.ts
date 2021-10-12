@@ -75,6 +75,11 @@ export class SidebarComponent implements OnInit {
             if (event.key === "Delete") {
                 this.graphService.deleteSelected();
             }
+
+            if (event.key === "Escape") {
+                event.preventDefault();
+                this.graphService.disableEditMode();
+            }
         }
     }
 
@@ -103,8 +108,8 @@ export class SidebarComponent implements OnInit {
     }
 
     openFilesMenu() {
-        this.bottomSheet.open(FilesBottomSheetComponent, {data: { container: this.el }, panelClass: 'custom-bottom-sheet'});
         this.dataService.getGraphList();
+        this.bottomSheet.open(FilesBottomSheetComponent, {data: { container: this.el }, panelClass: 'custom-bottom-sheet'});
     }
 
     changeLanguage(language: string) {
